@@ -12,7 +12,7 @@ import { IdFindPage } from '../components/loginPage/IdFindPage';
 import { PasswordFindPage } from '../components/loginPage/PasswordFindPage';
 import { SignUpPage } from '../components/loginPage/SignUpPage';
 
-import {New} from '../components/New';
+import {NewsPage} from '../components/NewsPage';
 
 import { CategoryPage } from '../components/comunityPage/CategoryPage';
 import { Post } from '../components/Post';
@@ -41,8 +41,8 @@ const router = createBrowserRouter([
       },
 
       {
-        path: 'new',
-        element: <New />,
+        path: 'news',
+        element: <NewsPage />,
       },
       {
         path: 'post',

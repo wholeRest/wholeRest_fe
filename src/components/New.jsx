@@ -1,14 +1,18 @@
-
-
-
+import '../App.css'
+import './Fixed.css'
 
 export function New(){
     return(
-        <div className="New">
-            <div className="backBtn">
-                <button id='back'>뒤로가기</button>
+        <div className="newDiv">
+            <div className="newInfo">
+                <div className="newBig">
+                    <p>내 게시글에 댓글이 달렸어요.</p>
+                </div>
+                <div className="newSmall">
+                    <p>네모: ㅇㅇㅇ</p>
+                </div>
             </div>
-            새소식 페이지_헤더의 벨 아이콘 눌렀을 때 나옴.
+            
         </div>
     )
 }
