@@ -1,0 +1,128 @@
+
+
+.homePage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F5F4EF;
+
+    width: 95vw;
+    max-width: 430px;
+    height: 100%;
+    padding-bottom: 15vh;
+}
+
+
+
+
+
+
+.bannerDiv1 {
+    width: 95%;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.banner1{
+    border-radius: 5px;
+    width: 100%;
+    height: 230px;
+    background-image: url('./대지 1.png');
+    background-size: 100% 100%;
+    text-align: center;
+}
+
+
+
+.bannerDiv2{
+    width: 95%;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 5px 0px;
+}
+.banner2{
+    background-color: white;
+    border-radius: 5px;
+    width: 100%;
+    height: 100px;
+    background-image: url('./해커톤 베너2.png');
+    background-size: 100% 100%;
+    text-align: center;
+}
+
+
+
+.homePage_contents{
+    width: 95%;
+    margin: 10px;
+    background-color: white;
+    box-shadow: 0px 2px 5px rgb(182, 178, 175);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homePage_option{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 50px;
+    border-bottom: solid 2px rgb(179, 179, 179);
+}
+.homePage_option > button{
+    background-color: #ffffff00;
+    border: none;
+    font-weight: bold;
+}
+
+.homePage_popularcontents{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    border-bottom: solid 2px  rgb(210, 210, 210);
+    width: 95%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.homePage_popularcontents > p {
+    margin-left: 3px;
+    font-weight: bold;
+    color: #40300E;
+    font-size: 12px;
+}
+
+.homePage_popular{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.homePage_popular > ul{
+    list-style: none;
+    position: relative;
+    left: -20px;
+    width: 100%;
+
+}
+.homePage_popular > ul > li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/*  ↑ 여기까지가 홈화면(인기글) 페이지 */
+/*  ↑ 여기까지가 홈화면(인기글) 페이지 */
+
+

@@ -1,0 +1,292 @@
+
+
+
+
+
+.myPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F5F4EF;
+    
+
+    width: 95vw;
+    max-width: 430px;
+    
+    height: 100%;
+    padding-bottom: 15vh;
+}
+
+.body{
+    overflow: hidden;
+}
+
+.myPage_plan{
+    margin: 15px;
+    width: 88%;
+
+    background-color:  rgb(255, 225, 56);
+    border-radius: 15px 50px 15px 15px;
+    box-shadow: 0px 5px 4px rgb(182, 182, 182);
+    padding: 20px 5px;
+    color: #312626;
+}
+
+.myPage_plan > p{
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0px 15px;
+}
+
+
+.myPage_mid{
+    display: flex;
+    flex-direction: row;
+    margin: 0px 15px;
+}
+
+.schedule{
+    background-color: white;
+    width: 60%;
+    border-radius: 10px;
+    margin-right: 15px;
+    padding: 5px 10px;
+    box-shadow: 0px 2px 3px gray;
+}
+.title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 10px;
+}
+
+.memoList{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.memo{
+    box-shadow: 0px 2px 3px gray;
+    border-radius: 10px 30px 10px 10px;
+    margin: 10px;
+    padding: 5px;
+    width: 100%;
+    height: 30%;
+}
+.memo > p {
+    font-size: 8px;
+    font-weight: bold;
+}
+
+#drug{
+    background-color: #EE8F84;
+}
+
+#check{
+    background-color: #F7A782;
+}
+
+#caution{
+    background-color: #98BB85;
+}
+
+.myPage_Diary{
+    background-color: white;
+    box-shadow: 0px 2px 3px gray;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 15px;
+    width: 85%;
+    height: max-content;
+    max-height: 500px;
+
+}
+
+.mypage_title{
+    font-size: 15px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+
+.mypage_Diary_up{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.mypage_Diary_Imoge{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+
+.mypage_Photo{
+    background-color: white;
+    box-shadow: 0px 2px 3px gray;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 15px;
+    width: 85%;
+    height: max-content;
+    max-height: 500px;
+}
+
+.mypage_Photo_contents{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.mypage_Photos{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.photo{
+    width: 25%;
+    border: solid 1px rgb(210, 201, 193);
+    border-radius: 10px;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.picture{
+    background-color: #ecf2db;
+    height: 50px;
+    width: 100%;
+    border-radius: 10px 10px 0px 0px;
+}
+
+.picture_info{
+    background-color:  rgb(210, 201, 193);
+    border-radius: 0px 0px 10px 10px;
+}
+.picture_info > p {
+    padding: 3px 5px;
+     font-size: 7px;
+}
+
+.mypage_Photo_Add{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.mypage_Memo{
+    background-image: url('./메모지 패턴.png');
+    background-size: 100% 110%;
+    box-shadow: 0px 2px 3px gray;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 15px;
+    
+    width: 85%;
+    height: 250px;
+}
+
+.mypage_Memo_box{
+    height: 70%;
+    margin: 20px 10px;
+    border: solid 1px rgb(132, 128, 122);
+    border-radius: 10px;
+    background-color: #ffffff00;
+}
+
+
+
+.checkBoxV{
+    display: none;
+}
+
+
+.popupModal.checked {
+    
+   bottom: 7vh;
+}
+
+
+
+.popupModal {
+    
+    background-image: url('./위젯 팝업 패턴.png');
+    background-size: 100% 100%;
+    width: 90vw;
+    max-width: 380px;
+    height: 350px;
+    border-radius: 20px;
+    padding: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    position: fixed;
+    bottom: -80vh;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: bottom 0.3s ease; 
+}
+
+.popupModal_top{
+
+    width: 90%;
+    margin-top: 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.popupModal_top > p {
+    font-size: 12px;
+    font-weight: bold;
+}
+.popupModal_top > button {
+    background-color: #ffffff00;
+    border: none;
+    font-weight: bold;
+}
+
+.popupModal_box{
+    border: solid 1px rgb(132, 128, 122);
+    border-radius: 10px;
+    background-color: #ffffff00;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85%;
+    height: 50%;
+    padding: 0px 20px 10px 20px;
+    margin: 10px;
+    margin-top: 30px;
+    padding-top: 34px;
+}
+.popupModal_box_letter{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    padding: 3px;
+    padding-top: 4px;
+    margin: 7px;
+}
+.popupModal_box_letter_text{
+    background-color: #ffffff00;
+    
+    border:none;
+    width: 100%;
+    border-bottom: solid 1px rgb(132, 128, 122);
+}
+
+#X{
+    width: 20px;
+    height: 20px;
+    font-size: 100%;
+}
+
+

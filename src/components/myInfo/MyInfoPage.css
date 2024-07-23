@@ -1,0 +1,108 @@
+
+
+.MyInfoPage{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 15px;
+    
+    width: 95vw;
+    max-width: 430px;
+    height: 100%;
+    padding-bottom: 15vh;
+}
+
+.myProfile{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    margin: 20px;
+}
+
+.myprofile_info{
+    display: flex;
+    flex-direction: row; 
+   
+}
+#profileImg{
+    background-color: #c9c8c8;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 10px;
+}
+.my{
+    margin-left: 1rem;
+    
+}
+.my > p {
+    font-size: 10px;
+}
+.myName{
+    font-weight: bold;
+}
+.myprofile_manage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.manageBtn{
+    height: fit-content;
+    background-color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: bold;
+}
+
+.number{
+    border: solid 1px rgb(154, 154, 154);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px 10px 20px 10px;
+    padding: 10px 20px 20px 20px;
+}
+.mynumber{
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+
+
+.numberQ {
+    font-size: 10px;
+    margin-top: 5px;
+}
+
+.numberBtn{
+    background-color: white;
+    border-radius: 20px;
+    margin: 15px 5px 0px 5px;
+    padding: 3px 15px;
+    font-weight: bold;
+}
+
+.MyInfoPage_menu{
+    border-top: solid 1px #9e9e9e;;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.MyInfoPage_menu_Cate{
+    margin: 0px 0px 5px 0px;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.MyInfoPage_menu > button {
+    background-color: white;
+    border: none;
+    left: 0;
+    font-size: 15px;
+    color:#9e9e9e;
+    text-align: left;
+}
+
+
+
