@@ -10,11 +10,12 @@ export function NomalLoginBox(){
                     <input type="password" name="password" placeholder='비밀번호'></input>
                   </div>
                   <div className='loginPage_find'>
-                    <button><Link to='/Idfind'>아이디찾기</Link></button>
-                    <button><Link to='/Passwdfind'>비밀번호찾기</Link></button>
+                    <button><Link to='/Idfind' style={{ textDecoration: "none"}}>아이디찾기</Link></button>
+                    <button><Link to='/Passwdfind' style={{ textDecoration: "none"}}>비밀번호찾기</Link></button>
                   </div>
-                  <button type="submit" id='loginButton'><Link to='home'>로그인</Link></button>
+                  <button type="submit" id='loginButton'><Link to='home' style={{ textDecoration: "none"}}>로그인</Link></button>
                 </form>
+                
             </div>
     )
 
