@@ -20,7 +20,7 @@ export function SocialLoginBox(){
                     GOOGLE로 로그인
                     </button>
             </div>
-            <button type="submit" id='loginButton'><Link to='home' style={{ textDecoration: "none"}}>로그인</Link></button>        
+            
         </div>
     )
 }

@@ -167,16 +167,18 @@ Link:visited {
 
 
 .loginPage_socialLogin{
-    width: 100%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 .loginPage_social_option{
+    width: 90%;
     display: flex;
     flex-direction: row;
-    margin-bottom: 23px;
+    justify-content: space-around;
 }
 
 .loginPage_social_option > button {
@@ -191,8 +193,7 @@ Link:visited {
     width: 130px;
     height: 100px;
     padding: 20px 10px;
-    margin: 20px;
-    margin-top: 30px
+    
 }
 
 .loginPage_social_option > button {
