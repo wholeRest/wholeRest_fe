@@ -2,6 +2,7 @@ import { Header } from "../Header"
 import { Footer } from "../Footer"
 import './MyPage.css'
 import { useState } from "react"
+import ToDoList from "./ToDoList";
 
 
 
@@ -38,7 +39,7 @@ export function MyPage(){
       <div className="screen_main">
         <div className='myPage'>
           
-
+        <ToDoList />
           <div className='body'>
             <div className='myPage_plan'>
               <p className="mypage_title">PLANS OF THIS WEEK</p>
@@ -63,6 +64,7 @@ export function MyPage(){
                 </div>
                 <button id='scheduleBtn'>+</button>
               </div>
+
               <div className='memoList'>  
                 <input type='checkbox' className="checkBoxV" id='drugBtn' checked={isDrugChecked} onChange={handleDrugCheckboxChange} ></input>
                 <label htmlFor='drugBtn' className="memo" id='drug'>
