@@ -5,7 +5,8 @@ import {RootLayout_after, RootLayout_MyInfo} from './RootLayout';
 import { LoginPage } from '../components/loginPage/LoginPage';
 import { HomePage } from '../components/homePage/HomePage';
 import { MyPage } from '../components/myPage/MyPage';
-import { ComunityPage } from '../components/comunityPage/ComunityPage';
+import { ComunityPagePopularity } from '../components/comunityPage/ComunityPagePopularity';
+import { ComunityPageLatest } from '../components/comunityPage/ComunityPageLatest';
 import { MyInfoPage } from '../components/myInfo/MyInfoPage';
 
 import { IdFindPage } from '../components/loginPage/IdFindPage';
@@ -63,7 +64,11 @@ const router = createBrowserRouter([
             children:[
               {
                 index:true,
-                element: <ComunityPage />,
+                element: <ComunityPagePopularity />,
+              },
+              {
+                path: 'latest',
+                element: <ComunityPageLatest />, 
               },
               {
                 path: 'category',

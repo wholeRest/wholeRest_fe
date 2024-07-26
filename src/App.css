@@ -147,3 +147,68 @@ Link {
     color:#b9b9b9;
     font-weight: bold;
 }
+
+@font-face {
+    font-family: "Prompt";
+    src: url(./fonts/Prompt-SemiBold.ttf) format("truetype");
+  }
+  
+  @font-face {
+    font-family: "Prompt_ExtraBold";
+    src: url(./fonts/Prompt-ExtraBold.ttf) format("truetype");
+  }
+  
+  @font-face {
+    font-family: "Prompt_Black";
+    src: url(./fonts/Prompt-Black.ttf) format("truetype");
+  }
+  
+  @font-face {
+    font-family: "Pretendard_SemiBold";
+    src: url(./fonts/Pretendard-SemiBold.woff) format("woff");
+  }
+  
+  @font-face {
+    font-family: "Pretendard_ExtraBold";
+    src: url(./fonts/Pretendard-ExtraBold.woff) format("woff");
+  }
+  
+  @font-face {
+    font-family: "Pretendard_Black";
+    src: url(./fonts/Pretendard-Black.woff) format("woff");
+  }
+  
+  @font-face {
+    font-family: "Pretendard_Bold";
+    src: url(./fonts/Pretendard-Bold.woff) format("woff");
+  }
+  
+  @font-face {
+    font-family: "Pretendard_ExtraLight";
+    src: url(./fonts/Pretendard-ExtraLight.woff) format("woff");
+  }
+  
+  @font-face {
+    font-family: "Pretendard_ExtraLight";
+    src: url(./fonts/Pretendard-ExtraLight.woff) format("woff");
+  }
+  
+  @font-face {
+    font-family: "Pretendard_Light";
+    src: url(./fonts/Pretendard-Light.woff) format("woff");
+  }
+  
+  @font-face {
+    font-family: "Pretendard_Medium";
+    src: url(./fonts/Pretendard-Medium.woff) format("woff");
+  }
+  
+  @font-face {
+    font-family: "Pretendard_Thin";
+    src: url(./fonts/Pretendard-Thin.woff) format("woff");
+  }
+  
+  @font-face {
+    font-family: "Pretendard_Regular";
+    src: url(./fonts/Pretendard-Regular.woff) format("woff");
+  }
