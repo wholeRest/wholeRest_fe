@@ -7,13 +7,14 @@ import { HomePage } from '../components/homePage/HomePage';
 import { MyPage } from '../components/myPage/MyPage';
 import { ComunityPagePopularity } from '../components/comunityPage/ComunityPagePopularity';
 import { ComunityPageLatest } from '../components/comunityPage/ComunityPageLatest';
+import { ComunityWriting } from '../components/comunityPage/ComunityWriting';
 import { MyInfoPage } from '../components/myInfo/MyInfoPage';
 
 import { IdFindPage } from '../components/loginPage/IdFindPage';
 import { PasswordFindPage } from '../components/loginPage/PasswordFindPage';
 import { SignUpPage } from '../components/loginPage/SignUpPage';
 
-import {New} from '../components/New';
+import { New} from '../components/New';
 
 import { CategoryPage } from '../components/comunityPage/CategoryPage';
 import { Post } from '../components/Post';
@@ -49,7 +50,6 @@ const router = createBrowserRouter([
         path: 'post',
         element: <Post />,
       },
-
       {
         element: <RootLayout_after />,
         children:[
@@ -80,6 +80,11 @@ const router = createBrowserRouter([
             path: 'mypage',
             element: <MyPage />,
           },
+          
+      {
+        path: 'writing',
+        element: <ComunityWriting />,
+      },
 
           
 
