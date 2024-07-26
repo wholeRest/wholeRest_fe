@@ -17,6 +17,16 @@ import {New} from '../components/New';
 import { CategoryPage } from '../components/comunityPage/CategoryPage';
 import { Post } from '../components/Post';
 
+import { Find } from '../components/loginPage/Find';
+import { FindLayout } from './FindLayout';
+import { IdFind_1 } from '../components/loginPage/idFind/IdFind_1';
+import { IdFind_2_false } from '../components/loginPage/idFind/IdFind_2_false';
+import { IdFind_2_true } from '../components/loginPage/idFind/IdFind_2_true';
+import { PasswordFind_1 } from '../components/loginPage/passwordFind/PasswordFind_1';
+import { PasswordFind_2 } from '../components/loginPage/passwordFind/PasswordFind_2';
+import { PasswordFind_3 } from '../components/loginPage/passwordFind/PasswordFind_3';
+import { PasswordFind_4 } from '../components/loginPage/passwordFind/PasswordFind_4';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -28,17 +38,40 @@ const router = createBrowserRouter([
       },
       
       {
-        path: 'Idfind',
-        element: <IdFindPage />,
+        path: 'find/id',
+        element: <IdFindPage />
       },
       {
-        path: 'Passwdfind',
-        element: <PasswordFindPage />,
+        path: 'find/id_true',
+        element: <IdFind_2_true />,
       },
+      {
+        path: 'find/id_false',
+        element: <IdFind_2_false />,
+      },
+
+      {
+        path: 'find/password1',
+        element: <PasswordFindPage />
+      },
+      {
+        path: 'find/password2',
+        element: <PasswordFind_2 />
+      },
+      {
+        path: 'find/password3',
+        element: <PasswordFind_3 />
+      },
+      {
+        path: 'find/password4',
+        element: <PasswordFind_4 />
+      },
+
       {
         path: 'signup',
         element: <SignUpPage />,
       },
+      
 
       {
         path: 'new',
