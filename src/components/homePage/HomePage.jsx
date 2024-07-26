@@ -2,7 +2,9 @@ import { Header } from "../Header"
 import { Footer } from "../Footer"
 import { Add } from "../Add"
 import './HomePage.css'
+import { Fortune } from "./Fortune.jsx" 
 import { Thnumnail } from "../Thumnail"
+
 
 export function HomePage(){
 
@@ -27,6 +29,8 @@ export function HomePage(){
               <p id='ex'>Banner2</p>
             </div>
           </div>
+
+          <Fortune />
 
           <div className='homePage_contents'>
             <div className='homePage_popularcontents'>

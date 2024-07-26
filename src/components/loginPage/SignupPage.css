@@ -1,0 +1,120 @@
+
+
+.SignUpPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff00;
+
+    width: 100vw;
+    max-width: 430px;
+    height: 100vh;
+}
+
+.SignupHeader{
+    background-color: rgb(255, 225, 56);
+    width: 91%;
+    padding: 5px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+
+.backgroundbox{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0);
+    width: 100%
+}
+
+.userInfo{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.inputDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 25px 10px;
+    width: 90%;
+    height: 50vh;
+}
+
+.inputSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 90%;
+
+}
+
+.A{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.A > input {
+    width: 70%;
+    height: 20px;
+    background-color: #ffffff00;
+    border: none;
+    border-bottom: solid 1px  #AFAFAF;
+    margin-right: 5%;
+}
+
+
+
+
+#idCheck{
+    border: solid 1px  #AFAFAF;
+    height: 20px;
+    padding: 5px;
+    
+    font-size: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#signupBtn{
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin: 25px 5px;
+
+    background-color: rgb(255, 225, 56);
+    border: none;
+}
+
+#findBtn{
+    background-color: rgb(255, 225, 56);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
