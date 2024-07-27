@@ -2,6 +2,8 @@ import { Header } from "../Header"
 import { Footer } from "../Footer"
 import './MyPage.css'
 import { useState } from "react"
+import ToDoList from "./ToDoList";
+import Photo from "./Photo";
 
 
 
@@ -38,7 +40,7 @@ export function MyPage(){
       <div className="screen_main">
         <div className='myPage'>
           
-
+        <ToDoList />
           <div className='body'>
             <div className='myPage_plan'>
               <p className="mypage_title">PLANS OF THIS WEEK</p>
@@ -63,6 +65,7 @@ export function MyPage(){
                 </div>
                 <button id='scheduleBtn'>+</button>
               </div>
+
               <div className='memoList'>  
                 <input type='checkbox' className="checkBoxV" id='drugBtn' checked={isDrugChecked} onChange={handleDrugCheckboxChange} ></input>
                 <label htmlFor='drugBtn' className="memo" id='drug'>
@@ -104,6 +107,8 @@ export function MyPage(){
                 <p className="Diary_title">오늘 하루 일과는 어땠나요?</p>
               </div>
             </div>
+
+            <Photo />
 
             <div className="mypage_Photo">
               <p className="mypage_title">TODAY'S PHOTO</p> 
