@@ -3,6 +3,7 @@ import { Footer } from "../Footer"
 import './MyPage.css'
 import { useState } from "react"
 import ToDoList from "./ToDoList";
+import Photo from "./Photo";
 
 
 
@@ -106,6 +107,8 @@ export function MyPage(){
                 <p className="Diary_title">오늘 하루 일과는 어땠나요?</p>
               </div>
             </div>
+
+            <Photo />
 
             <div className="mypage_Photo">
               <p className="mypage_title">TODAY'S PHOTO</p> 
