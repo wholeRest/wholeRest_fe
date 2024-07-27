@@ -1,0 +1,54 @@
+
+
+.full_screen{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F5F4EF;
+}
+
+.NewsPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #F5F4EF;
+
+    width: 100vw;
+    max-width: 430px;
+    height: max-content;
+}
+
+.subHeader{
+    padding: 10px;
+
+    width: 95%;
+    background-color:  rgb(255, 225, 56);
+
+
+}
+
+.subHeader > button {
+    background-color: #ffffff00;
+    border: none;
+}
+
+.newslist{
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+.newDiv{
+    background-color: white;
+    border: solid 1px #d9d9d9;
+    padding: 10px 15px;
+}
+
+
+
+
+

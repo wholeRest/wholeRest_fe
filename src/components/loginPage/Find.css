@@ -1,0 +1,263 @@
+
+
+.PasswordFindPage{
+
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff00;
+
+    width: 100vw;
+    max-width: 430px;
+    height: 100vh;
+
+}
+
+
+
+.FindHeader{
+    background-color: rgb(255, 225, 56);
+    width: 91%;
+    padding: 5px 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#backBtn_toHome{
+    background-color: #ffffff00;
+    border:none;
+    padding: 0;
+}
+
+.Find_Maincontents{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.Find_option{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.Find_option > button{
+    font-weight: bold;
+    border: none;
+    width: 50%;
+    height: 40px;
+    background-color: #ffffff00;
+}
+
+.PasswordFind{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.IdFind{
+    display: flex;
+    flex-direction: column;
+}
+.IdFind > .lines {
+    width: 120%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.lines{
+    width: 85%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#linePW {
+    border: solid 0.5px #AFAFAF;
+    height: 0px;
+    width: 23%;
+
+    position: relative;
+    top: 27px;
+    z-index: 1;
+}
+
+.lines_i{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#lineId {
+    border: solid 0.5px #AFAFAF;
+    height: 0px;
+    width: 78%;
+
+    position: relative;
+    top: 27px;
+    z-index: 1;
+}
+
+.Find_num{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 115%;
+    height: 30px;
+    border-bottom: solid 1px #AFAFAF;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.Find_num_i{
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 92%;
+    height: 30px;
+    border-bottom: solid 1px #AFAFAF;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.Find_num_i > #FindNumDiv {
+    z-index: 2;
+    width: 10px;
+    height: 10px;
+    padding: 7px;
+    background-color: #757575;
+    /*  #40300E  */
+    border-radius: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+#FindNumDiv {
+    z-index: 2;
+    width: 10px;
+    height: 10px;
+    padding: 7px;
+    background-color: #757575;
+    /*  #40300E  */
+    border-radius: 100px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+
+.Find_inputDiv{
+    width: 100%;
+
+}
+
+.Find_inputDiv_i{
+    width: 100%;
+}
+
+.Find_inputDiv > form {
+    margin: 20px;
+}
+
+.Find_inputDiv_i > form {
+    margin: 20px;
+}
+
+.Find_inputDiv_i > form > .inputs {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.inputs{
+    width: 100%;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.inputs > input {
+    background-color: #ffffff00;
+    border: none;
+    border-bottom: solid 1px #757575;
+    height: 25px;
+    margin-top: 15px;
+    padding: 0px 5px;
+}
+
+
+
+.send_option{
+    margin: 20px 10px;
+    
+    padding: 10px;
+    width: 95%;
+    
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.howsend{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    
+}
+
+.howsend > p {
+    color: #757575;
+    font-size: 13px;
+}
+
+.send_radio{
+    color: #757575;
+    font-size: 13px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.send_option > p {
+    margin-top: 10px;
+    color: #757575;
+    font-size: 9px;
+}
+
+.submitBtn{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+.submitBtn > button {
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin: 25px 5px;
+
+    background-color: rgb(255, 225, 56);
+    border: none;
+}
+
