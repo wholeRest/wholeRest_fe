@@ -2,6 +2,9 @@ import '../App.css'
 import './NewsPage.css'
 import './Fixed.css'
 
+import { Link } from 'react-router-dom'
+
+
 export function New(){
     {/*
         클릭하면 해당 페이지로 가야함. 
