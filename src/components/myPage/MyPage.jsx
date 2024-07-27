@@ -2,6 +2,8 @@ import { Header } from "../Header"
 import { Footer } from "../Footer"
 import './MyPage.css'
 import { useState } from "react"
+import ToDoList from "./ToDoList";
+import Photo from "./Photo";
 
 import { Mini3 } from "./Mini3"
 import { Diary } from "./Diary"
@@ -20,7 +22,7 @@ export function MyPage(){
       <div className="screen_main">
         <div className='myPage'>
           
-
+        <ToDoList />
           <div className='body'>
             <div className='myPage_plan'>
               <p className="mypage_title">PLANS OF THIS WEEK</p>
@@ -43,7 +45,9 @@ export function MyPage(){
 
                 </div>
                 <button id='scheduleBtn'>+</button>
-            </div>
+              </div>
+
+              
 
             <Mini3  
               isDrugChecked={isDrugChecked} isCheckChecked={isCheckChecked} isCautionChecked={isCautionChecked}
@@ -51,6 +55,8 @@ export function MyPage(){
             />
 
             <Diary />
+
+            <Photo />
 
             <div className="mypage_Photo">
               <p className="mypage_title">TODAY'S PHOTO</p> 
