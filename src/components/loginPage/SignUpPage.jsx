@@ -1,5 +1,6 @@
 import './LoginPage.css'
 import './SignupPage.css'
+import { Link } from 'react-router-dom';
 
 export function SignUpPage(){
     
@@ -7,69 +8,64 @@ export function SignUpPage(){
     return(
         <div className="screen_main">
             <div className="SignUpPage">
-                <div className='loginlogo'>
-                    <div id='logoIcon'></div>
-                    <div id='logoText'></div>
+                
+                <div className="SignupHeader">
+                    <p>■ 회원가입</p>
+                    <button id='backBtn_toHome'><Link to='/' style={{ textDecoration: "none"}}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none"><path stroke="#40300E" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m22.5 7.5-15 15M7.5 7.5l15 15"/></svg>
+                    </Link></button>
                 </div>
                 <div className='backgroundbox'>
-                    <div className='login_title'>
-                        <h1>회원가입</h1>
-                    </div>
+                    
                     
                    <div className='userInfo'>
                         <form>
                             <div className='inputDiv'>
+
                             <div className='inputSection'>
-                                <p className='Q'>아이디</p>
-                                <div className="A">
-                                    <input type='text' ></input>
+                                <div className="A" id='idSection'>
+                                    <input type="text" placeholder='아이디'></input>
                                     <button id='idCheck'>중복확인</button>
                                 </div>
-                                
                             </div>
+
                             <div className='inputSection'>
-                                <p className='Q'>비밀번호</p>
                                 <div className='A'>
-                                <input type='text' className="A"></input>
+                                    <input type="text" placeholder='비밀번호'></input>
                                 </div>
                                 
                             </div>
                             <div className='inputSection'>
-                                <p className='Q'>닉네임</p>
                                 <div className='A'>
-                                <input type='text' className="A"></input>
+                                    <input type="text" placeholder='비밀번호 재확인'></input>
                                 </div>
                                 
                             </div>
+
                             <div className='inputSection'>
-                                <p className='Q'>성명</p>
                                 <div className='A'>
-                                <input type='text' className="A"></input>
+                                    <input type="text" placeholder='성명'></input>
                                 </div>
                                 
                             </div>
+
                             <div className='inputSection'>
-                            <p className='Q'>이메일</p>
-                            <div className='A'>
-                            <input type='email'  className="A"></input>@
-                                <select>
-                                    <option value='naver.com'>naver.com</option>
-                                    <option value='gmail.com'>gmail.com</option>
-                                </select>  
+                                <div className='A'>
+                                    <input type="text" placeholder='닉네임'></input>
                                 </div>
                                 
                             </div>
+                            
                             <div className='inputSection'>
-                            <p className='Q'>휴대폰 번호</p>
-                            <div className='A'>
-                            <select  className="A">
-                                    <option value='010'>010</option>
-                                    <option value='011'>011</option>
-                                </select>-
-                                <input type="text" minLength="2" maxLength="4"></input>-
-                                <input type="text" minLength="2" maxLength="4"></input>
+                                <div className='A'>
+                                    <input type="text" placeholder='이메일'></input>
                                 </div>
-                                
+                            </div>
+
+                            <div className='inputSection'>
+                                <div className='A'>
+                                    <input type="text" placeholder='휴대폰 번호'></input>
+                                </div>
                             </div>
                             </div>
                             
