@@ -11,15 +11,15 @@ export function IdFind_2_false(){
         <div className="PasswordFindPage">
             <div className="FindHeader">
                 <p>■ 계정정보 확인 및 변경</p>
-                <button id='backBtn_toHome'>
+                <button id='backBtn_toHome'><Link to='/' style={{ textDecoration: "none"}}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none"><path stroke="#40300E" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m22.5 7.5-15 15M7.5 7.5l15 15"/></svg>
-                </button>
+                </Link></button>
             </div>
             <div className='Find_Maincontents'>
                 <div className='Find_option'>
                     
                     <button>아이디 찾기</button>
-                    <button><Link to='PasswordFindPage' style={{ textDecoration: "none"}}>비밀번호 변경</Link></button>
+                    <button><Link to='/find/password1' style={{ textDecoration: "none"}}>비밀번호 변경</Link></button>
                 </div>
 
             </div>
@@ -42,7 +42,7 @@ export function IdFind_2_false(){
         </div>
         
         <div className='submitBtn'>
-        <button style={{backgroundColor: '#757575'}}><Link to='/find/id' style={{ textDecoration: "none"}}>취소</Link></button>
+        <button style={{backgroundColor: '#757575'}}><Link to='/find/id' style={{ textDecoration: "none"}}>닫기</Link></button>
         </div>
 
     </div>

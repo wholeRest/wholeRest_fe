@@ -18,7 +18,7 @@ export function IdFindPage(){
                     <div className='Find_option'>
                     
                         <button>아이디 찾기</button>
-                        <button><Link to='/find/password' style={{ textDecoration: "none"}}>비밀번호 변경</Link></button>
+                        <button><Link to='/find/password1' style={{ textDecoration: "none"}}>비밀번호 변경</Link></button>
                     </div>
 
                 </div>

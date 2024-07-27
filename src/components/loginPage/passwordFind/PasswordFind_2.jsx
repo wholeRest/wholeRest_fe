@@ -31,8 +31,8 @@ export function PasswordFind_2(props){
             </div>
 
             <div className='Find_num' >
-                        <div id="FindNumDiv" className='nowNum1' style={{backgroundColor: '#40300E'}}>1</div>
-                        <div id="FindNumDiv" className='nowNum2'>2</div>
+                        <div id="FindNumDiv" className='nowNum1'>1</div>
+                        <div id="FindNumDiv" className='nowNum2' style={{backgroundColor: '#40300E'}}>2</div>
                         <div id="FindNumDiv" className='nowNum3'>3</div>
                         <div id="FindNumDiv" className='nowNum4'>4</div>
                     </div>
