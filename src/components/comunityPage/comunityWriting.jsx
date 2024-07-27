@@ -119,8 +119,8 @@ export function ComunityWriting() {
                 <Divider />
                 <Content type="text" placeholder="■ 내용을 입력해 주세요." />  
             </WritingBox>
-            <CameraBtn onClick={() => alert("Camera button clicked!")} />
-            <SaveBtn onClick={() => alert("Save button clicked!")}>완료</SaveBtn>
+            <CameraBtn onClick={() => alert("Camera button clicked")} />
+            <SaveBtn onClick={() => alert("Save button clicked")}>완료</SaveBtn>
         </ComunityWritingBox>
     );
 }
