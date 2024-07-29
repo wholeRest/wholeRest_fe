@@ -39,7 +39,7 @@ export function IdFind_1(props){
                     </div>
 
                     <div className='Find_inputDiv_i'>
-                        <form>
+                        <form className='findform'>
                             <div className='inputs'>
                                 <input type="text" placeholder='성명'></input>
                                 <input type="text" placeholder='생년월일'></input>

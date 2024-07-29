@@ -16,7 +16,7 @@ export function PasswordFind_1(props){
                     </div>
 
                     <div className='Find_inputDiv'>
-                        <form>
+                        <form  className='findform'>
                             <div className='inputs'>
                                 <input type="text" placeholder='아이디'></input>
                                 <input type="text" placeholder='성명'></input>

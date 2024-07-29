@@ -297,7 +297,7 @@ const handleSubmit = (e) => {
                     
                     
                    <div className='userInfo'>
-                        <form>
+                        <form className='signupform'>
                             <div className='inputDiv'>
 
                             <div className='inputSection'>

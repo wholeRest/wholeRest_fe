@@ -39,7 +39,7 @@ export function PasswordFind_4(props){
                     </div>
 
                     <div className='Find_inputDiv'>
-                        <form>
+                        <form  className='findform'>
                             <div>
                                 <p>비밀번호 변경이 정상적으로 완료되었습니다.</p>
                             </div>

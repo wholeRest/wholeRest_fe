@@ -37,14 +37,17 @@ export function IdFind_2_true(props){
             <div id="FindNumDiv" className='nowNum2' style={{backgroundColor: '#40300E'}}>2</div>
         </div>
         
-        <div>
-            아이디 찾기 결과는 아래와 같습니다.
-            아이디 : {props.sameId}
+        <div className='Find_i_resultDiv'>
+        <div className='Find_i_result'>
+            <p>아이디 찾기 결과는 아래와 같습니다.</p>
+            <p>아이디 : {props.sameId}</p>
         </div>
 
         <div className='submitBtn'>
         <button style={{backgroundColor: '#757575'}}><Link to='/' style={{ textDecoration: "none"}}>닫기</Link></button>
         </div>
+        </div>
+        
         
     </div>
             </div>

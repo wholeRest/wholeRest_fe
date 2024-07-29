@@ -172,13 +172,23 @@
     width: 100%;
 }
 
-.Find_inputDiv > form {
+.findform {
+    min-height: 420px;
+    height: 50vh;
     margin: 20px;
+    margin-top: 25px;
+
+    position: relative;
+}
+.Find_i_resultDiv {
+    min-height: 420px;
+    height: 50vh;
+    margin: 20px;
+    margin-top: 25px;
+
+    position: relative;
 }
 
-.Find_inputDiv_i > form {
-    margin: 20px;
-}
 
 .Find_inputDiv_i > form > .inputs {
     width: 100%;
@@ -246,6 +256,8 @@
 }
 
 .submitBtn{
+    position: absolute;
+    bottom: 0px;
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -256,6 +268,44 @@
     padding: 10px 15px;
     border-radius: 20px;
     margin: 25px 5px;
+
+    background-color: rgb(255, 225, 56);
+    border: none;
+}
+
+.Find_i_resultDiv{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Find_i_result {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 0px 10px;
+}
+
+.Find_i_result > p {
+    margin: 0 ;
+
+}
+
+.submitBtn_i {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+
+
+.submitBtn_i > button {
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin: 25px 25px 25px 5px;
 
     background-color: rgb(255, 225, 56);
     border: none;

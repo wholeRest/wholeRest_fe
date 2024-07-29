@@ -38,7 +38,7 @@ export function PasswordFind_2(props){
                     </div>
 
                     <div className='Find_inputDiv'>
-                        <form>
+                        <form  className='findform'>
                             <div className='inputs'>
                                 <input type="text" placeholder='인증번호'></input>
                             </div>

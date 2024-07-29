@@ -39,7 +39,7 @@ export function PasswordFind_3(props){
                     </div>
 
                     <div className='Find_inputDiv'>
-                        <form>
+                        <form  className='findform'>
                             <div className='inputs'>
                                 <input type="text" placeholder='새 비밀번호'></input>
                                 <input type="text" placeholder='새 비밀번호 확인'></input>

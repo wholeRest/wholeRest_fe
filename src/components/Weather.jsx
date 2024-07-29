@@ -16,8 +16,15 @@ export function Weather() {
         return responese.json();
       })
       .then((json) => {
-        console.log(json);
         setData(json);
+        console.log(json);
+
+        // 이 부분은 setData 이후에 실행되어야 함
+        const iconURL = `http://openweathermap.org/img/wn/${json.weather[0].icon}@2x.png`;
+        const iconSection = document.querySelector(".weathericon");
+        if (iconSection) {
+          iconSection.setAttribute("src", iconURL);
+        }
       })
       .catch((error) => {
         console.log('Error: ', error);
@@ -137,8 +144,9 @@ export function Weather() {
     <div className="weatherDiv">
       {data ? (
         <div className="weatherInfo" style={{ display: "flex", flexDirection: "row" }}>
-          <p className="temperature">{data.main.temp}°C || </p>
-          <p className="place">{data.name} || </p>
+          <img className="weathericon" />
+          <p className="temperature">{data.main.temp}°C</p>
+          <p className="place">{data.name}</p>
           <p className="description">{data.weather[0].description}</p>
         </div>
       ) : (
