@@ -1,7 +1,13 @@
 import './MyPage.css';
 import './Memo.css'
+import { useState } from 'react';
 
 export function Memo(){
+    const [memo, setMemo] = useState("");
+
+    const memoWrite = (e) => {
+        setMemo(e.target.value);
+    }
 
     return(
         <div className="mypage_Memo">

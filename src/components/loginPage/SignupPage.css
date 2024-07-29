@@ -57,13 +57,12 @@ form{
     align-items: center;
     padding: 25px 10px;
     width: 90%;
-    height: 50vh;
+    height: max-content;
 }
 
 .inputSection{
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
     padding: 10px;
     width: 90%;
@@ -85,6 +84,20 @@ form{
     border: none;
     border-bottom: solid 1px  #AFAFAF;
     margin-right: 5%;
+}
+
+.warningmessage{
+    color: #FF2D67;
+    font-size: 10px;
+    
+}
+
+.phoneWarningDiv{
+    display: flex;
+    flex-direction: row;
+}
+#wp2{
+    margin-right: 10px;
 }
 
 

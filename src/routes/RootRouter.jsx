@@ -29,7 +29,7 @@ import { PasswordFind_2 } from '../components/loginPage/passwordFind/PasswordFin
 import { PasswordFind_3 } from '../components/loginPage/passwordFind/PasswordFind_3';
 import { PasswordFind_4 } from '../components/loginPage/passwordFind/PasswordFind_4';
 
-const router = createBrowserRouter([
+const router = createBrowserRouter( [
   {
     path: '/',
     
@@ -139,6 +139,7 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
 
 export const RootRouter = () => {
   return <RouterProvider router={router} />;

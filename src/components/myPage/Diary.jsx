@@ -3,11 +3,22 @@ import './MyPage.css';
 import { useState } from 'react';
 import './Diary.css'
 
-export function Diary(){
-    const [diary_feel, setDiary_feel] = useState();
-    const [diary_condition, setDiary_condition] = useState();
+export function Diary(props){
+    const [diary_feel, setDiary_feel] = useState(0);
+    const [diary_condition, setDiary_condition] = useState(0);
     const [diary_todayDiary, setDiary_todayDiary] = useState("");
     const [diary_todayThank, setDiary_todayThank] =useState("");
+
+
+
+
+    const todaydiary = ( e ) => {
+        setDiary_todayDiary(e.target.value);
+    }
+
+    const todaythank = ( e ) => {
+        setDiary_todayThank(e.target.value);
+    }
     
     return(
         <div className='myPage_Diary'>
@@ -20,24 +31,24 @@ export function Diary(){
 
                 <div className="mypage_Diary_feel">
                     <p className="Diary_title">■ 오늘의 기분은 어떤가요?</p>
-                    <Diary_emotion  diary_feel={diary_feel} setDiary_feel={setDiary_feel} />
+                    <Diary_emotion  diary={diary_feel} setDiary={setDiary_feel} />
                 </div>
 
                 <div className="mypage_Diary_condition">
                     <p className="Diary_title">■ 오늘의 몸 상태는 어떤가요?</p>
-                    <Diary_emotion  diary_condition={diary_condition} setDiary_condition={setDiary_condition} />
+                    <Diary_emotion  diary={diary_condition} setDiary={setDiary_condition} />
                 </div>
 
                 <div className="mypage_Diary_TodayDiaryDiv">
                     <p className="Diary_title">■ 오늘 하루 일과는 어땠나요?</p>
-                    <textarea className='diaryWriteBox' rows="5" placeholder='내용 입력하기'>
-                    
+                    <textarea className='diaryWriteBox' rows="5" placeholder='내용 입력하기' onChange={todaydiary}>
+
                     </textarea>
                 </div>
 
                 <div className='mypage_Diary_TodayThankDiv'>
                     <p className="Diary_title">■ 오늘 감사한 일이 있었나요?</p>
-                    <textarea className='diaryWriteBox' rows="3" placeholder='내용 입력하기'>
+                    <textarea className='diaryWriteBox' rows="3" placeholder='내용 입력하기' onChange={todaythank}>
 
                     </textarea>
                 </div>

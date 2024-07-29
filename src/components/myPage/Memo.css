@@ -9,12 +9,16 @@
     box-shadow: 0px 2px 3px gray;
     border: none;
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
     
-    width: 90%;
-    height: 300px;
+    width: 81%;
+    height: 230px;
+}
+
+.mypage_title{
+    margin: 10px 10px;
 }
 
 .mypage_Memo_box{

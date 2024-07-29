@@ -1,7 +1,10 @@
 import '../App.css'
 import { Link } from 'react-router-dom'
+import { Weather } from './Weather'
 
-export function Header(){
+export function Header(props){
+
+    
 
     return(
       <div className='screen_header'>
@@ -22,7 +25,7 @@ export function Header(){
               </div>
             </div>
             <div className='down'>
-              <p>날씨정보</p>
+              <Weather />
             </div>
           </div>
       </div>

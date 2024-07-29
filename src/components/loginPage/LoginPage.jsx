@@ -1,11 +1,19 @@
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import './LoginPage.css'
 import { NomalLoginBox } from './NomalLoginBox'
 import { SocialLoginBox } from './SocialLoginBox'
 
-export function LoginPage(){
+
+
+export function LoginPage(props){
   const [how, setHow] = useState(true);
+  const [ID, setID] = useState("");
+  const [password, setPassword] = useState("");
+  const [isUser, setIsUser] = useState(true);
+
+  const navigate = useNavigate();
 
   const nomalLogin = () => {
     setHow(true);
@@ -14,6 +22,21 @@ export function LoginPage(){
   const socialLodin = () => {
     setHow(false);
   }
+
+  {/* 있는 정보면 setIsUser를 true로 */}
+
+  const login = () => {
+    
+
+    if(isUser === true){
+      navigate('/home');
+    }
+    else{
+      console.log("로그인 실패");
+      navigate('/');
+    }
+  }
+  
 
     return(
       <div className="screen_main">
@@ -27,7 +50,7 @@ export function LoginPage(){
               <button onClick={nomalLogin} style={how ? {borderBottom: "solid 2px rgb(84, 51, 31)"} : {borderBottom: "none"}}>일반 회원 로그인</button>
               <button onClick={socialLodin} style={how ? {borderBottom: "none"} : {borderBottom: "solid 2px rgb(84, 51, 31)"}}>소셜 로그인</button>
             </div>
-            {how ? <NomalLoginBox /> : <SocialLoginBox/>}
+            {how ? <NomalLoginBox ID={ID} password={password} login={login} /> : <SocialLoginBox />}
             
           </div>
           <div className='loginPage_plus'>

@@ -5,7 +5,7 @@ import lockicon from './Lock@3x.png';
 
 
 
-export function NomalLoginBox(){
+export function NomalLoginBox(props){
     return(
         <div className='loginPage_nomalLogin'>
                 <form>
@@ -19,7 +19,7 @@ export function NomalLoginBox(){
                     <button><Link to='/find/id' style={{ textDecoration: "none"}}>아이디찾기</Link></button>
                     <button><Link to='/find/password1' style={{ textDecoration: "none"}}>비밀번호찾기</Link></button>
                   </div>
-                  <button type="submit" id='loginButton'><Link to='home' style={{ textDecoration: "none"}}>로그인</Link></button>
+                  <button type="submit" id='loginButton' onClick={props.login} >로그인</button>
                 </form>
                 
             </div>

@@ -2,98 +2,73 @@ import { Header } from "../Header"
 import { Footer } from "../Footer"
 import './MyPage.css'
 import { useState } from "react"
+import { useParams } from "react-router"
 import ToDoList from "./ToDoList";
 import Photo from "./Photo";
 
 import { Mini3 } from "./Mini3"
 import { Diary } from "./Diary"
 import { Memo } from "./Memo" 
+import { Calendar } from "./calendar/Calendar";
 
 
 
-export function MyPage(){
+export function MyPage(props){
+    const { ID } = useParams();
+
     const [isDrugChecked, setIsDrugChecked] = useState(false);
     const [isCheckChecked, setIsCheckChecked] = useState(false);
     const [isCautionChecked, setIsCautionChecked] = useState(false);
 
+    const [todolist, setTodolist] = useState([]);
+    const [mini_drug, setMini_drug] = useState("");
+    const [mini_check, setMini_check] = useState("");
+    const [mini_caution, setMini_caution] = useState("");
+    
+    const mini_drugWrite = (e) => {
+      setMemo(e.target.value);
+    }
+
+    const mini_checkWrite = (e) => {
+      setMemo(e.target.value);
+    }
+
+    const mini_cautionWrite = (e) => {
+      setMemo(e.target.value);
+    }
 
 
     return(
       <div className="screen_main">
         <div className='myPage'>
           
-        <ToDoList />
+        
           <div className='body'>
-            <div className='myPage_plan'>
-              <p className="mypage_title">PLANS OF THIS WEEK</p>
-              <ul>
-                <li>
-                  -
-                </li>
-                <li>
-                  +
-                </li>
-              </ul>
+            <ToDoList ID={ID} />
+
+            <div className="calendar_div">
+              <Calendar ID={ID}  />
             </div>
-
-            <div className='schedule'>
-                <div className='title'>
-                  <p>SCHEDULE</p>
-                  <p>날짜</p>
-                </div>
-                <div className='calendar'>
-
-                </div>
-                <button id='scheduleBtn'>+</button>
-              </div>
+            
 
               
 
             <Mini3  
+              ID={ID} 
+              
               isDrugChecked={isDrugChecked} isCheckChecked={isCheckChecked} isCautionChecked={isCautionChecked}
               setIsDrugChecked={setIsDrugChecked} setIsCheckChecked={setIsCheckChecked} setIsCautionChecked={setIsCautionChecked}
             />
 
-            <Diary />
+            <Diary ID={ID}  
+            />
 
-            <Photo />
+            <Photo ID={ID}  />
 
-            <div className="mypage_Photo">
-              <p className="mypage_title">TODAY'S PHOTO</p> 
-              <div className="mypage_Photo_contents">
-                <div className="mypage_Photos">
-                  <div className="photo">
-                    <div className="picture">
-                      n
-                    </div>
-                    <div className="picture_info">
-                      <p>내용을 입력하세요</p>
-                    </div>
-                  </div>
-                  <div className="photo">
-                    <div className="picture">
+            
 
-                    </div>
-                    <div className="picture_info">
-                      <p>내용을 입력하세요</p>
-                    </div>
-                  </div>
-                  <div className="photo">
-                    <div className="picture">
-
-                    </div>
-                    <div className="picture_info">
-                      <p>내용을 입력하세요</p>
-                    </div>
-                  </div>
-                </div>
-                <div className="mypage_Photo_Add">
-                  <button className="AddBtn">+</button>
-                </div>
-              </div>
-            </div>
-
-            <Memo />
+            <Memo ID={ID}  
+            />
 
 
 
