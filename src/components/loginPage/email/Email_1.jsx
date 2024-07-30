@@ -1,5 +1,5 @@
 import '../Find.css';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import '../LoginPage.css';
 import '../SignupPage.css';
 import { useState } from 'react';
@@ -7,7 +7,9 @@ import { useState } from 'react';
 
 
 
-export function PasswordFind_2(props){
+
+
+export function Email_1(){
 
 
     const [warning, setWarning] = useState({
@@ -86,13 +88,11 @@ const handleSubmit = (e) => {
 };
 
 
-
-
     return(
         <div className="screen_main">
         <div className="PasswordFindPage">
             <div className="FindHeader">
-                <p>■ 계정정보 확인 및 변경</p>
+                <p>■ 이메일 변경하기</p>
                 <button id='backBtn_toHome'><Link to='/' style={{ textDecoration: "none"}}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none"><path stroke="#40300E" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m22.5 7.5-15 15M7.5 7.5l15 15"/></svg>
                 </Link></button>
@@ -100,24 +100,23 @@ const handleSubmit = (e) => {
             <div className='Find_Maincontents'>
                 <div className='Find_option'>
                     
-                    <button><Link to='/find/id' style={{ textDecoration: "none"}}>아이디 찾기</Link></button>
-                    <button>비밀번호 변경</button>
                 </div>
 
             </div>
 
-            <div className='PasswordFind'>
-            <div className='lines'>
-                <div id='linePW'></div>
-                <div id='linePW'></div>
-                <div id='linePW'></div>
-            </div>
 
-            <div className='Find_num' >
-                        <div id="FindNumDiv" className='nowNum1'>1</div>
-                        <div id="FindNumDiv" className='nowNum2' style={{backgroundColor: '#40300E'}}>2</div>
-                        <div id="FindNumDiv" className='nowNum3'>3</div>
-                        <div id="FindNumDiv" className='nowNum4'>4</div>
+            <div className='IdFind'>
+                <div className='lines_i'>
+                    <div id='lineId'></div>
+                </div>
+
+
+            <div className='PasswordFind'>
+            
+
+                <div className='Find_num_i' >
+                        <div id="FindNumDiv" className='nowNum1' style={{backgroundColor: '#40300E'}}>1</div>
+                        <div id="FindNumDiv" className='nowNum2'>2</div>
                     </div>
 
                     <div className='Find_inputDiv'>
@@ -152,17 +151,14 @@ const handleSubmit = (e) => {
                             
                             <div className='submitBtn'>
                                 <button style={{backgroundColor: '#E0E0E0'}}><Link to='/find/password1' style={{ textDecoration: "none"}}>이전</Link></button>
-                                <button ><Link to='/find/password3' style={{ textDecoration: "none"}}>다음</Link></button>
+                                <button ><Link to='/email2' style={{ textDecoration: "none"}}>다음</Link></button>
                             </div>
                             
                         </form>
                     </div>
+                </div>
             </div>
-
         </div>
     </div>
-        
     )
 }
-
-

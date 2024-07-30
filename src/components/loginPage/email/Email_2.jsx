@@ -1,15 +1,19 @@
 import '../Find.css';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import '../LoginPage.css'
+import '../SignupPage.css'
+import { useState } from 'react';
 
 
-export function Unregister_2(){
+
+export function Email_2(){
 
     return(
         
         <div className="screen_main">
         <div className="PasswordFindPage">
             <div className="FindHeader">
-                <p>■ 회원 탈퇴하기</p>
+                <p>■ 이메일 변경하기</p>
                 <button id='backBtn_toHome'><Link to='/' style={{ textDecoration: "none"}}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none"><path stroke="#40300E" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m22.5 7.5-15 15M7.5 7.5l15 15"/></svg>
                 </Link></button>
@@ -37,7 +41,7 @@ export function Unregister_2(){
 
         <div className='Find_i_resultDiv'>
         <div className='Find_i_result'>
-            <p>정상적으로 탈퇴가 완료되었습니다. </p>
+            <p>정상적으로 변경이 완료되었습니다. </p>
         </div>
         
         <div className='submitBtn_i'>

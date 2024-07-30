@@ -32,25 +32,25 @@ export function IdFind_2_false(){
                 <div className='PasswordFind'>
         
         
-        <div className='Find_num_i' >
-            <div id="FindNumDiv" className='nowNum1'>1</div>
-            <div id="FindNumDiv" className='nowNum2' style={{backgroundColor: '#40300E'}}>2</div>
-        </div>
+                    <div className='Find_num_i' >
+                        <div id="FindNumDiv" className='nowNum1'>1</div>
+                        <div id="FindNumDiv" className='nowNum2' style={{backgroundColor: '#40300E'}}>2</div>
+                    </div>
 
-        <div className='Find_i_resultDiv'>
-        <div className='Find_i_result'>
-            <p>입력된 정보의 아이디를 찾지 못했습니다. </p>
-        </div>
+                    <div className='Find_i_resultDiv'>
+                        <div className='Find_i_result'>
+                            <p>입력된 정보의 아이디를 찾지 못했습니다. </p>
+                        </div>
         
-        <div className='submitBtn_i'>
-        <button style={{backgroundColor: '#757575'}}><Link to='/find/id' style={{ textDecoration: "none"}}>닫기</Link></button>
-        </div>
+                        <div className='submitBtn_i'>
+                            <button style={{backgroundColor: '#E0E0E0'}}><Link to='/find/id' style={{ textDecoration: "none"}}>닫기</Link></button>
+                        </div>
 
-        </div>
+                    </div>
 
         
 
-    </div>
+                </div>
             </div>
 
         </div>

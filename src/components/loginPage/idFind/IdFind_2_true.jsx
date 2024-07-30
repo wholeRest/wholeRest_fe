@@ -44,7 +44,7 @@ export function IdFind_2_true(props){
         </div>
 
         <div className='submitBtn'>
-        <button style={{backgroundColor: '#757575'}}><Link to='/' style={{ textDecoration: "none"}}>닫기</Link></button>
+        <button style={{backgroundColor: '#E0E0E0'}}><Link to='/' style={{ textDecoration: "none"}}>닫기</Link></button>
         </div>
         </div>
         

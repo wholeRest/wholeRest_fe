@@ -4,47 +4,9 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 export function SignUpPage(){
-    const [warning, setWarning] = useState({
-        id: "",
-        password:"",
-        passwordConfirm:"",
-        name:"",
-        nickname:"",
-        emailId:"",
-        phoneNumber_2:"",
-        phoneNumber_3:"",
-    });
-
-    const [inputValue, setInputValue] = useState({
-        id: "", // 입력된 아이디 데이터
-        validId: false, // 아이디 정규식 충족 여부
-        nonIdDuplication: false, // 아이디 중복확인 여부
-
-        password: "", // 입력된 패스워드 데이터
-        validPassword: false, // 패스워드 정규식 충족 여부
-
-        passwordConfirm: "", // 입력된 패스워드 확인 데이터
-        correctpasswordConfirm: false, // 패드워드 데이터와 일치하는지 여부
-
-        name: "", // 입력된 사용자 이름 데이터
-
-        nickname: "", // 입력된 닉네임 데이터
-        validNickname: false, // 닉네임 정규식 충족 여부
-        nonNicknameDuplication: false, // 닉네입 중복확인 여부
-
-        emailId: "", // 입력된 이메일 아이디 데이터
-        emailAddress: "", // 선댁된 이메일 도메인 데이터
-        validEmail: true, // 이메일 인증 여부 (미구현이라 true가 초기값, 추후 리팩토링 예정)
-
-        phoneNumber_1: "", // 휴대폰 번호
-        phoneNumber_2: "", // 휴대폰 번호
-        phoneNumber_3: "", // 휴대폰 번호
-
-        agree: false, // 정보 제공 동의 여부
-      });
 
 
-      /*
+    /*
       // 들어온 값
       const id = document.getElementById('id');
       const password = document.getElementById('password');
@@ -188,6 +150,51 @@ export function SignUpPage(){
   });
     
   */
+
+
+
+  
+    const [warning, setWarning] = useState({
+        id: "",
+        password:"",
+        passwordConfirm:"",
+        name:"",
+        nickname:"",
+        emailId:"",
+        phoneNumber_2:"",
+        phoneNumber_3:"",
+    });
+
+    const [inputValue, setInputValue] = useState({
+        id: "", // 입력된 아이디 데이터
+        validId: false, // 아이디 정규식 충족 여부
+        nonIdDuplication: false, // 아이디 중복확인 여부
+
+        password: "", // 입력된 패스워드 데이터
+        validPassword: false, // 패스워드 정규식 충족 여부
+
+        passwordConfirm: "", // 입력된 패스워드 확인 데이터
+        correctpasswordConfirm: false, // 패드워드 데이터와 일치하는지 여부
+
+        name: "", // 입력된 사용자 이름 데이터
+
+        nickname: "", // 입력된 닉네임 데이터
+        validNickname: false, // 닉네임 정규식 충족 여부
+        nonNicknameDuplication: false, // 닉네입 중복확인 여부
+
+        emailId: "", // 입력된 이메일 아이디 데이터
+        emailAddress: "", // 선댁된 이메일 도메인 데이터
+        validEmail: true, // 이메일 인증 여부 (미구현이라 true가 초기값, 추후 리팩토링 예정)
+
+        phoneNumber_1: "", // 휴대폰 번호
+        phoneNumber_2: "", // 휴대폰 번호
+        phoneNumber_3: "", // 휴대폰 번호
+
+        agree: false, // 정보 제공 동의 여부
+      });
+
+
+      
 
   const inputRegexs = {
     idRegex: /^[a-zA-Z][a-zA-Z0-9_-]{2,19}$/,

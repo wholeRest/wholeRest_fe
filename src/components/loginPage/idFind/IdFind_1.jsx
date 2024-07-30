@@ -48,7 +48,7 @@ export function IdFind_1(props){
                             
                             
                             <div className='submitBtn'>
-                                <button style={{backgroundColor: '#757575'}}><Link to='/' style={{ textDecoration: "none"}}>취소</Link></button>
+                                <button style={{backgroundColor: '#E0E0E0'}}><Link to='/' style={{ textDecoration: "none"}}>취소</Link></button>
                                 <button ><Link to='/find/id_false' style={{ textDecoration: "none"}}>확인</Link></button>
                             </div>
                             

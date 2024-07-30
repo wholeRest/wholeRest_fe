@@ -1,0 +1,73 @@
+
+
+.unregisterBlack{
+    border: none;
+    z-index: 3;
+    position: fixed;
+    left: 0;
+    top:0;
+    background-color: rgba(99, 99, 120, 0.235);
+    width: 101vw;
+    height: 101vh;
+}
+
+.unregisterPopupDiv{
+    z-index: 4;
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+    width: 70vw;
+    height: 20vh;
+    max-width: 330px;
+    max-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    position: fixed; /* 중앙 배치를 위해 fixed 위치 설정 */
+    top: 50%; /* 화면의 중앙으로 이동 */
+    left: 50%; /* 화면의 중앙으로 이동 */
+    transform: translate(-50%, -50%); /* 중앙 정렬을 위한 변환 */
+}
+
+
+
+.unregisterPopup{
+    margin: 25px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.unregisterPopup_text{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.unregisterPopup_text > p {
+    margin:0;
+}
+
+.unregister_submitBtn{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.unregister_submitBtn > button {
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin: 5px;
+
+    background-color: rgb(255, 225, 56);
+    border: none;
+}

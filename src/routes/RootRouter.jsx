@@ -24,10 +24,28 @@ import { FindLayout } from './FindLayout';
 import { IdFind_1 } from '../components/loginPage/idFind/IdFind_1';
 import { IdFind_2_false } from '../components/loginPage/idFind/IdFind_2_false';
 import { IdFind_2_true } from '../components/loginPage/idFind/IdFind_2_true';
+
 import { PasswordFind_1 } from '../components/loginPage/passwordFind/PasswordFind_1';
 import { PasswordFind_2 } from '../components/loginPage/passwordFind/PasswordFind_2';
 import { PasswordFind_3 } from '../components/loginPage/passwordFind/PasswordFind_3';
 import { PasswordFind_4 } from '../components/loginPage/passwordFind/PasswordFind_4';
+
+import { Email_1 } from '../components/loginPage/email/Email_1';
+import { Email_2 } from '../components/loginPage/email/Email_2';
+
+import { Signup_1 } from '../components/loginPage/signup/Signup_1';
+import { Signup_2 } from '../components/loginPage/signup/Signup_2';
+import { Signup_3 } from '../components/loginPage/signup/Signup_3';
+import { Signup_4 } from '../components/loginPage/signup/Signup_4';
+
+import { Unregister_1 } from '../components/loginPage/unregister/Unregister_1';
+import { Unregister_2 } from '../components/loginPage/unregister/Unregister_2';
+
+
+
+
+
+
 
 const router = createBrowserRouter( [
   {
@@ -52,6 +70,7 @@ const router = createBrowserRouter( [
         element: <IdFind_2_false />,
       },
 
+
       {
         path: 'find/password1',
         element: <PasswordFindPage />
@@ -68,6 +87,51 @@ const router = createBrowserRouter( [
         path: 'find/password4',
         element: <PasswordFind_4 />
       },
+
+
+
+      {
+        path: 'signup1',
+        element: <Signup_1 />
+      },
+      {
+        path: 'signup2',
+        element: <Signup_2 />
+      },
+      {
+        path: 'signup3',
+        element: <Signup_3 />
+      },
+      {
+        path: 'signup4',
+        element: <Signup_4 />
+      },
+      
+
+      {
+        path: 'unregister1',
+        element: <Unregister_1 />
+      },
+      {
+        path: 'unregister2',
+        element: <Unregister_2 />
+      },
+
+
+
+
+      {
+        path: 'email1',
+        element: <Email_1 />
+      },
+      {
+        path: 'email2',
+        element: <Email_2 />
+      },
+      
+
+
+
 
       {
         path: 'signup',

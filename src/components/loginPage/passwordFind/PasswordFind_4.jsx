@@ -46,7 +46,7 @@ export function PasswordFind_4(props){
                             
                             
                             <div className='submitBtn'>
-                                <button style={{backgroundColor: '#757575'}}><Link to='/find/password3' style={{ textDecoration: "none"}}>이전</Link></button>
+                                <button style={{backgroundColor: '#E0E0E0'}}><Link to='/find/password3' style={{ textDecoration: "none"}}>이전</Link></button>
                                 <button ><Link to='/' style={{ textDecoration: "none"}}>완료</Link></button>
                             </div>
                             
