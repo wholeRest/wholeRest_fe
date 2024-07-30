@@ -47,7 +47,7 @@
     margin-left: 10%;
     margin-right: 10%;
     position: fixed;
-    bottom: -20vh;
+    bottom: -40vh;
     
     display: flex;
     flex-direction: column;
@@ -97,6 +97,8 @@
 }
 
 
+
+
 .calenderPop_date{
     width: 95%;
     border: dashed 1px #66593E;
@@ -111,6 +113,23 @@
 }
 .calenderPop_date > div{
     margin-right: 0;
+}
+
+
+.calendarPop_emoji{
+    width: 90%;
+    min-height: 130px;
+    height: 70%;
+    margin-bottom: 5px;
+}
+
+.calendarPop_emoji > .css-1yuhvjn{
+    margin: 5px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 95%;
 }
 
 
@@ -168,25 +187,33 @@
 }
 
 
+
 .calendarPop_emojis{
     padding: 20px 10px;
     width: 90%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 
 .todayEmoji_up{
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-
+    margin-bottom: 5px;
 }
 
 .todayEmoji_down{
-    width: 60%;
+    width: 70%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-top: 5px;
 }
 
 
