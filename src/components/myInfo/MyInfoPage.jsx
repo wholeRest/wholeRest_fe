@@ -1,4 +1,7 @@
 import './MyInfoPage.css'
+import { Link } from 'react-router-dom'
+
+
 
 
 export function MyInfoPage(){
@@ -40,7 +43,7 @@ export function MyInfoPage(){
                     <p className='MyInfoPage_menu_Cate'>계정</p>
                     <button>아이디</button>
                     <button>비밀번호 변경</button>
-                    <button>이메일 변경</button>
+                    <button><Link to='/email1' style={{ textDecoration: "none"}}>이메일 변경</Link></button>
                 </div>
 
                 <div className='MyInfoPage_menu'>
@@ -70,7 +73,7 @@ export function MyInfoPage(){
                 <div className='MyInfoPage_menu'>
                     <p className='MyInfoPage_menu_Cate'>기타</p>
                     <button>정보 동의 설정</button>
-                    <button>회원 탈퇴</button>
+                    <button><Link to='/unregister1' style={{ textDecoration: "none"}}>회원 탈퇴</Link></button>
                     <button>로그아웃</button>
                 </div>
                 

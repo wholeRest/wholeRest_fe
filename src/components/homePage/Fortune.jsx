@@ -1,5 +1,6 @@
 import './Fortune.css';
 import { useState } from 'react';
+import { useEffect } from 'react';
 import cookie1 from './포츈쿠키 1 2.png';
 import cookie2 from './포츈쿠키2 2.png';
 import cookie3 from './포츈쿠키 3 2.png';
@@ -7,11 +8,45 @@ import title from './text.png';
 import title_after from './오늘의 행운의 메세지.png';
 
 
-export function Fortune(){
-    const [cookie, setCookie] = useState("0");
+
+
+
+export function Fortune(props){
+
+    const {cookie, setCookie} = props;
+    
+    
+    
+    useEffect(() => {
+        const updateDataAtMidnight = () => {
+            setCookie(0); // 상태를 원하는 값으로 업데이트
+        };
+
+        // 현재 시간과 자정까지 남은 시간 계산
+        const getTimeUntilMidnight = () => {
+            const now = new Date();
+            const midnight = new Date();
+            midnight.setHours(24, 0, 0, 0); // 자정으로 설정
+            return midnight - now; // 밀리초 단위로 남은 시간 계산
+        };
+
+        const timeUntilMidnight = getTimeUntilMidnight();
+        
+        // 자정이 되면 상태를 업데이트하도록 설정
+        const timerId = setTimeout(() => {
+            updateDataAtMidnight(); // 자정에 데이터 업데이트
+            // 매일 자정마다 다시 타이머 설정
+            setInterval(updateDataAtMidnight, 24 * 60 * 60 * 1000); // 하루에 한번 실행
+        }, timeUntilMidnight);
+
+        // 컴포넌트 언마운트 시 타이머 정리
+        return () => clearTimeout(timerId);
+    }, []);
+
+
 
     function now(){
-        if(cookie === "0"){
+        if(cookie === 0){
             return(
                 <div className='before'>
                     <div className='fortunetitle'>
@@ -19,9 +54,9 @@ export function Fortune(){
                         
                     </div>
                     <div className='cookies'>
-                        <img className='cookie' onClick={() => setCookie("1")} src={cookie1} />
-                        <img className='cookie' onClick={() => setCookie("2")} src={cookie2} />
-                        <img className='cookie' onClick={() => setCookie("3")} src={cookie3} />
+                        <img className='cookie' onClick={() => setCookie(1)} src={cookie1} />
+                        <img className='cookie' onClick={() => setCookie(2)} src={cookie2} />
+                        <img className='cookie' onClick={() => setCookie(3)} src={cookie3} />
                     </div>
                 </div>
             )
@@ -35,7 +70,7 @@ export function Fortune(){
 
                     </div>
                     <div className='fortune'>
-
+                        {/* 행운의 메세지 출력 */}
                     </div> 
                 </div>    
             )

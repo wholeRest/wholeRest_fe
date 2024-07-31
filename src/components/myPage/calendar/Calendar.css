@@ -73,7 +73,7 @@
 
 .calendarPop_title{
     margin-top: 15px;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 
     width: 88%;
     display: flex;
@@ -118,8 +118,8 @@
 
 .calendarPop_emoji{
     width: 90%;
-    min-height: 130px;
-    height: 70%;
+    min-height: 100px;
+    height: 60%;
     margin-bottom: 5px;
 }
 
@@ -169,11 +169,11 @@
 
 .calendarPop_Btn{
     width: 100%;
-    height: 20%;
+    height: 30%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 10px;
+    padding: 5px 10px;
 }
 .calendarPop_Btn > button {
     width: 35%;
@@ -189,7 +189,7 @@
 
 
 .calendarPop_emojis{
-    padding: 20px 10px;
+    padding: 5px 10px;
     width: 90%;
 
     display: flex;
@@ -202,18 +202,28 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 2px;
 }
 
 .todayEmoji_down{
     width: 70%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-top: 5px;
+    margin-top: 2px;
 }
 
+.todayEmojiDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
 
+    width: 30px;
+    height: 30px;
+    margin: 0px 6px;
+}

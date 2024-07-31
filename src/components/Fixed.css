@@ -93,7 +93,7 @@
     height: 100%;
     margin-right: 5px;
 }
-.weatherInfo > p {
+#weatherInfo {
     font-size: 12px;
     margin-right: 5px;
 }

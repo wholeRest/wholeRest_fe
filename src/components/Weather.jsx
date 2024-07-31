@@ -11,7 +11,7 @@ export function Weather() {
 
   const getWeather = ((lat, lon) => {
     fetch(
-      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`)
+      `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&lang=kr&units=metric&appid=${API_KEY}&units=metric`)
       .then((responese) => {
         return responese.json();
       })
@@ -20,11 +20,13 @@ export function Weather() {
         console.log(json);
 
         // 이 부분은 setData 이후에 실행되어야 함
+
         const iconURL = `http://openweathermap.org/img/wn/${json.weather[0].icon}@2x.png`;
         const iconSection = document.querySelector(".weathericon");
         if (iconSection) {
           iconSection.setAttribute("src", iconURL);
         }
+
       })
       .catch((error) => {
         console.log('Error: ', error);
@@ -145,12 +147,11 @@ export function Weather() {
       {data ? (
         <div className="weatherInfo" style={{ display: "flex", flexDirection: "row" }}>
           <img className="weathericon" />
-          <p className="temperature">{data.main.temp}°C</p>
-          <p className="place">{data.name}</p>
-          <p className="description">{data.weather[0].description}</p>
+          <p id='weatherInfo' className="temperature">{data.main.temp}°C</p>
+          <p id='weatherInfo'  className="description">{data.weather[0].description}</p>
         </div>
       ) : (
-        <p>날씨 정보를 불러오는 중...</p>
+        <p id='weatherInfo' >날씨 정보를 불러오는 중...</p>
       )}
     </div>
   );

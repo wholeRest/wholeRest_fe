@@ -4,12 +4,12 @@ import { useState } from 'react';
 import './Diary.css'
 
 export function Diary(props){
-    const [diary_feel, setDiary_feel] = useState(0);
-    const [diary_condition, setDiary_condition] = useState(0);
-    const [diary_todayDiary, setDiary_todayDiary] = useState("");
-    const [diary_todayThank, setDiary_todayThank] =useState("");
+    
 
-
+    const {
+        diary_feel, diary_condition, diary_todayDiary, diary_todayThank,
+        setDiary_feel, setDiary_condition, setDiary_todayDiary, setDiary_todayThank
+    } = props;
 
 
     const todaydiary = ( e ) => {
@@ -41,15 +41,17 @@ export function Diary(props){
 
                 <div className="mypage_Diary_TodayDiaryDiv">
                     <p className="Diary_title">■ 오늘 하루 일과는 어땠나요?</p>
-                    <textarea className='diaryWriteBox' rows="5" placeholder='내용 입력하기' onChange={todaydiary}>
-
+                    <textarea className='diaryWriteBox' rows="5" placeholder='내용 입력하기' 
+                    onChange={todaydiary} value={diary_todayDiary}>
+                        
                     </textarea>
                 </div>
 
                 <div className='mypage_Diary_TodayThankDiv'>
                     <p className="Diary_title">■ 오늘 감사한 일이 있었나요?</p>
-                    <textarea className='diaryWriteBox' rows="3" placeholder='내용 입력하기' onChange={todaythank}>
-
+                    <textarea className='diaryWriteBox' rows="3" placeholder='내용 입력하기' 
+                    onChange={todaythank} value={diary_todayThank}>
+                        
                     </textarea>
                 </div>
 

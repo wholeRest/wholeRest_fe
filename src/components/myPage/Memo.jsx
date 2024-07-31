@@ -2,8 +2,9 @@ import './MyPage.css';
 import './Memo.css'
 import { useState } from 'react';
 
-export function Memo(){
-    const [memo, setMemo] = useState("");
+export function Memo(props){
+
+    const{memo, setMemo} = props;
 
     const memoWrite = (e) => {
         setMemo(e.target.value);
@@ -17,8 +18,9 @@ export function Memo(){
             </div>
             
             <div className="mypage_Memo_box">
-                <textarea className='memoWriteBox' rows='8' >
-
+                <textarea className='memoWriteBox' rows='8' onChange={memoWrite}
+                value={memo}>
+                    
                 </textarea>
 
             </div>

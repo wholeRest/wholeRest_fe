@@ -5,8 +5,11 @@ import './HomePage.css'
 import { Fortune } from "./Fortune.jsx" 
 import { Thnumnail } from "../Thumnail"
 
+import { useState } from "react"
+
 
 export function HomePage(){
+  const [cookie, setCookie] = useState(0);
 
     return(
       <div className="screen_main">
@@ -20,10 +23,13 @@ export function HomePage(){
           <div className="bannerDiv2">
             <div className="banner2">
               <p id='ex'>Banner2</p>
+              {/* 배너 누르면 사용 설명 팝업이나 페이지 이동 */}
+
+
             </div>
           </div>
 
-          <Fortune />
+          <Fortune cookie={cookie} setCookie={setCookie}  />
 
           <div className='homePage_contents'>
             <div className='homePage_popularcontents'>

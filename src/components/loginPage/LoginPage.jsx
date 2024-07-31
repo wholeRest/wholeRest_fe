@@ -23,19 +23,7 @@ export function LoginPage(props){
     setHow(false);
   }
 
-  {/* 있는 정보면 setIsUser를 true로 */}
-
-  const login = () => {
-    
-
-    if(isUser === true){
-      navigate('/home');
-    }
-    else{
-      console.log("로그인 실패");
-      navigate('/');
-    }
-  }
+  
   
 
     return(
@@ -50,7 +38,10 @@ export function LoginPage(props){
               <button onClick={nomalLogin} style={how ? {borderBottom: "solid 2px rgb(84, 51, 31)"} : {borderBottom: "none"}}>일반 회원 로그인</button>
               <button onClick={socialLodin} style={how ? {borderBottom: "none"} : {borderBottom: "solid 2px rgb(84, 51, 31)"}}>소셜 로그인</button>
             </div>
-            {how ? <NomalLoginBox ID={ID} password={password} login={login} /> : <SocialLoginBox />}
+            {how ? <NomalLoginBox 
+            ID={ID} password={password} isUser={isUser}
+            setID={setID} setPassword={setPassword} setIsUser={setIsUser}
+            /> : <SocialLoginBox />}
             
           </div>
           <div className='loginPage_plus'>
