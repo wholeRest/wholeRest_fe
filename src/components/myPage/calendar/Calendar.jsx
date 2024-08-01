@@ -213,7 +213,7 @@ export function Calendar() {
             <label
             className='emojiAdd_Btn' 
             onClick={()=> setPopupOpen_emoji(true)}
-            >ㅇ</label>
+            ></label>
 
           <svg 
             className='scheduleAdd_Btn' onClick={() => setPopupOpen_range(true)}
@@ -323,9 +323,9 @@ export function Calendar() {
           </div>
         </div>
       
+{/*
 
-
-      {/* 이모지 추가 팝업 내용 */} 
+     
      
         <div className={`calendar_rangePopupDiv ${popupOpen_emoji ? 'checked' : ''}`}>
           <div className='calendarPop_title'>
@@ -349,6 +349,8 @@ export function Calendar() {
               <div className='calendarPop_emojis'>
 
                 <div className='todayEmoji_up'>
+
+
 
                 <div className='todayEmojiDiv' onClick={() => handleEmojiSelect('😀')}>
                   <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="none">
@@ -506,7 +508,7 @@ export function Calendar() {
         </div>
 
 
-{/*
+
 
 
 
@@ -520,10 +522,11 @@ export function Calendar() {
           </div>
 
 
-
-          */}
+        
         </div>
 
+
+*/}
 
     </LocalizationProvider>
   );

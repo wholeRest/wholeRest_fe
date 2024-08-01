@@ -1,45 +1,53 @@
 import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import './LoginPage.css'
 import usericon from './User_alt_fill.png';
 import lockicon from './Lock@3x.png';
 import axios from 'axios';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 
 
 
 export function NomalLoginBox(props){
   const [data, setData] = useState(null);
-  const {ID, password, isUser, setID, setPassword, setIsUser} = props;
+  const {navigate, ID, password, isUser, setID, setPassword, setIsUser} = props;
 
-  axios.post('/api/auth/login', {
-    userId: ID,
-    password: password,
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+
+  
   
 
   {/* 있는 정보면 setIsUser를 true로 */}
 
-  const login = () => {
+  const login = (e) => {
+    e.preventDefault();
+    console.log("함수 실행!");
     
+  axios.post('https://wholerest.site/api/auth/login', {
+    userId: "test",
+    password: "1234",
+  })
+  .then(function (response) {
+    setData(response.data);
+    console.log(response.data);
 
-    if(isUser === true){
-      navigate('/home');
-    }
-    else{
-      console.log("로그인 실패");
-      navigate('/');
-    }
+    //let token = response.data.accessToken;
+    //sessionStorage.setItem("access", token); // 키, 토큰 
+
+    //가져오기
+    /// let sessionData = sessionStorage.getItem("access"); /// 
+
+    console.log("로그인 성공");
+
+  })
+  .catch(function (error) {
+    console.log(error);
+    console.log("로그인 실패");
+  });
   }
 
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
 
     const onIdHandler = (event) => {
@@ -48,6 +56,8 @@ export function NomalLoginBox(props){
   const onPasswordHandler = (event) => {
       setPassword(event.currentTarget.value);
   }
+
+  /*
   
     const onSubmitHandler = (e) => {
       e.preventDefault();
@@ -62,7 +72,7 @@ export function NomalLoginBox(props){
 
       dispatch(loginUser(body));
     } 
-
+*/
 
 
 
@@ -70,7 +80,8 @@ export function NomalLoginBox(props){
 
     return(
         <div className='loginPage_nomalLogin'>
-                <form onSubmit={onSubmitHandler}>
+                {/* <form onSubmit={onSubmitHandler}> */}
+                <form>
                   <div className='loginPage_inputBox'>
                     <input type="text" name="id" placeholder='아이디' onChange={onIdHandler}></input>
                     <input type="password" name="password" placeholder='비밀번호' onChange={onPasswordHandler}></input>
@@ -81,7 +92,8 @@ export function NomalLoginBox(props){
                     <button><Link to='/find/id' style={{ textDecoration: "none"}}>아이디찾기</Link></button>
                     <button><Link to='/find/password1' style={{ textDecoration: "none"}}>비밀번호찾기</Link></button>
                   </div>
-                  <button type="submit" id='loginButton' >로그인</button>
+                  <button type="submit" id='loginButton1' onClick={login} >로그인!!!!!</button>
+                  <button type="submit" id='loginButton' ><Link to='/home'>로그인</Link></button>
                 </form>
                 
             </div>

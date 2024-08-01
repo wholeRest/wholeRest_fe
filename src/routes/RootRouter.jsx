@@ -33,6 +33,8 @@ import { PasswordFind_4 } from '../components/loginPage/passwordFind/PasswordFin
 import { Email_1 } from '../components/loginPage/email/Email_1';
 import { Email_2 } from '../components/loginPage/email/Email_2';
 
+
+import { SignupPage } from '../components/signupPage/SignupPage';
 import { Signup_1 } from '../components/loginPage/signup/Signup_1';
 import { Signup_2 } from '../components/loginPage/signup/Signup_2';
 import { Signup_3 } from '../components/loginPage/signup/Signup_3';
@@ -89,7 +91,10 @@ const router = createBrowserRouter( [
       },
 
 
-
+      {
+        path: 'signup0',
+        element: <SignupPage />
+      },
       {
         path: 'signup1',
         element: <Signup_1 />

@@ -21,8 +21,8 @@ export function MyPage(props){
     const [isCheckChecked, setIsCheckChecked] = useState(false);
     const [isCautionChecked, setIsCautionChecked] = useState(false);
 
-    const [diary_feel, setDiary_feel] = useState(0);
-    const [diary_condition, setDiary_condition] = useState(0);
+    const [diary_feel, setDiary_feel] = useState('0');
+    const [diary_condition, setDiary_condition] = useState('0');
     const [diary_todayDiary, setDiary_todayDiary] = useState("");
     const [diary_todayThank, setDiary_todayThank] =useState("");
 

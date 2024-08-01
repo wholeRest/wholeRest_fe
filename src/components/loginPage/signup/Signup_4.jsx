@@ -9,7 +9,16 @@ import { useState } from 'react';
 
 
 
-export function Signup_4(){
+export function Signup_4(props){
+    const {inputValue, setInputValue,
+        handleChange,handleBlur,setWarning,
+        inputRegexs,warning
+
+
+    } = props;
+    
+
+    
 
     return(
         <div className="screen_main">
