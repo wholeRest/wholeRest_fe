@@ -24,21 +24,21 @@ export function NomalLoginBox(props){
     console.log("함수 실행!");
     
   axios.post('https://wholerest.site/api/auth/login', {
-    userId: "test",
-    password: "1234",
+    userId: ID,
+    password: password,
   })
-  .then(function (response) {
-    setData(response.data);
-    console.log(response.data);
+  .then(function (response) { 
+    setData(response.data); 
+    console.log(response.data); 
 
-    //let token = response.data.accessToken;
-    //sessionStorage.setItem("access", token); // 키, 토큰 
+    let token = response.data.accessToken;
+    sessionStorage.setItem("access", token); // 키, 토큰 
 
     //가져오기
     /// let sessionData = sessionStorage.getItem("access"); /// 
 
     console.log("로그인 성공");
-
+    navigate("/home" );
   })
   .catch(function (error) {
     console.log(error);
@@ -51,7 +51,7 @@ export function NomalLoginBox(props){
 
 
     const onIdHandler = (event) => {
-      setEmail(event.currentTarget.value);
+      setID(event.currentTarget.value);
   }
   const onPasswordHandler = (event) => {
       setPassword(event.currentTarget.value);

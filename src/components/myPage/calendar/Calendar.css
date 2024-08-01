@@ -168,16 +168,17 @@
 
 
 .calendarPop_Btn{
-    width: 100%;
+    width: 80%;
     height: 30%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-around;
     align-items: center;
-    padding: 5px 10px;
+    padding: 5px 10px 10px 10px;
 }
 .calendarPop_Btn > button {
-    width: 35%;
-    height: 90%;
+    width: 40%;
+    height: 50%;
     border: none;
     border-radius: 15px;
     background-color: #FFE14F;
@@ -186,6 +187,17 @@
     font-size: 10px;
 }
 
+
+.deleteBtn{
+    width: 40%;
+    height: 50%;
+    border: none;
+    border-radius: 15px;
+    background-color: #E0E0E0;
+
+    color: #40300E;
+    font-size: 10px;
+}
 
 
 .calendarPop_emojis{
@@ -227,3 +239,9 @@
     height: 30px;
     margin: 0px 6px;
 }
+
+
+
+
+
+

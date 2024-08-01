@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import '../loginPage/LoginPage.css'
 import '../loginPage/SignupPage.css'
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Signup_1 } from '../loginPage/signup/Signup_1';
 import { Signup_2 } from '../loginPage/signup/Signup_2';
@@ -15,8 +16,8 @@ import axios from 'axios';
 
 
 export function SignupPage(){
-    const [signUpN, setSignUpN] = useState(1);
-
+    const [signUp_N, setSignUp_N] = useState(1);
+    const navigate = useNavigate();
 
     
     const [warning, setWarning] = useState({
@@ -182,6 +183,7 @@ const handleBlur = (e) => {
     }));
 };
 
+
 const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -191,21 +193,88 @@ const handleSubmit = (e) => {
         password: inputValue.password,
         nickName: inputValue.nickname,
         email: inputValue.email,
-        phoneNumber: inputValue.phoneNumber_2,
+        phoneNumber: "01012345678",
         dateOfBirth: inputValue.birth
     })
     .then(function (response){
-        console.log("성공");
-        alert("회원가입 성공");
+        
+        console.log("회원가입 성공!");
+        setSignUp_N(4);
     }
     )
     .catch((error) => {
-        console.log("실패");
+        console.log(inputValue);
+        console.log("회원가입 실패...");
         alert("회원가입 실패" + error);
       });
 
 
 };
+
+const signUp_Pages = () => {
+    switch(signUp_N) {
+        case 1:
+            return(
+                <Signup_1 
+                inputValue={inputValue} setInputValue={setInputValue}
+                handleChange={handleChange} handleBlur={handleBlur} setWarning={setWarning} 
+                inputRegexs={inputRegexs} warning={warning} 
+                handleSubmit={handleSubmit}
+                    
+                signUp_N={signUp_N} setSignUp_N={setSignUp_N}
+                />
+            )
+        break;
+
+        case 2:
+            return(
+                <Signup_2 
+                inputValue={inputValue} setInputValue={setInputValue}
+                handleChange={handleChange} handleBlur={handleBlur} setWarning={setWarning} 
+                inputRegexs={inputRegexs} warning={warning}  
+                handleSubmit={handleSubmit}
+
+                signUp_N={signUp_N} setSignUp_N={setSignUp_N}
+            />
+            )
+            
+        break;
+
+        case 3:
+            return(
+                <Signup_3 
+                inputValue={inputValue} setInputValue={setInputValue}
+                handleChange={handleChange} handleBlur={handleBlur} setWarning={setWarning} 
+                inputRegexs={inputRegexs} warning={warning} 
+                handleSubmit={handleSubmit}
+
+                signUp_N={signUp_N} setSignUp_N={setSignUp_N}
+            />  
+            )
+            
+        break;
+
+        case 4:
+            return(
+                <Signup_4 
+                inputValue={inputValue} setInputValue={setInputValue}
+                handleChange={handleChange} handleBlur={handleBlur} setWarning={setWarning} 
+                inputRegexs={inputRegexs} warning={warning} 
+                handleSubmit={handleSubmit}
+
+                signUp_N={signUp_N} setSignUp_N={setSignUp_N}
+            />
+            )
+            
+        break;
+    }
+
+    if (signUp_N) {
+      return <button style={{ margin: 10 }}>Logout</button>;
+    } else {
+      return <button style={{ margin: 10 }}>Login</button>;
+    }
+  };
 
 
 
@@ -213,26 +282,7 @@ const handleSubmit = (e) => {
 
     return(
         <>
-
-            <Signup_1 
-            inputValue={inputValue} setInputValue={setInputValue}
-            handleChange={handleChange} handleBlur={handleBlur} setWarning={setWarning} 
-            inputRegexs={inputRegexs} warning={warning} 
-            handleSubmit={handleSubmit}/>
-
-            <Signup_2 
-            inputValue={inputValue} setInputValue={setInputValue}
-            handleChange={handleChange} handleBlur={handleBlur} setWarning={setWarning} 
-            inputRegexs={inputRegexs} warning={warning}  
-            handleSubmit={handleSubmit}/>
-            
-            <Signup_3 
-            inputValue={inputValue} setInputValue={setInputValue}
-            handleChange={handleChange} handleBlur={handleBlur} setWarning={setWarning} 
-            inputRegexs={inputRegexs} warning={warning} 
-            handleSubmit={handleSubmit}/>
-            
-
+            {signUp_Pages()}
         </>
     )
 }

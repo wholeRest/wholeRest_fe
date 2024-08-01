@@ -54,7 +54,7 @@ export function LoginPage(props){
 
               <button><Link to='/email1' style={{ textDecoration: "none"}}>(이메일변경) &raquo;</Link></button>
               <button><Link to='/unregister1' style={{ textDecoration: "none"}}>(회원탈퇴) &raquo;</Link></button>
-              <button><Link to='/signup1' style={{ textDecoration: "none"}}>(회원가입) &raquo;</Link></button>
+              <button><Link to='/signup1' style={{ textDecoration: "none"}}>X(회원가입) &raquo;</Link></button>
             </div>
         </div>
       </div>

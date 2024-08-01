@@ -14,6 +14,30 @@ import title_after from './오늘의 행운의 메세지.png';
 export function Fortune(props){
 
     const {cookie, setCookie} = props;
+    const [fortuneMessage, setFortuneMessage] = useState();
+    const [n, setN] = useState(10);
+
+    const fortureMessages = [
+        ["오늘은 좋은 일이", "있을 것 같아요!", "어디든 외출해서", "상쾌한 공기를 느껴보세요."],
+        ["희망은 언제나 우리 곁에", "있습니다. 오늘도", "멋진 하루 보내세요!"],
+        ["작은 일에도 감사하며", "행복을 찾아보세요.", "뜻밖의 기쁨이 찾아올 거예요."],
+        ["성공은 작은 노력들이", "모여 이루어집니다.", "포기하지 말고 계속하세요!"],
+        ["당신은 할 수 있습니다.", "스스로를 믿고", "도전해보세요!"],
+
+        ["매일매일이 새로운 시작", "입니다. 오늘도", "힘내세요!"],
+        ["행운이 당신을 향해", "달려오고 있어요.", "준비되셨나요?"],
+        ["긍정적인 마음으로", "하루를 시작해보세요.", "좋은 일이 생길 거예요!"],
+        ["매 순간을 소중히", "여기며 즐기세요.", "행복이 가득할 거예요."],
+        ["자신을 믿고 나아가세요.", "모든 일은", "잘 될 것입니다."],
+
+        ["","","",""]
+    ];
+
+    const fortureResult = () => {
+        let randomIndex = Math.floor(Math.random() * (10 - 1 + 1))
+        setN(randomIndex);
+        setFortuneMessage(fortureMessages[n]);
+    };
     
     
     
@@ -43,8 +67,13 @@ export function Fortune(props){
         return () => clearTimeout(timerId);
     }, []);
 
+    useEffect(() => {
+        fortureResult();
+        console.log("현재 행운의 글귀: " + n);
+    }, [cookie]);
 
 
+    
     function now(){
         if(cookie === 0){
             return(
@@ -70,7 +99,9 @@ export function Fortune(props){
 
                     </div>
                     <div className='fortune'>
-                        {/* 행운의 메세지 출력 */}
+                    {fortuneMessage.map((message, index) => (
+                            <p key={index} className='fortuneM'>{message}</p>
+                        ))}
                     </div> 
                 </div>    
             )

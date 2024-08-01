@@ -11,8 +11,8 @@ import axios from 'axios';
 export function Signup_1(props){
     const {inputValue, setInputValue,
         handleChange,handleBlur,setWarning,
-        inputRegexs,warning
-
+        inputRegexs,warning,
+        signUp_N, setSignUp_N
 
     } = props;
     
@@ -95,7 +95,7 @@ export function Signup_1(props){
                             
                             <div className='submitBtn'>
                                 <button style={{backgroundColor: '#E0E0E0'}}><Link to='/' style={{ textDecoration: "none"}}>이전</Link></button>
-                                <button ><Link to='/signup2' style={{ textDecoration: "none"}}>다음</Link></button>
+                                <button onClick={()=>{setSignUp_N(2)}}>다음</button>
                             </div>
                             
                         </form>

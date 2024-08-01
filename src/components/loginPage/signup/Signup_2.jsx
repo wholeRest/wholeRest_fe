@@ -10,8 +10,8 @@ import { useState } from 'react';
 export function Signup_2(props){
     const {inputValue, setInputValue,
         handleChange,handleBlur,setWarning,
-        inputRegexs,warning
-
+        inputRegexs,warning,
+        signUp_N, setSignUp_N
 
     } = props;
 
@@ -77,8 +77,8 @@ export function Signup_2(props){
                             
                             
                             <div className='submitBtn'>
-                                <button style={{backgroundColor: '#E0E0E0'}}><Link to='/signup1' style={{ textDecoration: "none"}}>이전</Link></button>
-                                <button >다음</button>
+                                <button onClick={()=>{setSignUp_N(1)}} style={{backgroundColor: '#E0E0E0'}}>이전</button>
+                                <button onClick={()=>{setSignUp_N(3)}}>다음</button>
                             </div>
                             
                         </form>

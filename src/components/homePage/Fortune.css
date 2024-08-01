@@ -74,12 +74,20 @@
 .fortune{
     background-color: white;
     display: flex;
-    flex-direction: row;
-    width: 80%;
+    flex-direction: column;
+    width: 60%;
     height: 60%;
     border-radius: 20px;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
+    padding: 1% 10%;
+}
+
+.fortuneM{
+    margin:0;
+    color: #66593E;
+    font-weight: bold;
+    
 }
 
 
