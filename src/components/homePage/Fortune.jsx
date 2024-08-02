@@ -14,10 +14,10 @@ import title_after from './오늘의 행운의 메세지.png';
 export function Fortune(props){
 
     const {cookie, setCookie} = props;
-    const [fortuneMessage, setFortuneMessage] = useState();
+    const [fortuneMessage, setFortuneMessage] = useState([]);
     const [n, setN] = useState(10);
 
-    const fortureMessages = [
+    const fortuneMessages = [
         ["오늘은 좋은 일이", "있을 것 같아요!", "어디든 외출해서", "상쾌한 공기를 느껴보세요."],
         ["희망은 언제나 우리 곁에", "있습니다. 오늘도", "멋진 하루 보내세요!"],
         ["작은 일에도 감사하며", "행복을 찾아보세요.", "뜻밖의 기쁨이 찾아올 거예요."],
@@ -33,28 +33,42 @@ export function Fortune(props){
         ["","","",""]
     ];
 
-    const fortureResult = () => {
-        let randomIndex = Math.floor(Math.random() * (10 - 1 + 1))
-        setN(randomIndex);
-        setFortuneMessage(fortureMessages[n]);
+
+    const updateDataAtMidnight = () => {
+        setCookie(0); // 상태를 원하는 값으로 업데이트
+        localStorage.setItem('fortuneCookie', JSON.stringify(0)); // 쿠키 상태 로컬 스토리지 업데이트
+        // localStorage.removeItem('fortuneCookie'); // 쿠키 상태 초기화
+        localStorage.removeItem('fortuneIndex');
     };
-    
+
+    // 현재 시간과 자정까지 남은 시간 계산
+    const getTimeUntilMidnight = () => {
+        const now = new Date();
+        const midnight = new Date();
+        midnight.setHours(24, 0, 0, 0); // 자정으로 설정
+        return midnight - now; // 밀리초 단위로 남은 시간 계산
+    };
+
     
     
     useEffect(() => {
-        const updateDataAtMidnight = () => {
-            setCookie(0); // 상태를 원하는 값으로 업데이트
-        };
+        // 페이지 로드 시 로컬 스토리지에서 쿠키 상태를 복원
+        const storedCookie = JSON.parse(localStorage.getItem('fortuneCookie'));
+        const storedIndex = JSON.parse(localStorage.getItem('fortuneIndex'));
 
-        // 현재 시간과 자정까지 남은 시간 계산
-        const getTimeUntilMidnight = () => {
-            const now = new Date();
-            const midnight = new Date();
-            midnight.setHours(24, 0, 0, 0); // 자정으로 설정
-            return midnight - now; // 밀리초 단위로 남은 시간 계산
-        };
+        if (storedCookie !== null) {
+            setCookie(storedCookie);
+        }
 
+        if (storedIndex !== null) {
+            setN(storedIndex);
+            setFortuneMessage(fortuneMessages[storedIndex]);
+        }
+
+        
         const timeUntilMidnight = getTimeUntilMidnight();
+
+        
         
         // 자정이 되면 상태를 업데이트하도록 설정
         const timerId = setTimeout(() => {
@@ -67,8 +81,27 @@ export function Fortune(props){
         return () => clearTimeout(timerId);
     }, []);
 
+
+    const fortureResult = () => {
+        let randomIndex = Math.floor(Math.random() * (9 - 1 + 1))
+        setN(randomIndex);
+        setFortuneMessage(fortuneMessages[n]);
+        localStorage.setItem('fortuneCookie', JSON.stringify(cookie));
+        localStorage.setItem('fortuneIndex', JSON.stringify(n));
+    };
+    
+    
+    
     useEffect(() => {
-        fortureResult();
+
+        if(cookie !== 0){
+            fortureResult();
+        }
+        
+        
+         
+
+        console.log("현재 쿠키: " + cookie);
         console.log("현재 행운의 글귀: " + n);
     }, [cookie]);
 

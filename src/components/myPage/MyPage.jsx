@@ -82,6 +82,10 @@ export function MyPage(props){
       <div className="screen_main">
         <div className='myPage'>
           
+
+          
+        
+            
         
           <div className='body'>
             <ToDoList ID={ID} />
@@ -89,8 +93,6 @@ export function MyPage(props){
             <div className="calendar_div">
               <Calendar ID={ID}  />
             </div>
-            
-
               
 
             <Mini3  
