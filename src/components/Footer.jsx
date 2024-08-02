@@ -17,7 +17,7 @@ export function Footer(){
           </div>
           </Link></button>
 
-          <button><Link to='comunity'>
+          <button><Link to='community'>
           <div className='menuBtn' id='comuBtn'>
           <svg xmlns="http://www.w3.org/2000/svg" width="42" height="41" fill="none"><g fill="#40300E" opacity=".5"><path d="M20.522 32.5c.133-5.328 2.403-10.5 7.494-10.5 5.09 0 7.36 5.172 7.494 10.5a.49.49 0 0 1-.494.5h-14a.49.49 0 0 1-.494-.5Z"/><path d="M6.522 32.5C6.655 27.172 8.925 22 14.016 22c5.09 0 7.36 5.172 7.493 10.5a.49.49 0 0 1-.493.5h-14a.49.49 0 0 1-.494-.5Z"/><path stroke="#fff" strokeWidth="1.5" d="M21.016 21.25c-3.451 0-6 1.396-7.69 3.537-1.67 2.117-2.464 4.91-2.552 7.69a1.238 1.238 0 0 0 1.242 1.273h18c.684 0 1.264-.559 1.242-1.274-.088-2.779-.882-5.572-2.552-7.689-1.69-2.141-4.239-3.537-7.69-3.537Z"/><circle cx="29.016" cy="16.5" r="4.5"/><circle cx="4.5" cy="4.5" r="4.5" transform="matrix(-1 0 0 1 17.516 12)"/><circle cx="21.016" cy="14.5" r="7.25" stroke="#fff" strokeLinecap="round" strokeWidth="1.5"/></g></svg>
           <p className='menuLetter' id='comuLetter'>커뮤니티</p>

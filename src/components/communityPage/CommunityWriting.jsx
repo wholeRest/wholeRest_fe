@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const ComunityWritingBox = styled.div`
+const CommunityWritingBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -79,7 +79,7 @@ const Content = styled.textarea`
 const CameraBtn = styled.button`
     position: fixed;
     bottom: 110px; 
-    left: 570px; 
+    right: 640px; 
     width: 30px; 
     height: 30px;
     background: url("src/image/comunityPage/cameraImg.png") no-repeat center center;
@@ -91,9 +91,9 @@ const CameraBtn = styled.button`
 
 const SaveBtn = styled.button`
     position: fixed;
-    bottom: 118px; 
-    right: 570px; 
-    width: 70px; 
+    bottom: 120px; 
+    left: 590px; 
+    width: 75px; 
     height: 34px;
     background-color: #FFE14F;
     background-size: cover; 
@@ -108,9 +108,9 @@ const SaveBtn = styled.button`
     font-family: Pretendard_SemiBold;
 `;
 
-export function ComunityWriting() {
+export function CommunityWriting() {
     return (
-        <ComunityWritingBox>
+        <CommunityWritingBox>
             <WritingBox>
                 <Header>
                     <input type="text" placeholder="■ 제목을 입력해 주세요." /> 
@@ -121,6 +121,6 @@ export function ComunityWriting() {
             </WritingBox>
             <CameraBtn onClick={() => alert("Camera button clicked")} />
             <SaveBtn onClick={() => alert("Save button clicked")}>완료</SaveBtn>
-        </ComunityWritingBox>
+        </CommunityWritingBox>
     );
 }

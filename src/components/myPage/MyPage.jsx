@@ -1,5 +1,5 @@
-import { Header } from "../Header"
-import { Footer } from "../Footer"
+//import { Header } from "../Header"
+//import { Footer } from "../Footer"
 import './MyPage.css'
 import { useState } from "react"
 import { useEffect } from "react"
