@@ -15,20 +15,9 @@ import { PasswordFindPage } from '../components/loginPage/PasswordFindPage';
 import { SignUpPage } from '../components/loginPage/SignUpPage';
 
 import { NewsPage } from '../components/NewsPage';
-import { NewsPage } from '../components/NewsPage';
 
-import { CategoryPage } from '../components/communityPage/CategoryPage';
+import { CategoryPage } from '../components/comunityPage/CategoryPage';
 import { Post } from '../components/Post';
-
-import { Find } from '../components/loginPage/Find';
-import { FindLayout } from './FindLayout';
-import { IdFind_1 } from '../components/loginPage/idFind/IdFind_1';
-import { IdFind_2_false } from '../components/loginPage/idFind/IdFind_2_false';
-import { IdFind_2_true } from '../components/loginPage/idFind/IdFind_2_true';
-import { PasswordFind_1 } from '../components/loginPage/passwordFind/PasswordFind_1';
-import { PasswordFind_2 } from '../components/loginPage/passwordFind/PasswordFind_2';
-import { PasswordFind_3 } from '../components/loginPage/passwordFind/PasswordFind_3';
-import { PasswordFind_4 } from '../components/loginPage/passwordFind/PasswordFind_4';
 
 import { Find } from '../components/loginPage/Find';
 import { FindLayout } from './FindLayout';
@@ -71,13 +60,84 @@ const router = createBrowserRouter( [
       },
       
       {
-        path: 'Idfind',
-        element: <IdFindPage />,
+        path: 'find/id',
+        element: <IdFindPage />
       },
       {
-        path: 'Passwdfind',
-        element: <PasswordFindPage />,
+        path: 'find/id_true',
+        element: <IdFind_2_true />,
       },
+      {
+        path: 'find/id_false',
+        element: <IdFind_2_false />,
+      },
+
+
+      {
+        path: 'find/password1',
+        element: <PasswordFindPage />
+      },
+      {
+        path: 'find/password2',
+        element: <PasswordFind_2 />
+      },
+      {
+        path: 'find/password3',
+        element: <PasswordFind_3 />
+      },
+      {
+        path: 'find/password4',
+        element: <PasswordFind_4 />
+      },
+
+
+      {
+        path: 'signup0',
+        element: <SignupPage />
+      },
+      {
+        path: 'signup1',
+        element: <Signup_1 />
+      },
+      {
+        path: 'signup2',
+        element: <Signup_2 />
+      },
+      {
+        path: 'signup3',
+        element: <Signup_3 />
+      },
+      {
+        path: 'signup4',
+        element: <Signup_4 />
+      },
+      
+
+      {
+        path: 'unregister1',
+        element: <Unregister_1 />
+      },
+      {
+        path: 'unregister2',
+        element: <Unregister_2 />
+      },
+
+
+
+
+      {
+        path: 'email1',
+        element: <Email_1 />
+      },
+      {
+        path: 'email2',
+        element: <Email_2 />
+      },
+      
+
+
+
+
       {
         path: 'signup',
         element: <SignUpPage />,
@@ -231,4 +291,3 @@ export const RootRouter = () => {
 };
 
 */
-
