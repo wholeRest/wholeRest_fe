@@ -1,11 +1,13 @@
 import '../Find.css';
 import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 
 export function IdFind_2_true(props){
     {/* 일치하는 아이디를 받아와야함. */}
 
-
+    const location = useLocation();
+    const { id } = location.state || {};
 
     return(
         <div className="screen_main">
@@ -32,7 +34,7 @@ export function IdFind_2_true(props){
 
                 <div className='PasswordFind'>
         
-        <div className='Find_num' >
+        <div className='Find_num_i' >
             <div id="FindNumDiv" className='nowNum1'>1</div>
             <div id="FindNumDiv" className='nowNum2' style={{backgroundColor: '#40300E'}}>2</div>
         </div>
@@ -40,11 +42,11 @@ export function IdFind_2_true(props){
         <div className='Find_i_resultDiv'>
         <div className='Find_i_result'>
             <p>아이디 찾기 결과는 아래와 같습니다.</p>
-            <p>아이디 : {props.sameId}</p>
+            <p>아이디 : {id}</p>
         </div>
 
         <div className='submitBtn'>
-        <button style={{backgroundColor: '#E0E0E0'}}><Link to='/' style={{ textDecoration: "none"}}>닫기</Link></button>
+            <button style={{backgroundColor: '#E0E0E0'}}><Link to='/' style={{ textDecoration: "none"}}>닫기</Link></button>
         </div>
         </div>
         

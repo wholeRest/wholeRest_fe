@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import '../LoginPage.css'
 import '../SignupPage.css'
 import { useState } from 'react';
-
+import { useEffect } from 'react';
 
 
 
@@ -11,10 +11,46 @@ export function Signup_2(props){
     const {inputValue, setInputValue,
         handleChange,handleBlur,setWarning,
         inputRegexs,warning,
-        signUp_N, setSignUp_N
+        signUp_N, setSignUp_N,
+        handleverificationSend,handleverificationCheck,
+        isNextEnabled, setIsNextEnabled,
 
     } = props;
 
+    
+
+    // 입력받는 함수
+    const onEmailHandler = (event) => {
+        const { value } = event.currentTarget;
+        handleChange(event);
+        setInputValue(prevState => ({ ...prevState, email: value })); // 수정
+        console.log(inputValue);
+    }
+    const onConfirmCodeHandler = (event) => {
+        const { value } = event.currentTarget;
+        handleChange(event);
+        setInputValue(prevState => ({ ...prevState, confirmCode: value })); // 수정
+        console.log(inputValue);
+    }
+
+    
+
+    // 인증번호 받기
+    const verificationSend = (e) => {
+        e.preventDefault();
+        console.log("인증번호 발송됨");
+        handleverificationSend(inputValue.email);
+    
+    }
+
+    // 인증번호 일치하는지 검사
+    const verificationCheck = (e) => {
+        e.preventDefault();
+        console.log("인증번호 맞는지 확인 시작");
+        handleverificationCheck(inputValue.email, inputValue.confirmCode);
+    
+    }
+    
     
     return(
         <div className="screen_main">
@@ -53,8 +89,9 @@ export function Signup_2(props){
                             <div className='inputSection'>
                                 <div className='A'>
                                     <input type="text" placeholder='이메일' name='email'
-                                    value={inputValue.email} onChange={handleChange} onBlur={handleBlur}
+                                    value={inputValue.email} onChange={onEmailHandler} onBlur={handleBlur}
                                     ></input>
+                                    <button className='confirmCodeCheck' onClick={verificationSend}>인증 받기</button>
                                 </div>
                                 <p className='warningmessage'>{ warning.email }</p>
                             </div>
@@ -62,9 +99,9 @@ export function Signup_2(props){
                             <div className='inputSection'>
                                 <div className="A" id='confirmCodeSection'>
                                     <input type="text" placeholder='인증번호' name='confirmCode'
-                                    value={inputValue.confirmCode} onChange={handleChange} onBlur={handleBlur}
+                                    value={inputValue.confirmCode} onChange={onConfirmCodeHandler} onBlur={handleBlur}
                                     ></input>
-                                    <button id='confirmCodeCheck'>다시받기</button>
+                                    <button className='confirmCodeCheck' onClick={verificationSend}>다시받기</button>
                                 </div>
                                 <p className='warningmessage'>{warning.confirmCode}</p>
                             </div>
@@ -78,7 +115,7 @@ export function Signup_2(props){
                             
                             <div className='submitBtn'>
                                 <button onClick={()=>{setSignUp_N(1)}} style={{backgroundColor: '#E0E0E0'}}>이전</button>
-                                <button onClick={()=>{setSignUp_N(3)}}>다음</button>
+                                <button onClick={verificationCheck}>다음</button>
                             </div>
                             
                         </form>

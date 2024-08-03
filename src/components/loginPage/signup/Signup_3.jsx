@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import '../LoginPage.css'
 import '../SignupPage.css'
 import { useState } from 'react';
-
+import { useEffect } from 'react';
 
 
 
@@ -11,10 +11,34 @@ export function Signup_3(props){
     const {inputValue, setInputValue,
         handleChange,handleBlur,setWarning,
         inputRegexs,warning,handleSubmit,
-        signUp_N, setSignUp_N
+        signUp_N, setSignUp_N,
+        isNextEnabled, setIsNextEnabled,
 
     } = props;
 
+    useEffect(() => {
+        const isAllValid = inputValue.password && inputValue.correctpasswordConfirm &&
+            !warning.password &&
+            inputValue.passwordConfirm && !warning.passwordConfirm 
+
+        setIsNextEnabled(prev => ({ ...prev, third: isAllValid }));
+    }, [inputValue, warning, setIsNextEnabled]);
+
+    // 입력받는 함수
+    const onPasswordHandler = (event) => {
+        const { value } = event.currentTarget;
+        handleChange(event);
+        setInputValue(prevState => ({ ...prevState, password: value })); // 수정
+        console.log(inputValue);
+    }
+    const onPasswordConfirmHandler = (event) => {
+        const { value } = event.currentTarget;
+        handleChange(event);
+        setInputValue(prevState => ({ ...prevState, passwordConfirm: value })); // 수정
+        console.log(inputValue);
+    }
+
+    
 
 
     return(
@@ -54,7 +78,7 @@ export function Signup_3(props){
                             <div className='inputSection'>
                                 <div className='A'>
                                     <input type="text" placeholder='비밀번호' name='password'
-                                    value={inputValue.password} onChange={handleChange} onBlur={handleBlur}
+                                    value={inputValue.password} onChange={onPasswordHandler} onBlur={handleBlur}
                                     ></input>
                                 </div>
                                 <p className='warningmessage'>{ warning.password }</p>
@@ -63,7 +87,7 @@ export function Signup_3(props){
                             <div className='inputSection'>
                                 <div className="A">
                                     <input type="text" placeholder='비밀번호 확인' name='passwordConfirm'
-                                    value={inputValue.passwordConfirm} onChange={handleChange} onBlur={handleBlur}
+                                    value={inputValue.passwordConfirm} onChange={onPasswordConfirmHandler} onBlur={handleBlur}
                                     ></input>
                                 </div>
                                 <p className='warningmessage'>{warning.passwordConfirm}</p>
@@ -79,6 +103,7 @@ export function Signup_3(props){
                             <div className='submitBtn'>
                                 <button onClick={()=>{setSignUp_N(2)}} style={{backgroundColor: '#E0E0E0'}}>이전</button>
                                 <button onClick={handleSubmit}>다음</button>
+                                
                             </div>
                             
                         </form>

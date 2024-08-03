@@ -63,6 +63,10 @@ export function Fortune(props){
         if (storedIndex !== null) {
             setN(storedIndex);
             setFortuneMessage(fortuneMessages[storedIndex]);
+        }else {
+            // 유효한 인덱스가 없는 경우 기본값 설정
+            setN(0);
+            setFortuneMessage(fortuneMessages[0]);
         }
 
         
@@ -75,6 +79,7 @@ export function Fortune(props){
             updateDataAtMidnight(); // 자정에 데이터 업데이트
             // 매일 자정마다 다시 타이머 설정
             setInterval(updateDataAtMidnight, 24 * 60 * 60 * 1000); // 하루에 한번 실행
+            setCookie(0);
         }, timeUntilMidnight);
 
         // 컴포넌트 언마운트 시 타이머 정리
@@ -83,29 +88,21 @@ export function Fortune(props){
 
 
     const fortureResult = () => {
-        let randomIndex = Math.floor(Math.random() * (9 - 1 + 1))
+        let randomIndex = Math.floor(Math.random() * (9-0));
+        console.log("랜덤값: " + randomIndex);
         setN(randomIndex);
-        setFortuneMessage(fortuneMessages[n]);
+        setFortuneMessage(fortuneMessages[randomIndex]);
+        setCookie(1);
+        
         localStorage.setItem('fortuneCookie', JSON.stringify(cookie));
-        localStorage.setItem('fortuneIndex', JSON.stringify(n));
+        localStorage.setItem('fortuneIndex', JSON.stringify(randomIndex));
+        
+        
     };
     
     
     
-    useEffect(() => {
-
-        if(cookie !== 0){
-            fortureResult();
-        }
-        
-        
-         
-
-        console.log("현재 쿠키: " + cookie);
-        console.log("현재 행운의 글귀: " + n);
-    }, [cookie]);
-
-
+    
     
     function now(){
         if(cookie === 0){
@@ -116,9 +113,9 @@ export function Fortune(props){
                         
                     </div>
                     <div className='cookies'>
-                        <img className='cookie' onClick={() => setCookie(1)} src={cookie1} />
-                        <img className='cookie' onClick={() => setCookie(2)} src={cookie2} />
-                        <img className='cookie' onClick={() => setCookie(3)} src={cookie3} />
+                        <img className='cookie' onClick={fortureResult} src={cookie1} />
+                        <img className='cookie' onClick={fortureResult} src={cookie2} />
+                        <img className='cookie' onClick={fortureResult} src={cookie3} />
                     </div>
                 </div>
             )

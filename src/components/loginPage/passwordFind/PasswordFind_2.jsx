@@ -3,12 +3,16 @@ import { Link } from 'react-router-dom'
 import '../LoginPage.css';
 import '../SignupPage.css';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import axios from 'axios';
 
 
 
 
 export function PasswordFind_2(props){
 
+    const navigate = useNavigate();
 
     const [warning, setWarning] = useState({
         email:"",
@@ -81,10 +85,77 @@ const handleBlur = (e) => {
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    // 제출 로직
-    // 여기서 백앤드랑 유효성 검사하고 되면 가입 성공 페이지로 넘어가면 될듯?
+    
+
 };
 
+// 입력받는 함수
+const onEmailHandler = (event) => {
+    const { value } = event.currentTarget;
+    handleChange(event);
+    setInputValue(prevState => ({ ...prevState, email: value })); // 수정
+    console.log(inputValue);
+}
+const onConfirmCodeHandler = (event) => {
+    const { value } = event.currentTarget;
+    handleChange(event);
+    setInputValue(prevState => ({ ...prevState, confirmCode: value })); // 수정
+    console.log(inputValue);
+}
+
+
+
+    // 이메일로 인증번호 보냄.
+    const handleverificationSend = (email) => {
+        axios.post("https://wholerest.site/api/verification/send", {
+            email: email
+        })
+        .then(function (response){
+            console.log("인증코드가 전송 성공!");
+            setWarning((prev) => ({ ...prev, email: "인증코드가 전송되었습니다." })); // 경고 메시지 지우기
+        })
+        .catch((error) => {
+            console.log("인증번호 에러");
+            setWarning((prev) => ({ ...prev, email: "유효한 이메일 주소를 입력해주세요." })); // 경고 메시지 설정
+        });
+    };
+
+    // 인증번호 일치하나 확인
+    const handleverificationCheck = (email, confirmCode) => {
+        axios.post("https://wholerest.site/api/verification/check", {
+            email: email,
+            code: confirmCode
+        })
+        .then(function (response){
+            console.log("인증코드 일치!");
+
+            navigate('/find/password3');
+
+        })
+        .catch((error) => {
+            console.log("인증번호 불일치");
+            setWarning((prev) => ({ ...prev, email: "인증 코드가 일치하지 않습니다." })); // 경고 메시지 설정
+            setInputValue((prev) => ({ ...prev, validEmail: false })); // 이메일 인증 실패
+        });
+    };
+
+
+
+// 인증번호 받기
+const verificationSend = (e) => {
+    e.preventDefault();
+    console.log("인증번호 발송됨");
+    handleverificationSend(inputValue.email);
+
+}
+
+// 인증번호 일치하는지 검사
+const verificationCheck = (e) => {
+    e.preventDefault();
+    console.log("인증번호 맞는지 확인 시작");
+    handleverificationCheck(inputValue.email, inputValue.confirmCode);
+
+}
 
 
 
@@ -127,8 +198,9 @@ const handleSubmit = (e) => {
 <div className='inputSection'>
     <div className='A'>
         <input type="text" placeholder='이메일' name='email'
-        value={inputValue.email} onChange={handleChange} onBlur={handleBlur}
+        value={inputValue.email} onChange={onEmailHandler} onBlur={handleBlur}
         ></input>
+        <button className='confirmCodeCheck' onClick={verificationSend}>인증 받기</button>
     </div>
     <p className='warningmessage'>{ warning.email }</p>
 </div>
@@ -136,11 +208,11 @@ const handleSubmit = (e) => {
 <div className='inputSection'>
     <div className="A" id='confirmCodeSection'>
         <input type="text" placeholder='인증번호' name='confirmCode'
-        value={inputValue.confirmCode} onChange={handleChange} onBlur={handleBlur}
+        value={inputValue.confirmCode} onChange={onConfirmCodeHandler} onBlur={handleBlur}
         ></input>
-        <button id='confirmCodeCheck'>다시받기</button>
+        <button className='confirmCodeCheck' onClick={verificationSend}>다시받기</button>
     </div>
-    <p className='warningmessage'>{warning.id}</p>
+    <p className='warningmessage'>{warning.confirmCode}</p>
 </div>
 
 
@@ -152,7 +224,7 @@ const handleSubmit = (e) => {
                             
                             <div className='submitBtn'>
                                 <button style={{backgroundColor: '#E0E0E0'}}><Link to='/find/password1' style={{ textDecoration: "none"}}>이전</Link></button>
-                                <button ><Link to='/find/password3' style={{ textDecoration: "none"}}>다음</Link></button>
+                                <button onClick={verificationCheck}>다음</button>
                             </div>
                             
                         </form>

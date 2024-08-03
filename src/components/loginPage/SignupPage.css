@@ -94,7 +94,7 @@
 }
 
 .A > input {
-    width: 80%;
+    width: 70%;
     height: 20px;
     background-color: #ffffff00;
     border: none;
@@ -135,7 +135,7 @@
     bottom: 5px;
 }
 
-#confirmCodeCheck{
+.confirmCodeCheck{
     background-color:  #E0E0E0;
     border: none;
     border-radius: 10px;

@@ -13,12 +13,15 @@ import { Signup_4 } from '../loginPage/signup/Signup_4';
 
 import axios from 'axios';
 
-
+// 12345aaQQ!
 
 export function SignupPage(){
     const [signUp_N, setSignUp_N] = useState(1);
     const navigate = useNavigate();
 
+    const [isNextEnabled, setIsNextEnabled] = useState({
+        first: false, second: false, third: false
+    });
     
     const [warning, setWarning] = useState({
         id: "",
@@ -57,8 +60,9 @@ export function SignupPage(){
         confirmCode:"",
         emailId: "", // 입력된 이메일 아이디 데이터
         emailAddress: "", // 선댁된 이메일 도메인 데이터
-        validEmail: true, // 이메일 인증 여부 (미구현이라 true가 초기값, 추후 리팩토링 예정)
+        validEmail: false, // 이메일 인증 여부 (미구현이라 true가 초기값, 추후 리팩토링 예정)
 
+        phoneNumber: "01022345678",
         phoneNumber_1: "", // 휴대폰 번호
         phoneNumber_2: "", // 휴대폰 번호
         phoneNumber_3: "", // 휴대폰 번호
@@ -92,7 +96,7 @@ export function SignupPage(){
     pwRegex: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?!.*\s).{8,}$/,
     nicknameRegex: /^[a-zA-Z0-9ㄱ-ㅎㅏ-ㅣ가-힣]{2,10}$/,
     phoneNumberRegex: /0-9{1,4}/,
-    birthRegex: /0-9{6}/,
+    birthRegex: /^\d{6}$/ ,
 };
 
   const handleChange = (e) => {
@@ -184,16 +188,71 @@ const handleBlur = (e) => {
 };
 
 
+
+    // 아이디 중복확인
+    const handleDuplicationCheck = (id) => {
+        axios.post("https://wholerest.site/api/auth/duplicationCheck", {
+            userId: id
+        })
+        .then(function (response){
+            console.log("중복 안됨 성공!");
+            setWarning((prev) => ({ ...prev, id: "" })); // 경고 메시지 지우기
+            alert("사용 가능한 아이디입니다.");
+            setInputValue((prev) => ({ ...prev, nonIdDuplication: true })); // 중복 확인 성공
+        })
+        .catch((error) => {
+            console.log("중복됨.....");
+            setWarning((prev) => ({ ...prev, id: "이미 존재하는 아이디입니다." })); // 경고 메시지 설정
+            setInputValue((prev) => ({ ...prev, nonIdDuplication: false })); // 중복 확인 실패
+        });
+    };
+
+    // 이메일로 인증번호 보냄.
+    const handleverificationSend = (email) => {
+        axios.post("https://wholerest.site/api/verification/send", {
+            email: email
+        })
+        .then(function (response){
+            console.log("인증코드가 전송 성공!");
+            setWarning((prev) => ({ ...prev, email: "인증코드가 전송되었습니다." })); // 경고 메시지 지우기
+        })
+        .catch((error) => {
+            console.log("인증번호 에러");
+            setWarning((prev) => ({ ...prev, email: "유효한 이메일 주소를 입력해주세요." })); // 경고 메시지 설정
+        });
+    };
+
+    // 인증번호 일치하나 확인
+    const handleverificationCheck = (email, confirmCode) => {
+        axios.post("https://wholerest.site/api/verification/check", {
+            email: email,
+            code: confirmCode
+        })
+        .then(function (response){
+            console.log("인증코드 일치!");
+            setSignUp_N(3);
+            setWarning((prev) => ({ ...prev, email: "이메일 인증에 성공하였습니다." })); // 경고 메시지 지우기
+            setInputValue((prev) => ({ ...prev, validEmail: true })); // 이메일 인증 성공
+        })
+        .catch((error) => {
+            console.log("인증번호 불일치");
+            setWarning((prev) => ({ ...prev, email: "인증 코드가 일치하지 않습니다." })); // 경고 메시지 설정
+            setInputValue((prev) => ({ ...prev, validEmail: false })); // 이메일 인증 실패
+        });
+    };
+
+
+
 const handleSubmit = (e) => {
     e.preventDefault();
     
     axios.post("https://wholerest.site/api/auth/signUp", {
-        userId:inputValue.id,
+        userId: inputValue.id,
         name: inputValue.name, 
         password: inputValue.password,
         nickName: inputValue.nickname,
         email: inputValue.email,
-        phoneNumber: "01012345678",
+        phoneNumber: inputValue.phoneNumber,
         dateOfBirth: inputValue.birth
     })
     .then(function (response){
@@ -203,10 +262,22 @@ const handleSubmit = (e) => {
     }
     )
     .catch((error) => {
-        console.log(inputValue);
+        /*
         console.log("회원가입 실패...");
+
+        console.log("Input Values:");
+        console.log("ID:", inputValue.id +" (" + typeof inputValue.id);
+        console.log("Name:", inputValue.name +" (" + typeof inputValue.name);
+        console.log("Password:", inputValue.password +" (" + typeof inputValue.password);
+        console.log("NickName:", inputValue.nickname +" (" + typeof inputValue.nickname);
+        console.log("Email:", inputValue.email +" (" + typeof inputValue.email);
+        console.log("Date of Birth:", inputValue.birth +" (" + typeof inputValue.birth);
+        console.log("Phone Number:", inputValue.phoneNumber +" (" + typeof inputValue.phoneNumber);
+        console.log("=================");
+        */
+       
         alert("회원가입 실패" + error);
-      });
+    });
 
 
 };
@@ -220,7 +291,8 @@ const signUp_Pages = () => {
                 handleChange={handleChange} handleBlur={handleBlur} setWarning={setWarning} 
                 inputRegexs={inputRegexs} warning={warning} 
                 handleSubmit={handleSubmit}
-                    
+                isNextEnabled={isNextEnabled} setIsNextEnabled={setIsNextEnabled}
+                handleDuplicationCheck={handleDuplicationCheck}
                 signUp_N={signUp_N} setSignUp_N={setSignUp_N}
                 />
             )
@@ -233,7 +305,8 @@ const signUp_Pages = () => {
                 handleChange={handleChange} handleBlur={handleBlur} setWarning={setWarning} 
                 inputRegexs={inputRegexs} warning={warning}  
                 handleSubmit={handleSubmit}
-
+                isNextEnabled={isNextEnabled} setIsNextEnabled={setIsNextEnabled}
+                handleverificationSend={handleverificationSend} handleverificationCheck={handleverificationCheck}
                 signUp_N={signUp_N} setSignUp_N={setSignUp_N}
             />
             )
@@ -247,6 +320,7 @@ const signUp_Pages = () => {
                 handleChange={handleChange} handleBlur={handleBlur} setWarning={setWarning} 
                 inputRegexs={inputRegexs} warning={warning} 
                 handleSubmit={handleSubmit}
+                isNextEnabled={isNextEnabled} setIsNextEnabled={setIsNextEnabled}
 
                 signUp_N={signUp_N} setSignUp_N={setSignUp_N}
             />  
@@ -261,6 +335,7 @@ const signUp_Pages = () => {
                 handleChange={handleChange} handleBlur={handleBlur} setWarning={setWarning} 
                 inputRegexs={inputRegexs} warning={warning} 
                 handleSubmit={handleSubmit}
+                isNextEnabled={isNextEnabled} setIsNextEnabled={setIsNextEnabled}
 
                 signUp_N={signUp_N} setSignUp_N={setSignUp_N}
             />

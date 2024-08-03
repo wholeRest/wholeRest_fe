@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom'
 import '../LoginPage.css'
 import '../SignupPage.css'
 import { useState } from 'react';
-
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 export function PasswordFind_3(props){
+
+    const navigate = useNavigate();
 
     
     const [warning, setWarning] = useState({
@@ -153,10 +156,48 @@ const handleBlur = (e) => {
 };
 
 const handleSubmit = (e) => {
+
+
     e.preventDefault();
-    // 제출 로직
-    // 여기서 백앤드랑 유효성 검사하고 되면 가입 성공 페이지로 넘어가면 될듯?
+
+
+    let token = sessionStorage.getItem("access");
+
+    axios.post("https://wholerest.site/api/auth/pwReset", {
+        newPw: inputValue.password,
+        newPwConfirm: inputValue.passwordConfirm,
+        resetToken: token
+    })
+    .then(function (response){
+        // 토큰 지우기
+        sessionStorage.removeItem("access");
+        
+        console.log("비번 변경 성공!");
+        navigate('/find/password4');
+    }
+    )
+    .catch((error) => {
+        
+       
+        alert("비번 변경 실패" + error);
+    });
 };
+
+
+
+// 입력받는 함수
+const onPasswordHandler = (event) => {
+    const { value } = event.currentTarget;
+    handleChange(event);
+    setInputValue(prevState => ({ ...prevState, password: value })); // 수정
+    console.log(inputValue);
+}
+const onPasswordConfirmHandler = (event) => {
+    const { value } = event.currentTarget;
+    handleChange(event);
+    setInputValue(prevState => ({ ...prevState, passwordConfirm: value })); // 수정
+    console.log(inputValue);
+}
 
 
 
@@ -201,7 +242,7 @@ const handleSubmit = (e) => {
                             <div className='inputSection'>
                                 <div className='A'>
                                     <input type="text" placeholder='비밀번호' name='password'
-                                    value={inputValue.password} onChange={handleChange} onBlur={handleBlur}
+                                    value={inputValue.password} onChange={onPasswordHandler} onBlur={handleBlur}
                                     ></input>
                                 </div>
                                 <p className='warningmessage'>{ warning.password }</p>
@@ -210,7 +251,7 @@ const handleSubmit = (e) => {
                             <div className='inputSection'>
                                 <div className="A">
                                     <input type="text" placeholder='비밀번호 확인' name='passwordConfirm'
-                                    value={inputValue.passwordConfirm} onChange={handleChange} onBlur={handleBlur}
+                                    value={inputValue.passwordConfirm} onChange={onPasswordConfirmHandler} onBlur={handleBlur}
                                     ></input>
                                 </div>
                                 <p className='warningmessage'>{warning.passwordConfirm}</p>
@@ -225,7 +266,7 @@ const handleSubmit = (e) => {
                             
                             <div className='submitBtn'>
                                 <button style={{backgroundColor: '#E0E0E0'}}><Link to='/find/password2' style={{ textDecoration: "none"}}>이전</Link></button>
-                                <button ><Link to='/find/password4' style={{ textDecoration: "none"}}>다음</Link></button>
+                                <button onClick={handleSubmit}>다음</button>
                             </div>
                             
                         </form>

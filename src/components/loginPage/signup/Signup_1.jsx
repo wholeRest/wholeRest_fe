@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import '../LoginPage.css'
 import '../SignupPage.css'
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 import axios from 'axios';
 
@@ -12,10 +13,53 @@ export function Signup_1(props){
     const {inputValue, setInputValue,
         handleChange,handleBlur,setWarning,
         inputRegexs,warning,
-        signUp_N, setSignUp_N
+        handleDuplicationCheck,
+        signUp_N, setSignUp_N,
+        isNextEnabled, setIsNextEnabled,
 
     } = props;
     
+    
+
+    useEffect(() => {
+        const isAllValid = inputValue.id && inputValue.nonIdDuplication &&
+            !warning.id &&
+            inputValue.name && !warning.name &&
+            inputValue.birth && !warning.birth &&
+            inputValue.nickname && !warning.nickname;
+
+        setIsNextEnabled(prev => ({ ...prev, first: isAllValid }));
+    }, [inputValue, warning, setIsNextEnabled]);
+
+    // 입력받는 함수
+    const onIdHandler = (event) => {
+        const { value } = event.currentTarget;
+        handleChange(event);
+        setInputValue(prevState => ({ ...prevState, id: value })); // 수정
+        console.log(inputValue);
+    }
+    const onNameHandler = (event) => {
+        handleChange(event);
+        console.log(inputValue);
+    }
+    const onBirthHandler = (event) => {
+        handleChange(event);
+        console.log(inputValue);
+    }
+    const onNickHandler = (event) => {
+        handleChange(event);
+        console.log(inputValue);
+    }
+
+
+    
+    // 아이디 중복확인
+    const duplicationCheck = (e) => {
+        e.preventDefault();
+        console.log("중복검사 실행됨");
+        handleDuplicationCheck(inputValue.id);
+    
+    }
 
     
 
@@ -56,9 +100,9 @@ export function Signup_1(props){
                             <div className='inputSection'>
                                 <div className="A" id='idSection'>
                                     <input type="text" placeholder='아이디' name='id'
-                                    value={inputValue.id} onChange={handleChange} onBlur={handleBlur}
+                                    value={inputValue.id} onChange={(e)=>{handleChange(e); onIdHandler(e);}} onBlur={handleBlur}
                                     ></input>
-                                    <button id='idCheck'>중복확인</button>
+                                    <button id='idCheck' onClick={duplicationCheck}>중복확인</button>
                                 </div>
                                 <p className='warningmessage'>{warning.id}</p>
                             </div>
@@ -66,7 +110,7 @@ export function Signup_1(props){
                             <div className='inputSection'>
                                 <div className='A'>
                                     <input type="text" placeholder='성명' name='name'
-                                    value={inputValue.name} onChange={handleChange} onBlur={handleBlur}
+                                    value={inputValue.name} onChange={onNameHandler} onBlur={handleBlur}
                                     ></input>
                                 </div>
                                 <p className='warningmessage'>{ warning.name }</p>
@@ -75,7 +119,7 @@ export function Signup_1(props){
                             <div className='inputSection'>
                                 <div className='A'>
                                     <input type="text" placeholder='생년월일 (YYMMDD)' name='birth'
-                                    value={inputValue.birth} onChange={handleChange} onBlur={handleBlur}
+                                    value={inputValue.birth} onChange={onBirthHandler} onBlur={handleBlur}
                                     ></input>
                                 </div>
                                 <p className='warningmessage'>{ warning.birth }</p>
@@ -84,7 +128,7 @@ export function Signup_1(props){
                                 <div className='inputSection'>
                                 <div className='A'>
                                     <input type="text" placeholder='닉네임' name='nickname'
-                                    value={inputValue.nickname} onChange={handleChange} onBlur={handleBlur}
+                                    value={inputValue.nickname} onChange={onNickHandler} onBlur={handleBlur}
                                     ></input>
                                 </div>
                                 <p className='warningmessage'>{ warning.nickname }</p>
@@ -95,7 +139,16 @@ export function Signup_1(props){
                             
                             <div className='submitBtn'>
                                 <button style={{backgroundColor: '#E0E0E0'}}><Link to='/' style={{ textDecoration: "none"}}>이전</Link></button>
-                                <button onClick={()=>{setSignUp_N(2)}}>다음</button>
+                                <button 
+                                    onClick={() => { if (isNextEnabled.first) setSignUp_N(2) }} 
+                                    disabled={!isNextEnabled.first}
+                                    style={{ 
+                                        opacity: isNextEnabled.first ? 1 : 0.5, 
+                                        pointerEvents: isNextEnabled.first ? 'auto' : 'none' 
+                                    }}
+                                >
+                                    다음
+                                </button>
                             </div>
                             
                         </form>
