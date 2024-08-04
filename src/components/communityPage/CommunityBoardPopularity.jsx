@@ -24,13 +24,13 @@ const PopBtnImg = styled.img`
   cursor: pointer;
   width: 10%;
   margin-right: 5px;
-    opacity: 0.5;
 `;
 
 const LatBtnImg = styled.img`
   cursor: pointer;
   width: 15%;
   margin-right: 5px;
+  opacity: 0.5;
 `;
 
 const Divider = styled.div`
@@ -38,19 +38,18 @@ const Divider = styled.div`
   height: 3px;
   background-color: black;
   margin-top: -1px;
-  margin-left: 50%;
 `;
 
-export function CommunityPageLatest(){
-    const navigate = useNavigate();
+export function CommunityBoardPopularity(){
+  const navigate = useNavigate();
 
-    const handlePopBtnClick = () => {
-      navigate('/community');  
-    };
+  const handleLatBtnClick = () => {
+    navigate('/community/latBoard'); 
+  };
 
-    const handleWriteBtnClick = () => {
-      navigate('/writing');
-    }
+  const handleWriteBtnClick = () => {
+    navigate('writing');
+  }
 
     return(
       <div className="screen_main">
@@ -64,8 +63,8 @@ export function CommunityPageLatest(){
 
           <div className='communityHomePage_contents'>
             <div className='communityHomePage_option'>
-              <PopBtn onClick={handlePopBtnClick}><PopBtnImg src="src/image/communityPage/PopBtnImg.png"/>오늘의 인기글</PopBtn>
-              <LatBtn><LatBtnImg src="src/image/communityPage/LatBtnImg.png"/>최신글</LatBtn>
+              <PopBtn><PopBtnImg src="src/image/communityPage/PopBtnImg.png"/>오늘의 인기글</PopBtn>
+              <LatBtn onClick={handleLatBtnClick}><LatBtnImg src="src/image/communityPage/LatBtnImg.png"/>최신글</LatBtn>
             </div>
             <Divider /> 
             <div className='homePage_popular'>

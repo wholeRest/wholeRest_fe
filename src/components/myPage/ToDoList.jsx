@@ -15,7 +15,7 @@ const ToDoListBox = styled.div`
 const HeaderContainer = styled.div`
     display: flex;
     align-items: center;
-    margin: 0px 15px; 
+    margin: 0px 15px;
     margin-bottom: 10px;
 `;
 
@@ -27,7 +27,7 @@ const Header = styled.div`
 
 const CheckImage = styled.img`
     width: 30px;
-    height: 30px; 
+    height: 30px;
 `;
 
 const ListContainer = styled.div`
@@ -47,9 +47,9 @@ const CheckBox = styled.input.attrs({ type: 'checkbox' })`
     cursor: pointer;
     outline: none;
 
-      &:checked {
-        background-color: #553830; 
-        border: 2px solid; 
+    &:checked {
+        background-color: #553830;
+        border: 2px solid;
         position: relative;
     }
 
@@ -70,8 +70,8 @@ const ListText = styled.input`
     width: 87%;
     border: none;
     border-bottom: 2px solid;
-    font-family: Pretendard_SemiBold; 
-    font-size: 14px; 
+    font-family: Pretendard_SemiBold;
+    font-size: 14px;
     background-color: rgb(255, 225, 56);
 
     &:focus {
@@ -79,73 +79,108 @@ const ListText = styled.input`
     }
 `;
 
-const ToDoList = () => {
-    const [todos, setTodos] = useState([
-        { todo_id: 1, content: '', complete: false },
-        { todo_id: 2, content: '', complete: false }
-    ]);
+const ToDoList = ({ eventId }) => {
+    const [todos, setTodos] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get('/api/todo')
-            .then(response => {
-                setTodos(response.data);
-            })
-            .catch(error => {
+        const fetchTodos = async () => {
+            try {
+                const token = localStorage.getItem('token'); // localStorage에서 토큰 가져오기
+                const response = await axios.get(`https://wholerest.site/api/todo/${eventId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}` // 토큰을 Authorization 헤더에 추가
+                    }
+                });
+                if (Array.isArray(response.data)) {
+                    setTodos(response.data);
+                } else {
+                    console.error('API response is not an array:', response.data);
+                    setError('API response is not an array');
+                }
+            } catch (error) {
                 console.error('Error fetching todos:', error);
-            });
+                setError(error.message || 'Error fetching todos');
+            } finally {
+                setLoading(false);
+            }
+        };
 
-        // 00시가 되면 초기화 되도록
+        fetchTodos();
+
+        // Reset todos at midnight
         const now = new Date();
         const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
         const timeUntilMidnight = midnight - now;
 
         const timer = setTimeout(() => {
-            setTodos([]); 
+            setTodos([]);
         }, timeUntilMidnight);
 
-        return () => clearTimeout(timer); 
-    }, []);
+        return () => clearTimeout(timer);
+    }, [eventId]);
 
-    // 체크 버튼
     const handleCheckBoxChange = (index) => {
         const updatedTodos = todos.map((todo, i) =>
             i === index ? { ...todo, complete: !todo.complete } : todo
         );
         setTodos(updatedTodos);
 
-        axios.put(`/api/todo/${todos[index].todo_id}`, { ...updatedTodos[index] })
+        const token = localStorage.getItem('token'); // localStorage에서 토큰 가져오기
+        axios.put(`https://wholerest.site/api/todo/${eventId}`, updatedTodos[index], {
+            headers: {
+                'Authorization': `Bearer ${token}` // 토큰을 Authorization 헤더에 추가
+            }
+        })
             .catch(error => console.error('Error updating todo:', error));
     };
 
-    // 텍스트 인풋
     const handleTextChange = (index, event) => {
-        const updatedTodos = todos.map((todo, i) => 
-            i === index ? { ...todo, content: event.target.value } : todo 
+        const updatedTodos = todos.map((todo, i) =>
+            i === index ? { ...todo, content: event.target.value } : todo
         );
         setTodos(updatedTodos);
 
-        axios.put(`/api/todo/${todos[index].todo_id}`, { ...updatedTodos[index] })
+        const token = localStorage.getItem('token'); // localStorage에서 토큰 가져오기
+        axios.put(`https://wholerest.site/api/todo/${eventId}`, updatedTodos[index], {
+            headers: {
+                'Authorization': `Bearer ${token}` // 토큰을 Authorization 헤더에 추가
+            }
+        })
             .catch(error => console.error('Error updating todo:', error));
     };
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        return <p>Error: {error}</p>;
+    }
 
     return (
         <ToDoListBox>
             <HeaderContainer>
-                <CheckImage src="src/image/myPage/checkImg.png" />
+                <CheckImage src="src/image/myPage/checkImg.png" alt="Check Image" />
                 <Header>TODAY'S TO DO LIST</Header>
             </HeaderContainer>
-            {todos.map((todo, index) => (
-                <ListContainer key={todo.todo_id}>
-                    <CheckBox
-                        checked={todo.complete}
-                        onChange={() => handleCheckBoxChange(index)}
-                    />
-                    <ListText 
-                        value={todo.content}
-                        onChange={(event) => handleTextChange(index, event)}
-                    />
-                </ListContainer>
-            ))}
+            {Array.isArray(todos) && todos.length > 0 ? (
+                todos.map((todo, index) => /* @__PURE__ */
+                    <ListContainer key={todo.todo_id}>
+                        <CheckBox
+                            checked={todo.complete}
+                            onChange={() => handleCheckBoxChange(index)}
+                        />
+                        <ListText
+                            value={todo.content}
+                            onChange={(event) => handleTextChange(index, event)}
+                        />
+                    </ListContainer>
+                )
+            ) : (
+                <p>No todos available</p>
+            )}
         </ToDoListBox>
     );
 };

@@ -24,7 +24,7 @@ const PopBtnImg = styled.img`
   cursor: pointer;
   width: 10%;
   margin-right: 5px;
-    opacity: 0.5;
+  opacity: 0.5;
 `;
 
 const LatBtnImg = styled.img`
@@ -41,16 +41,16 @@ const Divider = styled.div`
   margin-left: 50%;
 `;
 
-export function CommunityPageLatest(){
+export function CommunityBoardLatest(){
     const navigate = useNavigate();
 
     const handlePopBtnClick = () => {
-      navigate('/community');  
+      navigate('/community/popBoard'); 
     };
 
     const handleWriteBtnClick = () => {
-      navigate('/writing');
-    }
+        navigate('writing');
+      }
 
     return(
       <div className="screen_main">
