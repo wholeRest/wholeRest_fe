@@ -94,7 +94,7 @@ export function Fortune(props){
         setFortuneMessage(fortuneMessages[randomIndex]);
         setCookie(1);
         
-        localStorage.setItem('fortuneCookie', JSON.stringify(cookie));
+        localStorage.setItem('fortuneCookie', JSON.stringify(1));
         localStorage.setItem('fortuneIndex', JSON.stringify(randomIndex));
         
         

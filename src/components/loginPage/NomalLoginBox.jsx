@@ -25,7 +25,7 @@ export function NomalLoginBox(props){
     
   axios.post('https://wholerest.site/api/auth/login', {
     userId: ID,
-    password: password,
+    password: password
   })
   .then(function (response) { 
     setData(response.data); 
@@ -42,6 +42,8 @@ export function NomalLoginBox(props){
   })
   .catch(function (error) {
     console.log(error);
+    console.log(ID);
+    console.log(password);
     console.log("로그인 실패");
   });
   }
