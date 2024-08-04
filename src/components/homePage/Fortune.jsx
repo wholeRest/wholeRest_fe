@@ -14,7 +14,7 @@ import title_after from './오늘의 행운의 메세지.png';
 export function Fortune(props){
 
     const {cookie, setCookie} = props;
-    const [fortuneMessage, setFortuneMessage] = useState([]);q
+    const [fortuneMessage, setFortuneMessage] = useState([]);
     
     const [n, setN] = useState(10);
 

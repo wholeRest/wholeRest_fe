@@ -28,7 +28,7 @@ export function MyPage(props){
 
 
 
-    const [todolist, setTodolist] = useState([]);
+    const [todo, setTodo] = useState([]);
     const [mini_drug, setMini_drug] = useState([
       "",
       "",
@@ -88,7 +88,7 @@ export function MyPage(props){
             
         
           <div className='body'>
-            <ToDoList ID={ID} />
+            <ToDoList ID={ID} todo={todo} setTodo={setTodo}/>
 
             <div className="calendar_div">
               <Calendar ID={ID}  />

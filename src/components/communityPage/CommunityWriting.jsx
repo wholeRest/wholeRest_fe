@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+// 스타일 정의
 const CommunityWritingBox = styled.div`
     display: flex;
     flex-direction: column;
@@ -18,10 +19,10 @@ const WritingBox = styled.div`
     width: 95%;
     max-width: 395px;
     height: 100%;
-    background-color: rgb(255, 255, 255);
+    background-color: #FFFFFF;
     border-radius: 10px;
-    box-shadow: 0px 5px 4px rgb(182, 182, 182);
-    padding: 30px 30px;
+    box-shadow: 0px 5px 4px rgba(182, 182, 182, 0.5);
+    padding: 30px;
     margin: 10px;
     display: flex;
     flex-direction: column;
@@ -38,14 +39,14 @@ const Header = styled.div`
         width: 100%;
         border: none;
         font-size: 15px;
-        font-family: Pretendard_SemiBold;
+        font-family: Pretendard, sans-serif; // 기본 폰트 설정
     }
 
     input:focus {outline:none;}
 `;
 
 const DeleteBtn = styled.button`
-    background: url("src/image/comunityPage/deleteImg.png") no-repeat center center; 
+    background: url("/images/comunityPage/deleteImg.png") no-repeat center center; 
     background-size: cover; 
     width: 27px;
     height: 27px;
@@ -67,8 +68,8 @@ const Content = styled.textarea`
     border: none;
     resize: none;
     font-size: 15px;
-    font-family: Pretendard_SemiBold;
-    background: url("src/image/comunityPage/writingBackImg.png") no-repeat center center; 
+    font-family: Pretendard, sans-serif; // 기본 폰트 설정
+    background: url("/images/comunityPage/writingBackImg.png") no-repeat center center; 
     background-size: 218px 219px;
 
     &:focus {
@@ -79,10 +80,10 @@ const Content = styled.textarea`
 const CameraBtn = styled.button`
     position: fixed;
     bottom: 110px; 
-    right: 640px; 
+    right: 20px; // 상대적 위치로 수정
     width: 30px; 
     height: 30px;
-    background: url("src/image/comunityPage/cameraImg.png") no-repeat center center;
+    background: url("/images/comunityPage/cameraImg.png") no-repeat center center;
     background-size: cover; 
     border: none;
     cursor: pointer;
@@ -92,20 +93,18 @@ const CameraBtn = styled.button`
 const SaveBtn = styled.button`
     position: fixed;
     bottom: 120px; 
-    left: 590px; 
+    left: 20px; // 상대적 위치로 수정
     width: 75px; 
     height: 34px;
     background-color: #FFE14F;
-    background-size: cover; 
     border: none;
     border-radius: 50px;
-    box-shadow: 0px 5px 4px rgb(182, 182, 182);
+    box-shadow: 0px 5px 4px rgba(182, 182, 182, 0.5);
     cursor: pointer;
     z-index: 1000;
 
     font-size: 12px;
-    font-color: #513D18;
-    font-family: Pretendard_SemiBold;
+    font-family: Pretendard, sans-serif; // 기본 폰트 설정
 `;
 
 export function CommunityWriting() {
@@ -117,7 +116,7 @@ export function CommunityWriting() {
                     <DeleteBtn />
                 </Header>
                 <Divider />
-                <Content type="text" placeholder="■ 내용을 입력해 주세요." />  
+                <Content placeholder="■ 내용을 입력해 주세요." />  
             </WritingBox>
             <CameraBtn onClick={() => alert("Camera button clicked")} />
             <SaveBtn onClick={() => alert("Save button clicked")}>완료</SaveBtn>

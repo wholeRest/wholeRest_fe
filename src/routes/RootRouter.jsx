@@ -5,9 +5,9 @@ import {RootLayout_after, RootLayout_MyInfo} from './RootLayout';
 import { LoginPage } from '../components/loginPage/LoginPage';
 import { HomePage } from '../components/homePage/HomePage';
 import { MyPage } from '../components/myPage/MyPage';
-import { CommunityPagePopularity } from '../components/communityPage/CommunityPagePopularity';
-import { CommunityPageLatest } from '../components/communityPage/CommunityPageLatest';
-import { CommunityWriting } from '../components/communityPage/CommunityWriting';
+import { ComunityPagePopularity } from '../components/comunityPage/ComunityPagePopularity';
+import { ComunityPageLatest } from '../components/comunityPage/ComunityPageLatest';
+import { ComunityWriting } from '../components/comunityPage/ComunityWriting';
 import { MyInfoPage } from '../components/myInfo/MyInfoPage';
 
 import { IdFindPage } from '../components/loginPage/IdFindPage';
@@ -161,16 +161,16 @@ const router = createBrowserRouter( [
             
           },
           {
-            path: 'community',
+            path: 'comunity',
 
             children:[
               {
                 index:true,
-                element: <CommunityPagePopularity />,
+                element: <ComunityPagePopularity />,
               },
               {
                 path: 'latest',
-                element: <CommunityPageLatest />, 
+                element: <ComunityPageLatest />, 
               },
               {
                 path: 'category',
@@ -185,7 +185,7 @@ const router = createBrowserRouter( [
           
       {
         path: 'writing',
-        element: <CommunityWriting />,
+        element: <ComunityWriting />,
       },
 
           
