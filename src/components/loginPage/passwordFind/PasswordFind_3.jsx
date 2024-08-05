@@ -163,7 +163,7 @@ const handleSubmit = (e) => {
 
     let token = sessionStorage.getItem("access");
 
-    axios.post("https://wholerest.site/api/auth/pwReset", {
+    axios.post("https://api.wholerest.site/api/auth/pwReset", {
         newPw: inputValue.password,
         newPwConfirm: inputValue.passwordConfirm,
         resetToken: token

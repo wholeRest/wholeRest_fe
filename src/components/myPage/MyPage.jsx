@@ -72,7 +72,7 @@ export function MyPage(props){
       const fetchData = async () => {
           // try {
           //     if (!isPosted) {
-          //         const postEventResponse = await axios.post('https://wholerest.site/api/event', { date: '2024-07-30' }, config);
+          //         const postEventResponse = await axios.post('https://api.wholerest.site/api/event', { date: '2024-07-30' }, config);
           //         console.log("post는 성공===================================");
           //         console.log(postEventResponse.data);
 
@@ -85,7 +85,7 @@ export function MyPage(props){
 
           try{
             if (!isPosted) {
-              const getEventResponse = await axios.get(`https://wholerest.site/api/event/date?date=2024-07-30`, config);
+              const getEventResponse = await axios.get(`https://api.wholerest.site/api/event/date?date=2024-07-30`, config);
               
               console.log("Event GET response:", JSON.stringify(getEventResponse.data, ['event_id']));
               let event_id_ = JSON.stringify(getEventResponse.data, ['event_id']);
@@ -118,19 +118,19 @@ export function MyPage(props){
       const postData = async () => {
           try {
               if (eventId) {
-                  const postTodoResponse = await axios.post(`https://wholerest.site/api/todo/${eventId}`, { content: "", completed: false }, config);
+                  const postTodoResponse = await axios.post(`https://api.wholerest.site/api/todo/${eventId}`, { content: "", completed: false }, config);
                   console.log("post는 성공");
                   console.log(postTodoResponse.data);
 
-                  const postMedicineResponse = await axios.post(`https://wholerest.site/api/medicine/${eventId}`, { content: "", completed: false }, config);
+                  const postMedicineResponse = await axios.post(`https://api.wholerest.site/api/medicine/${eventId}`, { content: "", completed: false }, config);
                   console.log("post는 성공");
                   console.log(postMedicineResponse.data);
 
-                  const postCheckupResponse = await axios.post(`https://wholerest.site/api/checkup/${eventId}`, { content: "", completed: false }, config);
+                  const postCheckupResponse = await axios.post(`https://api.wholerest.site/api/checkup/${eventId}`, { content: "", completed: false }, config);
                   console.log("post는 성공");
                   console.log(postCheckupResponse.data);
 
-                  const postCautionResponse = await axios.post(`https://wholerest.site/api/caution/${eventId}`, { content: "", completed: false }, config);
+                  const postCautionResponse = await axios.post(`https://api.wholerest.site/api/caution/${eventId}`, { content: "", completed: false }, config);
                   console.log("post는 성공");
                   console.log(postCautionResponse.data);
               }

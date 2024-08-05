@@ -107,7 +107,7 @@ const onConfirmCodeHandler = (event) => {
 
     // 이메일로 인증번호 보냄.
     const handleverificationSend = (email) => {
-        axios.post("https://wholerest.site/api/verification/send", {
+        axios.post("https://api.wholerest.site/api/verification/send", {
             email: email
         })
         .then(function (response){
@@ -122,7 +122,7 @@ const onConfirmCodeHandler = (event) => {
 
     // 인증번호 일치하나 확인
     const handleverificationCheck = (email, confirmCode) => {
-        axios.post("https://wholerest.site/api/verification/check", {
+        axios.post("https://api.wholerest.site/api/verification/check", {
             email: email,
             code: confirmCode
         })

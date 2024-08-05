@@ -19,7 +19,7 @@ const navigate = useNavigate();
 const handleSubmit = (e) => {
     e.preventDefault();
    
-    axios.post("https://wholerest.site/api/auth/beforeChangePw", {
+    axios.post("https://api.wholerest.site/api/auth/beforeChangePw", {
         userId: id,
         name: name,
         dateOfBirth: birth

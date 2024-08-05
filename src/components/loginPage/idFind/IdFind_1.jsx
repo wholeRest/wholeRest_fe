@@ -39,7 +39,7 @@ export function IdFind_1(props){
     const CheckingId = (e) => {
         e.preventDefault();
     
-        axios.post("https://wholerest.site/api/auth/findId", {
+        axios.post("https://api.wholerest.site/api/auth/findId", {
             name: name,
             dateOfBirth: birth
         })

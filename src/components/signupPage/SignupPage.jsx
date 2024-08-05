@@ -191,7 +191,7 @@ const handleBlur = (e) => {
 
     // 아이디 중복확인
     const handleDuplicationCheck = (id) => {
-        axios.post("https://wholerest.site/api/auth/duplicationCheck", {
+        axios.post("https://api.wholerest.site/api/auth/duplicationCheck", {
             userId: id
         })
         .then(function (response){
@@ -209,7 +209,7 @@ const handleBlur = (e) => {
 
     // 이메일로 인증번호 보냄.
     const handleverificationSend = (email) => {
-        axios.post("https://wholerest.site/api/verification/send", {
+        axios.post("https://api.wholerest.site/api/verification/send", {
             email: email
         })
         .then(function (response){
@@ -224,7 +224,7 @@ const handleBlur = (e) => {
 
     // 인증번호 일치하나 확인
     const handleverificationCheck = (email, confirmCode) => {
-        axios.post("https://wholerest.site/api/verification/check", {
+        axios.post("https://api.wholerest.site/api/verification/check", {
             email: email,
             code: confirmCode
         })
@@ -246,7 +246,7 @@ const handleBlur = (e) => {
 const handleSubmit = (e) => {
     e.preventDefault();
     
-    axios.post("https://wholerest.site/api/auth/signUp", {
+    axios.post("https://api.wholerest.site/api/auth/signUp", {
         userId: inputValue.id,
         name: inputValue.name, 
         password: inputValue.password,
