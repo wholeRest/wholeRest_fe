@@ -189,7 +189,6 @@
     position: relative;
 }
 
-
 .Find_inputDiv_i > form > .inputs {
     width: 100%;
     height: 120px;
@@ -220,6 +219,7 @@
 .send_option{
     width: 95%;
     margin-top: 5px;
+
     
     display: flex;
     flex-direction: column;
@@ -231,6 +231,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
     
 }
 

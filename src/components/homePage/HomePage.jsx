@@ -1,5 +1,5 @@
-import { Header } from "../Header"
-import { Footer } from "../Footer"
+//import { Header } from "../Header"
+//import { Footer } from "../Footer"
 import { Add } from "../Add"
 import './HomePage.css'
 import { Fortune } from "./Fortune.jsx" 

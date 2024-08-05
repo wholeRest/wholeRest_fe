@@ -277,4 +277,3 @@ const onPasswordConfirmHandler = (event) => {
     </div>
     )
 }
-

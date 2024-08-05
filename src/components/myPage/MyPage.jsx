@@ -1,5 +1,5 @@
-import { Header } from "../Header"
-import { Footer } from "../Footer"
+//import { Header } from "../Header"
+//import { Footer } from "../Footer"
 import './MyPage.css'
 import { useState } from "react"
 import { useEffect } from "react"
@@ -42,9 +42,6 @@ export function MyPage(props){
     const [diary_todayDiary, setDiary_todayDiary] = useState("");
     const [diary_todayThank, setDiary_todayThank] =useState("");
 
-
-
-    const [todolist, setTodolist] = useState([]);
     const [mini_drug, setMini_drug] = useState([
       "",
       "",
@@ -366,11 +363,11 @@ export function MyPage(props){
         
           <div className='body'>
             <ToDoList ID={ID} />
-{/* 
+
             <div className="calendar_div">
               <Calendar ID={ID}  />
             </div>
-               */}
+              
 
             <Mini3  
               ID={ID} 
