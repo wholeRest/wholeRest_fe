@@ -1,10 +1,22 @@
 import './MyInfoPage.css'
 import { Link } from 'react-router-dom'
-
+import { useNavigate } from 'react-router-dom';
 
 
 
 export function MyInfoPage(){
+
+    const navigate = useNavigate();
+
+    const logout = () => {
+        sessionStorage.removeItem('access');
+        navigate('/');
+    }
+
+
+
+
+
     return(
         <div className="screen_main">
             <div className='MyInfoPage'>    
@@ -74,7 +86,7 @@ export function MyInfoPage(){
                     <p className='MyInfoPage_menu_Cate'>기타</p>
                     <button>정보 동의 설정</button>
                     <button><Link to='/unregister1' style={{ textDecoration: "none"}}>회원 탈퇴</Link></button>
-                    <button>로그아웃</button>
+                    <button onClick={logout}>로그아웃</button>
                 </div>
                 
             </div>

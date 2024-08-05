@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+
 import './LoginPage.css'
 import { NomalLoginBox } from './NomalLoginBox'
 import { SocialLoginBox } from './SocialLoginBox'
@@ -24,6 +25,10 @@ export function LoginPage(props){
   }
 
   
+
+  // if(sessionStorage.getItem('access')){
+  //   navigate('/home');
+  // }
   
 
     return(
@@ -52,9 +57,9 @@ export function LoginPage(props){
                 </button>
               <button><Link to='/signup0' style={{ textDecoration: "none"}}>회원가입 &raquo;</Link></button>
 
-              <button><Link to='/email1' style={{ textDecoration: "none"}}>(이메일변경) &raquo;</Link></button>
+              {/* <button><Link to='/email1' style={{ textDecoration: "none"}}>(이메일변경) &raquo;</Link></button>
               <button><Link to='/unregister1' style={{ textDecoration: "none"}}>(회원탈퇴) &raquo;</Link></button>
-              <button><Link to='/signup1' style={{ textDecoration: "none"}}>X(회원가입) &raquo;</Link></button>
+              <button><Link to='/signup1' style={{ textDecoration: "none"}}>X(회원가입) &raquo;</Link></button> */}
             </div>
         </div>
       </div>

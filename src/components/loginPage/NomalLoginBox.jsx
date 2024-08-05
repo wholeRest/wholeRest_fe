@@ -94,8 +94,8 @@ export function NomalLoginBox(props){
                     <button><Link to='/find/id' style={{ textDecoration: "none"}}>아이디찾기</Link></button>
                     <button><Link to='/find/password1' style={{ textDecoration: "none"}}>비밀번호찾기</Link></button>
                   </div>
-                  <button type="submit" id='loginButton1' onClick={login} >로그인!!!!!</button>
-                  <button type="submit" id='loginButton' ><Link to='/home'>로그인</Link></button>
+                  <button type="submit" id='loginButton' onClick={login} >로그인</button>
+                  {/* <button type="submit" id='loginButton' ><Link to='/home'>로그인</Link></button> */}
                 </form>
                 
             </div>

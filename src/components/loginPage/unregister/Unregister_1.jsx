@@ -7,7 +7,17 @@ import { Link } from 'react-router-dom';
 
 export function Unregister_1(){
     const [unregisterPopupOpen, setUnregisterPopupOpen ] = useState(false);
+    const [password, setPassword] = useState();
+    const [passwordConfirm, setPasswordConfirm] = useState();
 
+
+    const onPasswordHandler = (event) => {
+        setPassword(event.currentTarget.value);
+    }
+
+    const onPasswordConfirmHandler = (event) => {
+        setPasswordConfirm(event.currentTarget.value);
+    }
 
 
     return(
@@ -42,8 +52,8 @@ export function Unregister_1(){
                     <div className='Find_inputDiv_i'>
                         <form className='findform'>
                             <div className='inputs'>
-                                <input type="text" placeholder='비밀번호'></input>
-                                <input type="text" placeholder='비밀번호 확인'></input>
+                                <input type="text" placeholder='비밀번호' onChange={onPasswordHandler}></input>
+                                <input type="text" placeholder='비밀번호 확인' onChange={onPasswordConfirmHandler}></input>
                             </div>
                             
                             
@@ -66,7 +76,9 @@ export function Unregister_1(){
                 {
                     unregisterPopupOpen && (
                         <>
-                        <Unregister_1_popup unregisterPopupOpen={unregisterPopupOpen} setUnregisterPopupOpen={setUnregisterPopupOpen} /> 
+                        <Unregister_1_popup unregisterPopupOpen={unregisterPopupOpen} setUnregisterPopupOpen={setUnregisterPopupOpen} 
+                        password={password} passwordConfirm={passwordConfirm}
+                        /> 
                         </>
                     
                     )
