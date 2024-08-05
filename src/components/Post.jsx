@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Comment } from "./Comment";
-import { Footer } from "./Footer";
+import { Footer } from "./Footer"; 
 import { Header } from "./Header";
 
 const CommunityPostBox = styled.div`

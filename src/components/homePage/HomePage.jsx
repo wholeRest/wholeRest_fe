@@ -22,7 +22,6 @@ export function HomePage(){
 
           <div className="bannerDiv2">
             <div className="banner2">
-              <p id='ex'>Banner2</p>
               {/* 배너 누르면 사용 설명 팝업이나 페이지 이동 */}
 
 
