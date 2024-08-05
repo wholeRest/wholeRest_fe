@@ -89,18 +89,18 @@ export function MyPage(props){
           try{
             if (!isPosted) {
               const getEventResponse = await axios.get(`https://wholerest.site/api/event/date?date=2024-07-30`, config);
-              console.log("event get 성공.. getEventResponse:" +getEventResponse);
-              console.log("event get 성공.. .data:" +getEventResponse.data);
-              console.log("Event GET response:", JSON.stringify(getEventResponse.data, null, 2));
+              
+              console.log("Event GET response:", JSON.stringify(getEventResponse.data, ['event_id']));
+              let event_id_ = JSON.stringify(getEventResponse.data, ['event_id']);
               
               // JSON.stringify(getEventResponse.data, null, 2) 에서 event_id의 값이 알고 싶음
 
-              setEventId(JSON.stringify(getEventResponse.data.event_id));
+              setEventId(event_id_);
               setIsPosted(true);
             }
           }
           catch (error) {
-            console.error(error);7
+            console.error(error);
             console.error("응답 데이터:", error.response?.data);
             console.log("event get 에러발생!");
         }
