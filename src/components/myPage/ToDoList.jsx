@@ -84,80 +84,80 @@ const ToDoList = ({ eventId }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const fetchTodos = async () => {
-            try {
-                const token = localStorage.getItem('token'); // localStorage에서 토큰 가져오기
-                const response = await axios.get(`https://wholerest.site/api/todo/${eventId}`, {
-                    headers: {
-                        'Authorization': `Bearer ${token}` // 토큰을 Authorization 헤더에 추가
-                    }
-                });
-                if (Array.isArray(response.data)) {
-                    setTodos(response.data);
-                } else {
-                    console.error('API response is not an array:', response.data);
-                    setError('API response is not an array');
-                }
-            } catch (error) {
-                console.error('Error fetching todos:', error);
-                setError(error.message || 'Error fetching todos');
-            } finally {
-                setLoading(false);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchTodos = async () => {
+    //         try {
+    //             const token = localStorage.getItem('token'); // localStorage에서 토큰 가져오기
+    //             const response = await axios.get(`https://wholerest.site/api/todo/${eventId}`, {
+    //                 headers: {
+    //                     'Authorization': `Bearer ${token}` // 토큰을 Authorization 헤더에 추가
+    //                 }
+    //             });
+    //             if (Array.isArray(response.data)) {
+    //                 setTodos(response.data);
+    //             } else {
+    //                 console.error('API response is not an array:', response.data);
+    //                 setError('API response is not an array');
+    //             }
+    //         } catch (error) {
+    //             console.error('Error fetching todos:', error);
+    //             setError(error.message || 'Error fetching todos');
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
 
-        fetchTodos();
+    //     fetchTodos();
 
-        // Reset todos at midnight
-        const now = new Date();
-        const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
-        const timeUntilMidnight = midnight - now;
+    //     // Reset todos at midnight
+    //     const now = new Date();
+    //     const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1);
+    //     const timeUntilMidnight = midnight - now;
 
-        const timer = setTimeout(() => {
-            setTodos([]);
-        }, timeUntilMidnight);
+    //     const timer = setTimeout(() => {
+    //         setTodos([]);
+    //     }, timeUntilMidnight);
 
-        return () => clearTimeout(timer);
-    }, [eventId]);
+    //     return () => clearTimeout(timer);
+    // }, [eventId]);
 
-    const handleCheckBoxChange = (index) => {
-        const updatedTodos = todos.map((todo, i) =>
-            i === index ? { ...todo, complete: !todo.complete } : todo
-        );
-        setTodos(updatedTodos);
+    // const handleCheckBoxChange = (index) => {
+    //     const updatedTodos = todos.map((todo, i) =>
+    //         i === index ? { ...todo, complete: !todo.complete } : todo
+    //     );
+    //     setTodos(updatedTodos);
 
-        const token = localStorage.getItem('token'); // localStorage에서 토큰 가져오기
-        axios.put(`https://wholerest.site/api/todo/${eventId}`, updatedTodos[index], {
-            headers: {
-                'Authorization': `Bearer ${token}` // 토큰을 Authorization 헤더에 추가
-            }
-        })
-            .catch(error => console.error('Error updating todo:', error));
-    };
+    //     const token = localStorage.getItem('token'); // localStorage에서 토큰 가져오기
+    //     axios.put(`https://wholerest.site/api/todo/${eventId}`, updatedTodos[index], {
+    //         headers: {
+    //             'Authorization': `Bearer ${token}` // 토큰을 Authorization 헤더에 추가
+    //         }
+    //     })
+    //         .catch(error => console.error('Error updating todo:', error));
+    // };
 
-    const handleTextChange = (index, event) => {
-        const updatedTodos = todos.map((todo, i) =>
-            i === index ? { ...todo, content: event.target.value } : todo
-        );
-        setTodos(updatedTodos);
+    // const handleTextChange = (index, event) => {
+    //     const updatedTodos = todos.map((todo, i) =>
+    //         i === index ? { ...todo, content: event.target.value } : todo
+    //     );
+    //     setTodos(updatedTodos);
 
-        const token = localStorage.getItem('token'); // localStorage에서 토큰 가져오기
-        axios.put(`https://wholerest.site/api/todo/${eventId}`, updatedTodos[index], {
-            headers: {
-                'Authorization': `Bearer ${token}` // 토큰을 Authorization 헤더에 추가
-            }
-        })
-            .catch(error => console.error('Error updating todo:', error));
-    };
+    //     const token = localStorage.getItem('token'); // localStorage에서 토큰 가져오기
+    //     axios.put(`https://wholerest.site/api/todo/${eventId}`, updatedTodos[index], {
+    //         headers: {
+    //             'Authorization': `Bearer ${token}` // 토큰을 Authorization 헤더에 추가
+    //         }
+    //     })
+    //         .catch(error => console.error('Error updating todo:', error));
+    // };
 
-    if (loading) {
-        return <p>Loading...</p>;
-    }
+    // if (loading) {
+    //     return <p>Loading...</p>;
+    // }
 
-    if (error) {
-        return <p>Error: {error}</p>;
-    }
+    // if (error) {
+    //     return <p>Error: {error}</p>;
+    // }
 
     return (
         <ToDoListBox>
