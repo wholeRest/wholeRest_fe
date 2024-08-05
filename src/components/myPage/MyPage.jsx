@@ -13,6 +13,7 @@ import { Memo } from "./Memo"
 import { Calendar } from "./calendar/Calendar";
 
 import axios from "axios"
+import { authHttp } from '../../axios/apiUrl';
 
 
 
@@ -70,34 +71,23 @@ export function MyPage(props){
       const config = { headers: { Authorization: `Bearer ${token}` } };
 
       const fetchData = async () => {
-          // try {
-          //     if (!isPosted) {
-          //         const postEventResponse = await axios.post('https://api.wholerest.site/api/event', { date: '2024-07-30' }, config);
-          //         console.log("post는 성공===================================");
-          //         console.log(postEventResponse.data);
+          try {
+              if (!isPosted) {
+                  const postEventResponse = await axios.post('https://api.wholerest.site/api/event', { date: '2024-07-28' }, config);
+                  console.log("post는 성공===================================");
+                  console.log(postEventResponse.data);
 
-          //     }
-          // } catch (error) {
-          //     console.error(error);
-          //     console.error("응답 데이터:", error.response?.data);
-          //     console.log("event post 에러발생!");
-          // }   
+              }
+          } catch (error) {
+              console.error(error);
+              console.error("응답 데이터:", error.response?.data);
+              console.log("event post 에러발생!");
+          }   
 
           try{
             if (!isPosted) {
-              const getEventResponse = await axios.get(`https://api.wholerest.site/api/event/date?date=2024-07-30`, config);
+              const getEventResponse = await authHttp.get(`/api/event/date?date=2024-07-28`);
               
-              console.log("Event GET response:", JSON.stringify(getEventResponse.data, ['event_id']));
-              console.log("=======================:", getEventResponse.data.event_id);
-              console.log("===:", getEventResponse.data);
-              console.log("@@@@@@@@@@@@:", getEventResponse.data[0].event_id);
-              let event_id_ = JSON.stringify(getEventResponse.data, ['event_id']);
-              
-
-              // const eventIdStr = String(getEventResponse.data.event_id);
-              // console.log("-------------------- 값은 " + eventIdStr); // "29"
-
-              // JSON.stringify(getEventResponse.data, null, 2) 에서 event_id의 값이 알고 싶음
 
               setEventId(getEventResponse.data[0].event_id);
               setIsPosted(true);
@@ -124,10 +114,10 @@ export function MyPage(props){
 
       const postData = async () => {
           try {
-              if (eventId) {
+              if (eventId) { 
                   const postTodoResponse = await axios.post(`https://api.wholerest.site/api/todo/${eventId}`, { content: "", completed: false }, config);
                   console.log("post는 성공");
-                  console.log(postTodoResponse.data);
+                  console.log("todo: " + postTodoResponse.data);
 
                   const postMedicineResponse = await axios.post(`https://api.wholerest.site/api/medicine/${eventId}`, { content: "", completed: false }, config);
                   console.log("post는 성공");
@@ -371,7 +361,7 @@ export function MyPage(props){
           <div className='body'>
             <ToDoList ID={ID} />
             <div className='mypage_Btn'>
-              <button></button>
+              <button>저장</button>
             </div>
 
             <div className="calendar_div">

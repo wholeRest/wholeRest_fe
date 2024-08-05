@@ -99,6 +99,7 @@ function Day(props) {
   );
 }
 
+
 export function Calendar() {
   const [nowDay, setNowDay ]= React.useState(getToday()); // 지금 선택된 날짜!
   const [hoveredDay, setHoveredDay] = React.useState(null); // 현재 마우스가 올라가 있는 날짜
@@ -111,7 +112,8 @@ export function Calendar() {
   const [selectedDateInfo, setSelectedDateInfo] = React.useState('No schedule available for this date'); // 클릭한 날짜의 일정 정보를
   const [scheduleInfo, setScheduleInfo] = React.useState(''); // 일정 정보 입력 필드 값
   const [bgColor, setBgColor] = React.useState('white'); // 배경 색상
-
+  const letter = React.useRef(null); 
+  
   
   
 
@@ -165,6 +167,8 @@ export function Calendar() {
 
     const newStartDate = dayjs(startDateInput);
     const newEndDate = dayjs(endDateInput);
+
+    const enterdLetter = letter.current.value;
     
 
     if (newStartDate.isValid() && newEndDate.isValid() && newStartDate.isBefore(newEndDate)) {
@@ -172,7 +176,7 @@ export function Calendar() {
       const updatedRanges = ranges.filter(({ startDate, endDate }) =>
         !(startDate.isBefore(newEndDate) && endDate.isAfter(newStartDate))
       );
-      setRanges([...updatedRanges, { startDate: newStartDate, endDate: newEndDate, color, info: scheduleInfo}]);
+      setRanges([...updatedRanges, { startDate: newStartDate, endDate: newEndDate, color, info: enterdLetter}]); 
       
       setStartDateInput('');
       setEndDateInput('');
@@ -473,7 +477,8 @@ export function Calendar() {
                 multiline
                 rows={1}
                 value={scheduleInfo || ''}
-                onChange={(e) => setScheduleInfo(e.target.value)}
+                // onChange={(e) => setScheduleInfo(e.target.value)}
+                ref={letter}
                 sx={{ mt: 2, width: '90%', 
                   '& .MuiInputBase-input': { 
                   fontSize: '12px', 
