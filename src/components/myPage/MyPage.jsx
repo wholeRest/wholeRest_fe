@@ -81,7 +81,7 @@ export function MyPage(props){
           //     console.error(error);
           //     console.error("응답 데이터:", error.response?.data);
           //     console.log("event post 에러발생!");
-          // }
+          // }   
 
           try{
             if (!isPosted) {
