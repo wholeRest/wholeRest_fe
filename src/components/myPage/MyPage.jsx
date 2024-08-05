@@ -88,11 +88,18 @@ export function MyPage(props){
               const getEventResponse = await axios.get(`https://api.wholerest.site/api/event/date?date=2024-07-30`, config);
               
               console.log("Event GET response:", JSON.stringify(getEventResponse.data, ['event_id']));
+              console.log("=======================:", getEventResponse.data.event_id);
+              console.log("===:", getEventResponse.data);
+              console.log("@@@@@@@@@@@@:", getEventResponse.data[0].event_id);
               let event_id_ = JSON.stringify(getEventResponse.data, ['event_id']);
               
+
+              // const eventIdStr = String(getEventResponse.data.event_id);
+              // console.log("-------------------- 값은 " + eventIdStr); // "29"
+
               // JSON.stringify(getEventResponse.data, null, 2) 에서 event_id의 값이 알고 싶음
 
-              setEventId(event_id_);
+              setEventId(getEventResponse.data[0].event_id);
               setIsPosted(true);
             }
           }
@@ -363,6 +370,9 @@ export function MyPage(props){
         
           <div className='body'>
             <ToDoList ID={ID} />
+            <div className='mypage_Btn'>
+              <button></button>
+            </div>
 
             <div className="calendar_div">
               <Calendar ID={ID}  />

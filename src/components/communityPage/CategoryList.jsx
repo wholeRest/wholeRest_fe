@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import './CommunityPage.css'
 
+import cateImg from "../../image/communityPage/categoryImg.png";
+
 const CateList = styled.ul`
     width: 94%;
     background-color: rgb(255, 255, 255);
@@ -130,7 +132,7 @@ const CategoryList = () => {
             <CateList> 
                 {currentItems.map(cate => (
                     <CateItem key={cate.path}>
-                        <CateImg src="src/image/communityPage/categoryImg.png" />
+                        <CateImg src={cateImg} />
                         <Link to={cate.path}>{cate.name}</Link>
                     </CateItem>
                 ))}

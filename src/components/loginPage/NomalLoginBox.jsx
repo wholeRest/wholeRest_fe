@@ -23,7 +23,7 @@ export function NomalLoginBox(props){
     e.preventDefault();
     console.log("함수 실행!");
     
-  axios.post('https://wholerest.site/api/auth/login', {
+  axios.post('https://api.wholerest.site/api/auth/login', {
     userId: ID,
     password: password
   })
