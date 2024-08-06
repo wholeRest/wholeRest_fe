@@ -7,7 +7,7 @@ export const authHttp = axios.create({
 
 authHttp.interceptors.request.use(
     config => {
-        const accessToken = sessionStroge.getItem();
+        const accessToken = sessionStorage.getItem('access');
 
         if(accessToken){
             config.headers.Authorization = `Bearer ${accessToken}`;

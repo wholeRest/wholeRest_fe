@@ -168,7 +168,7 @@ export function Calendar() {
     const newStartDate = dayjs(startDateInput);
     const newEndDate = dayjs(endDateInput);
 
-    const enterdLetter = letter.current.value;
+    //const enterdLetter = letter.current.value;
     
 
     if (newStartDate.isValid() && newEndDate.isValid() && newStartDate.isBefore(newEndDate)) {
@@ -176,7 +176,7 @@ export function Calendar() {
       const updatedRanges = ranges.filter(({ startDate, endDate }) =>
         !(startDate.isBefore(newEndDate) && endDate.isAfter(newStartDate))
       );
-      setRanges([...updatedRanges, { startDate: newStartDate, endDate: newEndDate, color, info: enterdLetter}]); 
+      setRanges([...updatedRanges, { startDate: newStartDate, endDate: newEndDate, color, info: scheduleInfo}]); 
       
       setStartDateInput('');
       setEndDateInput('');
@@ -213,7 +213,7 @@ export function Calendar() {
   // 일정 삭제 함수 추가
   const handleDelete = () => {
     const startDateToDelete = dayjs(startDateInput);
-  const endDateToDelete = dayjs(endDateInput);
+    const endDateToDelete = dayjs(endDateInput);
 
   if (startDateToDelete.isValid() && endDateToDelete.isValid() && startDateToDelete.isBefore(endDateToDelete)) {
     // 팝업창에서 입력된 날짜와 일치하는 범위 삭제
@@ -324,7 +324,140 @@ export function Calendar() {
   }
   };
 
- 
+
+
+  //////////////////////////////////////////////////////
+  ////// api ///////////////////////////////////////////
+
+
+  const clickDay_ = () => {
+    
+
+    authHttp.get(`/api/schedule/date/date?=${nowDay}`)
+    .then(function (response){
+      let stD = response.data[0].start_date;
+      let edD = response.data[0].end_date;
+      let color = response.data[0].schedule_color;
+      let content = response.data[0].content;
+
+      setRanges([...updatedRanges, { startDate: stD, endDate: edD, color, info: content}]); 
+
+    })
+    .catch(function (error){
+      console.error(error);
+      console.error("응답 데이터:", error.response?.data);
+      console.log("clickDay 실패");
+    })
+  }
+
+  const showCalendar_ = () => {
+
+
+  }
+
+  
+  const inputSchedule_ = (e) => {
+
+
+
+    authHttp.post(`/api/schedule`, {
+      start_date: newStartDate,
+      end_date: newEndDate,
+      schedule_color: color,
+      content: scheduleInfo
+    })
+    .then(function (response){
+      console.log("일정 추가 성공");
+    })
+    .catch(function (error){
+      console.error(error);
+      console.error("응답 데이터:", error.response?.data);
+      console.log("일정 추가 실패");
+    })
+  }
+
+
+
+  // 삭제 버튼 클릭 시 
+  const deleteSchedule_ = () => {
+
+    const startDateToDelete = dayjs(startDateInput);
+    const endDateToDelete = dayjs(endDateInput);
+
+    
+    // 시작날 ~ 종료날이 일치하는 일정이 있으면, 
+    authHttp.get(`/api/schedule/date/date?=${startDateToDelete}`)
+    .then(function (response){
+      let scheduleId = response.data[0].schedule_id;
+
+      authHttp.get(`/api/schedule/date/date?=${endDateToDelete}`)
+      .then(function (response){
+
+        if(scheduleId === response.data[0].schedule_id){
+          // 그 id 삭제
+          authHttp.delete(`/api/schedule/${scheduleId}`)
+          .then(function (response){
+            console.log("일정 삭제 성공");
+          })
+          .catch(function (error){
+            console.error(error);
+            console.error("응답 데이터:", error.response?.data);
+            console.log("일정 삭제 실패");
+          })
+        }
+      })
+      .catch(function (error){
+        console.error(error);
+        console.error("응답 데이터:", error.response?.data);
+        console.log("delete end 실패");
+      })
+    })
+    .catch(function (error){
+      console.error(error);
+      console.error("응답 데이터:", error.response?.data);
+      console.log("delete start 실패");
+    })
+  }
+
+
+  // 일정 내용이 업데이트됨. (날짜는 삭제후 생성임)
+  const updateSchedule_ = () => {
+
+
+    authHttp.get(`/api/schedule/date/date?=${nowDay}`)
+    .then(function (response){
+      let stD = response.data[0].start_date;
+      let edD = response.data[0].end_date;
+      let color = response.data[0].schedule_color;
+      let content = response.data[0].content;
+      setRanges([...updatedRanges, { startDate: stD, endDate: edD, color, info: content}]); 
+
+    })
+    .catch(function (error){
+      console.error(error);
+      console.error("응답 데이터:", error.response?.data);
+      console.log("clickDay 실패");
+    })
+
+
+
+    authHttp.patch(`/api/schedule/{scheduleId}`, {
+      content: scheduleInfo
+    })
+    .then(function (response){
+      console.log("일정 변경 성공");
+    })
+    .catch(function (error){
+      console.error(error);
+      console.error("응답 데이터:", error.response?.data);
+      console.log("일정 변경 실패");
+    })
+  }
+
+
+  
+
+
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -477,8 +610,8 @@ export function Calendar() {
                 multiline
                 rows={1}
                 value={scheduleInfo || ''}
-                // onChange={(e) => setScheduleInfo(e.target.value)}
-                ref={letter}
+                onChange={(e) => setScheduleInfo(e.target.value)}
+                // ref={letter}
                 sx={{ mt: 2, width: '90%', 
                   '& .MuiInputBase-input': { 
                   fontSize: '12px', 
