@@ -78,6 +78,21 @@
     font-size: 10px;
 }
 
+.mypage_Btn{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+}
+
+.saveBtn{
+    width: 100%;
+    background-color:  rgb(255, 225, 56);
+    border: none;
+    border-radius: 10px;
+    padding: 10px 20px;
+    font-weight: bold;
+}
 
 
 

@@ -41,7 +41,7 @@ export function LoginPage(props){
           <div className='loginPage_loginBox'>
             <div className='loginPage_option'>
               <button onClick={nomalLogin} style={how ? {borderBottom: "solid 2px rgb(84, 51, 31)"} : {borderBottom: "none"}}>일반 회원 로그인</button>
-              <button onClick={socialLodin} style={how ? {borderBottom: "none"} : {borderBottom: "solid 2px rgb(84, 51, 31)"}}>소셜 로그인</button>
+              {/* <button onClick={socialLodin} style={how ? {borderBottom: "none"} : {borderBottom: "solid 2px rgb(84, 51, 31)"}}>소셜 로그인</button> */}
             </div>
             {how ? <NomalLoginBox 
             navigate={navigate}

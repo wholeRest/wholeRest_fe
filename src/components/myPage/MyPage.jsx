@@ -289,8 +289,8 @@ export function MyPage(props){
           <div className='body'>
             <ToDoList ID={ID} />
             <div className='mypage_Btn'>
-              <button onClick={postClick}>저장</button>
-              <button onClick={patchClick}>수정</button>
+              <button className='saveBtn' onClick={postClick}>저장</button>
+              <button className='saveBtn' onClick={patchClick}>수정</button>
             </div>
 
             <div className="calendar_div">
