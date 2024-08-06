@@ -8,6 +8,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import { TextField, Box, Button } from '@mui/material';
+import { authHttp } from '../../../axios/apiUrl';
 
 
 
@@ -86,6 +87,7 @@ function Day(props) {
     <CustomPickersDay
       {...other}
       day={day}
+
       sx={{ px: 2.5 }}
       disableMargin
       selected={false}
@@ -100,20 +102,36 @@ function Day(props) {
 }
 
 
-export function Calendar() {
-  const [nowDay, setNowDay ]= React.useState(getToday()); // 지금 선택된 날짜!
+const getCurrentMonth = (date) => {
+  const year = date.year();
+  const month = date.month() + 1; // month는 0부터 시작하므로 1을 더해줍니다
+  return `${year}-${String(month).padStart(2, '0')}`;
+};
+
+
+export function Calendar(props) {
+  const [testdays, setTestDays] = React.  useState([1, 2, 15]);
+  const {nowDay, setNowDay} = props;
+  
   const [hoveredDay, setHoveredDay] = React.useState(null); // 현재 마우스가 올라가 있는 날짜
+
   const [ranges, setRanges] = React.useState([]); // 선택된 날짜 범위(시작일과 종료일) 저장본
+
   const [color, setColor] = React.useState(''); // 선택된 범위의 색상
   const [startDateInput, setStartDateInput] = React.useState(''); // 입력받은 시작 날짜
   const [endDateInput, setEndDateInput] = React.useState(''); // 입력받은 종료 날짜
-  const [selectedRange, setSelectedRange] = React.useState(null); // 현재 선택된 날짜 범위
-  const [popupOpen_range, setPopupOpen_range] = React.useState(false); // 날짜 선택 팝업 눌렀나
   const [selectedDateInfo, setSelectedDateInfo] = React.useState('No schedule available for this date'); // 클릭한 날짜의 일정 정보를
+  const [selectedRange, setSelectedRange] = React.useState(null); // 현재 선택된 날짜 범위
+
+
+  const [popupOpen_range, setPopupOpen_range] = React.useState(false); // 날짜 선택 팝업 눌렀나
+
   const [scheduleInfo, setScheduleInfo] = React.useState(''); // 일정 정보 입력 필드 값
   const [bgColor, setBgColor] = React.useState('white'); // 배경 색상
+
+  const [currentMonth, setCurrentMonth] = React.useState(getCurrentMonth(dayjs())); // 현재 달 상태
+
   const letter = React.useRef(null); 
-  
   
   
 
@@ -123,6 +141,7 @@ export function Calendar() {
     console.log('현재 저장된 일정정보: ' + scheduleInfo);
     console.log('현재 저장된 일정: ' + ranges);
     console.log('현재 저장된 일정: ', JSON.stringify(ranges, null, 2));
+    
   }, [nowDay]);
 
 
@@ -138,20 +157,27 @@ export function Calendar() {
       setSelectedRange(range); // 선택된 범위 상태 업데이트
       console.log("진짜 업뎃: " + range.info);
     } else {
-      setSelectedDateInfo('No schedule available for this date');
+      setSelectedDateInfo('No schedule available for this date'); 
       setScheduleInfo('');
       setBgColor('white'); // 일정이 없을 때 배경 색상 설정
       setSelectedRange(null); // 선택된 범위 초기화
     }
 
-    console.log('선택된 날짜:', nowDay);
-  console.log('현재 저장된 일정정보:', scheduleInfo);
-  console.log('현재 저장된 일정:', ranges);
+    console.log('!!!!!!!선택된 날짜:', nowDay);
+    console.log('현재 저장된 일정정보:', scheduleInfo);
+    console.log('현재 저장된 일정:', ranges);
   }, [ranges, nowDay]); 
   
 
+  const testHandler = (value) => {
+    console.log(value);
+
+  };
+
 
   const handleDateChange = (newValue) => {
+    console.log(newValue.$y);
+    console.log(newValue.$M);
     if (startDateInput && endDateInput) {
       // 이미 시작일과 종료일이 설정되어 있는 경우
       setStartDateInput(newValue.format('YYYY-MM-DD'));
@@ -161,13 +187,26 @@ export function Calendar() {
     } else {
       setStartDateInput(newValue.format('YYYY-MM-DD'));
     }
+
+    console.log(startDateInput, endDateInput)
   };
+
 
   const handleSubmit = () => {
 
     const newStartDate = dayjs(startDateInput);
     const newEndDate = dayjs(endDateInput);
+    console.log(newStartDate.$y.toString())
+    const year = newStartDate.$y.toString()
+    const mon = (newStartDate.$M + 1).toString().padStart(2, '0')
+    const day = newStartDate.$D.toString().padStart(2, '0')
 
+    const year1 = newEndDate.$y.toString()
+    const mon1 = (newEndDate.$M + 1).toString().padStart(2, '0')
+    const day1 = newEndDate.$D.toString().padStart(2, '0')
+  
+    console.log(year +'-'+ mon +'-'+ day);
+    
     //const enterdLetter = letter.current.value;
     
 
@@ -177,6 +216,21 @@ export function Calendar() {
         !(startDate.isBefore(newEndDate) && endDate.isAfter(newStartDate))
       );
       setRanges([...updatedRanges, { startDate: newStartDate, endDate: newEndDate, color, info: scheduleInfo}]); 
+
+      console.log(ranges)
+      authHttp.post(`/api/schedule`, {
+        start_date: year +'-'+ mon +'-'+ day,
+        end_date: year1 +'-'+ mon1 +'-'+ day1,
+        schedule_color: color,
+        content: scheduleInfo,
+      })
+      .then((response) => {
+        console.log(response)
+      })
+      .catch(function (error){
+        console.log(error)
+      });
+
       
       setStartDateInput('');
       setEndDateInput('');
@@ -185,28 +239,6 @@ export function Calendar() {
       alert('Invalid dates. Please ensure the start date is before the end date.');
     }
 
-    // const newStartDate = dayjs(startDateInput);
-    // const newEndDate = dayjs(endDateInput);
-
-    // if (newStartDate.isValid() && newEndDate.isValid() && newStartDate.isBefore(newEndDate)) {
-    //   if (selectedRange) {
-    //     // 기존 범위 업데이트
-    //     setRanges(ranges.map((range) =>
-    //       range === selectedRange
-    //         ? { ...range, startDate: newStartDate, endDate: newEndDate, color }
-    //         : range
-    //     ));
-    //     setSelectedRange(null);
-    //   } else {
-    //     // 새로운 범위 추가
-    //     setRanges([...ranges, { startDate: newStartDate, endDate: newEndDate, color }]);
-    //   }
-    //   setStartDateInput('');
-    //   setEndDateInput('');
-    //   setPopupOpen_range(false); // 팝업을 닫음 
-    // } else {
-    //   alert('Invalid dates. Please ensure the start date is before the end date.');
-    // }
   };
 
 
@@ -215,6 +247,54 @@ export function Calendar() {
     const startDateToDelete = dayjs(startDateInput);
     const endDateToDelete = dayjs(endDateInput);
 
+    const year = startDateToDelete.$y.toString()
+    const mon = (startDateToDelete.$M + 1).toString().padStart(2, '0')
+    const day = startDateToDelete.$D.toString().padStart(2, '0')
+
+    const year1 = endDateToDelete.$y.toString()
+    const mon1 = (endDateToDelete.$M + 1).toString().padStart(2, '0')
+    const day1 = endDateToDelete.$D.toString().padStart(2, '0')
+
+    console.log("삭제: 시작일: " +year +'-'+ mon +'-'+ day +"  종료일: " + year1 +'-'+ mon1 +'-'+ day1);
+    
+    // 시작날 ~ 종료날이 일치하는 일정이 있으면, 
+    authHttp.get(`/api/schedule/date?date=${year +'-'+ mon +'-'+ day}`)
+    .then(function (response){
+      let scheduleId = response.data[0].schedule_id;
+
+      authHttp.get(`/api/schedule/date?date=${year1 +'-'+ mon1 +'-'+ day1}`)
+      .then(function (response){
+
+        authHttp.delete(`/api/schedule/${scheduleId}`)
+          .then(function (response){
+            console.log("------'" + scheduleId);
+            console.log("일정 삭제 성공");
+          })
+          .catch(function (error){
+            console.error(error);
+            console.error("응답 데이터:", error.response?.data);
+            console.log("일정 삭제 실패");
+          })
+
+        if(scheduleId === response.data[0].schedule_id){
+          // 그 id 삭제
+          
+        }
+      })
+      .catch(function (error){
+        console.error(error);
+        console.error("응답 데이터:", error.response?.data);
+        console.log("delete end 실패");
+      })
+    })
+    .catch(function (error){
+      console.error(error);
+      console.error("응답 데이터:", error.response?.data);
+      console.log("delete start 실패");
+    })
+
+
+    // 일치하는 일정이 있으면 삭제
   if (startDateToDelete.isValid() && endDateToDelete.isValid() && startDateToDelete.isBefore(endDateToDelete)) {
     // 팝업창에서 입력된 날짜와 일치하는 범위 삭제
     const updatedRanges = ranges.filter(({ startDate, endDate }) =>
@@ -257,6 +337,9 @@ export function Calendar() {
     );
 
     console.log('Range found:', range); // 범위 확인
+
+    // 일치하는 일정이 있으면 일정정보 get (없으면)
+
 
     if (range) {
       // 클릭한 날짜가 범위 내에 있을 때만 일정 정보 표시
@@ -466,7 +549,8 @@ export function Calendar() {
           <DateCalendar 
             value={null}
             onChange={handleDateChange}
-            showDaysOutsideCurrentMonth
+            onMonthChange={testHandler}
+            showDaysOutshdeCurrentMonth
             slots={{ day: Day }}
             slotProps={{
               day: (ownerState) => ({

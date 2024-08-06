@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import chenkImage from '../../image/myPage/checkImg.png';
 import axios from 'axios';
 
 const ToDoListBox = styled.div`
@@ -162,7 +163,7 @@ const ToDoList = ({ eventId }) => {
     return (
         <ToDoListBox>
             <HeaderContainer>
-                <CheckImage src="src/image/myPage/checkImg.png" alt="Check Image" />
+                <CheckImage src={chenkImage} alt="Check Image" />
                 <Header>TODAY'S TO DO LIST</Header>
             </HeaderContainer>
             {Array.isArray(todos) && todos.length > 0 ? (

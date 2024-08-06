@@ -1,6 +1,7 @@
 //import { Header } from "../Header"
 //import { Footer } from "../Footer"
 import './MyPage.css'
+import * as React from 'react';
 import { useState } from "react"
 import { useEffect } from "react"
 import { useParams } from "react-router"
@@ -16,11 +17,37 @@ import axios from "axios"
 import { authHttp } from '../../axios/apiUrl';
 
 
+// 오늘 날짜를 yyyy-mm-dd 형식으로 반환하는 함수
+const getToday = () => {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = String(today.getMonth() + 1).padStart(2, '0');
+  const day = String(today.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
+// 날짜를 yyyy-mm-dd 형식으로 변환하는 함수
+const formatDate = (date) => {
+  if (!date) return '';
+
+  // date가 Date 객체가 아닌 경우, 이를 Date 객체로 변환 시도
+  if (!(date instanceof Date)) {
+    date = new Date(date);
+  }
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
+
 
 
 export function MyPage(props){
     const { ID } = useParams();
     
+    const [nowDay, setNowDay ]= React.useState(getToday()); // 지금 선택된 날짜!
 
     const today = new Date();
     // 현재 날짜를 가져옵니다.
@@ -88,6 +115,56 @@ export function MyPage(props){
        },
     ]);
 
+
+    useEffect(()=>{
+
+      const token = sessionStorage.getItem('access');
+      const config = { headers: { Authorization: `Bearer ${token}` } };
+
+      axios.get(`https://api.wholerest.site/api/event/date?date=${nowDay}`, config)
+      .then(function (response){
+        
+        setDiary_feel(response.data[0].today_feel);
+        console.log("들어있는 것 - today_feel: " + response.data[0].today_feel);
+        console.log("diary_feel: " + diary_feel);
+        setDiary_condition(response.data[0].today_condition);
+        setDiary_todayDiary(response.data[0].today_routine);
+        setDiary_todayThank(response.data[0].today_appreciation);
+        setMemo(response.data[0].today_memo);
+
+        setMini_drug([
+          {content: response.data.medicineContent1, check: false},
+          {content: response.data.medicineContent2, check: false},
+          {content: response.data.medicineContent3, check: false},
+          {content: response.data.medicineContent4, check: false},
+        ]);
+
+        setMini_check([
+          {content: response.data.checkupContent1, check: false},
+          {content: response.data.checkupContent2, check: false},
+          {content: response.data.checkupContent3, check: false},
+          {content: response.data.checkupContent4, check: false},
+        ]);
+
+        setMini_caution([
+          {content: response.data.cautionContent1, check: false},
+          {content: response.data.cautionContent2, check: false},
+          {content: response.data.cautionContent3, check: false},
+          {content: response.data.cautionContent4, check: false},
+        ]);
+
+        console.log(nowDay + " 선택 날짜로 get 성공");
+      })
+      .catch(function (error){
+        console.log(error);
+        console.log(nowDay + " 선택 날짜로 get 실패");
+      }); 
+
+
+    }, [nowDay]);
+
+
+
     
 
     const postClick = (e) => {
@@ -100,10 +177,11 @@ export function MyPage(props){
 
       axios.post(`https://api.wholerest.site/api/event`, 
         { 
-          date: formattedDate,
+          date: nowDay,
           today_feel: diary_feel,
           today_condition: diary_condition,
           today_routine: diary_todayDiary,
+          today_appreciation: diary_todayThank,
           today_memo: memo,
           todoContent1: "content1",
           todoContent2: "content1",
@@ -128,54 +206,6 @@ export function MyPage(props){
           console.log("전체 post 실패");
       });
 
-      // authHttp.post('/api/event', 
-      //   { date:formattedDate}
-      // )
-      // .then(function (response){
-
-      //   authHttp.get(`/api/event/date?date=${formattedDate}`)
-      //   .then(function (response){
-      //     setEventId(response.data[0].event_id);
-
-      //     authHttp.post(`/api/event`, 
-      //       { 
-              
-      //         date: formattedDate,
-      //         today_feel: "verygood1",
-      //         today_condition: "soso1",
-      //         today_routine: "String1",
-      //         today_memo: "배포 하고 자기1",
-      //         todoContent1: "content1",
-      //         todoContent2: "content1",
-      //         medicineContent1: "content1",
-      //         medicineContent2: "content1",
-      //         medicineContent3: "content1",
-      //         medicineContent4: "content1",
-      //         checkupContent1: "content1",
-      //         checkupContent2: "content1",
-      //         checkupContent3: "content1",
-      //         checkupContent4: "content1",
-      //         cautionContent1: "content1",
-      //         cautionContent2: "content1",
-      //         cautionContent3: "content1",
-      //         cautionContent4: "content1"
-      //       }, config)
-      //       .then(function (response){
-      //         console.log("전체 post 성공");
-      //       })
-      //       .catch(function (error){
-      //         console.log("전체 post 실패");
-      //     });
-
-      //   })
-      //   .catch(function(error){
-      //     console.log("event get 실패");
-      //   });
-
-      // })
-      // .catch(function (error){
-      //   console.log("event post 실패");
-      // });
 
     }
 
@@ -190,7 +220,7 @@ export function MyPage(props){
 
 
 
-      authHttp.get(`/api/event/date?date=${formattedDate}`)
+      authHttp.get(`/api/event/date?date=${nowDay}`)
         .then(function (response){
           setEventId(response.data[0].event_id);
           console.log("이벤트 아이디: " + response.data[0].event_id);
@@ -200,6 +230,7 @@ export function MyPage(props){
           today_feel: diary_feel,
           today_condition: diary_condition,
           today_routine: diary_todayDiary,
+          today_appreciation: diary_todayThank,
           today_memo: memo,
           todoContent1: "content2",
           todoContent2: "content2",
@@ -233,272 +264,6 @@ export function MyPage(props){
 
 
 
-
-  //   useEffect(() => {
-  //     const token = sessionStorage.getItem('access');
-  //     const config = { headers: { Authorization: `Bearer ${token}` } };
-
-  //     const fetchData = async () => {
-  //         try {
-  //             if (!isPosted) {
-  //                 const postEventResponse = await axios.post('https://api.wholerest.site/api/event', { date: '2024-07-28' }, config);
-  //                 console.log("post는 성공===================================");
-  //                 console.log(postEventResponse.data);
-
-  //             }
-  //         } catch (error) {
-  //             console.error(error);
-  //             console.error("응답 데이터:", error.response?.data);
-  //             console.log("event post 에러발생!");
-  //         }   
-
-  //         try{
-  //           if (!isPosted) {
-  //             const getEventResponse = await authHttp.get(`/api/event/date?date=2024-07-28`);
-              
-
-  //             setEventId(getEventResponse.data[0].event_id);
-  //             setIsPosted(true);
-  //           }
-  //         }
-  //         catch (error) {
-  //           console.error(error);
-  //           console.error("응답 데이터:", error.response?.data);
-  //           console.log("event get 에러발생!");
-  //       }
-
-  //     };
-
-  //     fetchData();
-  // }, [isPosted, formattedDate]);
-
-
-
-
-
-  // useEffect(() => {
-  //     const token = sessionStorage.getItem('access');
-  //     const config = { headers: { Authorization: `Bearer ${token}` } };
-
-  //     const postData = async () => {
-  //         try {
-  //             if (eventId) { 
-  //                 const postTodoResponse = await axios.post(`https://api.wholerest.site/api/todo/${eventId}`, { content: "", completed: false }, config);
-  //                 console.log("post는 성공");
-  //                 console.log("todo: " + postTodoResponse.data);
-
-  //                 const postMedicineResponse = await axios.post(`https://api.wholerest.site/api/medicine/${eventId}`, { content: "", completed: false }, config);
-  //                 console.log("post는 성공");
-  //                 console.log(postMedicineResponse.data);
-
-  //                 const postCheckupResponse = await axios.post(`https://api.wholerest.site/api/checkup/${eventId}`, { content: "", completed: false }, config);
-  //                 console.log("post는 성공");
-  //                 console.log(postCheckupResponse.data);
-
-  //                 const postCautionResponse = await axios.post(`https://api.wholerest.site/api/caution/${eventId}`, { content: "", completed: false }, config);
-  //                 console.log("post는 성공");
-  //                 console.log(postCautionResponse.data);
-  //             }
-  //         } catch (error) {
-  //             console.error(error);
-  //             console.log("post 에러발생!");
-  //         }
-  //     };
-
-  //     postData();
-  // }, [eventId]);
-
-
-
-
-//     // 하루에 한번만 실행될 수 있도록!! // 
-//     useEffect(() => {
-
-  
-
-//       const token = sessionStorage.getItem('access');
-
-//       const config = {
-//           headers: { Authorization: `Bearer ${token}` }
-//       };
-
-//       if (!isPosted) {
-//       axios.post('https://wholerest.site/api/event', {
-//         date: "2024-08-02"
-//       }, config)
-//           .then(response => {
-//               console.log("post는 성공===================================");
-//               console.log(response.data);
-              
-
-//           }).catch(error => {
-              
-//               console.error(error);
-//               console.error("응답 데이터:", error.response?.data);
-//               console.log("event post 에러발생!");
-//             });
-
-
-
-//       axios.get('https://wholerest.site/api/event/date?date=2024-08-02', {
-//         headers: { Authorization: `Bearer ${token}` }
-//     }).then(response => {
-//       setEventId(response.data.event_id);
-//       console.log("event get 성공+++++++++++++");
-//     }).catch(error => {
-      
-//         console.error(error);
-//         console.log("event get 에러발생!");
-//     });
-
-
-
-
-//     axios.post(`https://wholerest.site/api/todo/${eventId}`, 
-//       { content: "", completed: false }, config)
-//       .then(response => {
-//           console.log("todo post는 성공");
-
-//       }).catch(error => {
-        
-//           console.error(error);
-//           console.log("todo 에러발생!");
-//       });
-
-
-
-
-      
-
-
-//       axios.post(`https://wholerest.site/api/medicine/${eventId}`,
-//          { content: "", completed: false }, config)
-//          .then(response => {
-//             console.log("medicine post는 성공");
-
-//         }).catch(error => {
-          
-//             console.error(error);
-//             console.log("medicine 에러발생!");
-//         });
-
-//         axios.post(`https://wholerest.site/api/checkup/${eventId}`,
-//           { content: "", completed: false }, config)
-//           .then(response => {
-//            console.log("checjup post는 성공");
-
-//          }).catch(error => {
-           
-//              console.error(error);
-//              console.log("checkup 에러발생!");
-//          });
-
-//          axios.post(`https://wholerest.site/api/caution/${eventId}`,
-//           { content: "", completed: false }, config)
-//           .then(response => {
-//            console.log("caution post는 성공");
-
-//          }).catch(error => {
-//            console.log("caution 에러발생!");
-//              console.error(error);
-//          });
-
-
-//          setIsPosted(true);
-
-//   }
-// }, [isPosted, formattedDate]);
-
-
-
-///////////////////////////////////////////////////
-
-  //   // 맨 처음 들어왔을 때 post 한번만
-  //   useEffect(() => {
-      
-  // }, [isPosted, formattedDate]);
-
-
-
-
-
-  // useEffect(() => {
-  //     const token = sessionStorage.getItem('access');
-  //     const config = { headers: { Authorization: `Bearer ${token}` } };
-
-  //     if (eventId) {
-  //         axios.patch(`https://wholerest.site/api/medicine/${eventId}`, {
-  //             content: "",
-  //             completed: false
-  //         }, config)
-  //         .then(response => {
-  //             console.log("미니3_약복용 수정됨.");
-  //         })
-  //         .catch(error => {
-  //             console.log(error);
-  //             console.log("미니3_약복용 수정 실패...");
-  //         });
-  //     }
-  // }, [mini_drug, eventId]);
-
-  // useEffect(() => {
-  //     const token = sessionStorage.getItem('access');
-  //     const config = { headers: { Authorization: `Bearer ${token}` } };
-
-  //     if (eventId) {
-  //         axios.patch(`https://wholerest.site/api/checkup/${eventId}`, {
-  //             content: "",
-  //             completed: false
-  //         }, config)
-  //         .then(response => {
-  //             console.log("미니3_검진결과 수정됨.");
-  //         })
-  //         .catch(error => {
-  //             console.log(error);
-  //             console.log("미니3_검진결과 수정 실패...");
-  //         });
-  //     }
-  // }, [mini_check, eventId]);
-
-  // useEffect(() => {
-  //     const token = sessionStorage.getItem('access');
-  //     const config = { headers: { Authorization: `Bearer ${token}` } };
-
-  //     if (eventId) {
-  //         axios.patch(`https://wholerest.site/api/caution/${eventId}`, {
-  //             content: "",
-  //             completed: false
-  //         }, config)
-  //         .then(response => {
-  //             console.log("미니3_주의사항 수정됨.");
-  //         })
-  //         .catch(error => {
-  //             console.log(error);
-  //             console.log("미니3_주의사항 수정 실패...");
-  //         });
-  //     }
-  // }, [mini_caution, eventId]);
-
-
-
-    
-    
-
-
-  //   useEffect(() => {
-  //     console.log("isDrugChecked:", isDrugChecked);
-  //     console.log("isCheckChecked:", isCheckChecked);
-  //     console.log("isCautionChecked:", isCautionChecked);
-  //     console.log("diary_feel:", diary_feel);
-  //     console.log("diary_condition:", diary_condition);
-  //     console.log("diary_todayDiary:", diary_todayDiary);
-  //     console.log("diary_todayThank:", diary_todayThank);
-  //     console.log("mini_drug:", mini_drug);
-  //     console.log("mini_check:", mini_check);
-  //     console.log("mini_caution:", mini_caution);
-  //     console.log("memo:", memo);
-  // }, [isDrugChecked, isCheckChecked, isCautionChecked, diary_feel, diary_condition, diary_todayDiary, diary_todayThank, mini_drug, mini_check, mini_caution, memo]);
-
     
     const handleInputChange = (e, index, type) => {
       const { value } = e.target;
@@ -529,7 +294,7 @@ export function MyPage(props){
             </div>
 
             <div className="calendar_div">
-              <Calendar ID={ID}  />
+              <Calendar ID={ID} nowDay={nowDay} setNowDay={setNowDay} />
             </div>
               
 
